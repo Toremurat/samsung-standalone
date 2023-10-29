@@ -1,0 +1,138 @@
+[
+	{
+		"status": 1,
+		"link": "5%-bonuses",
+		"home_image": "/static/image/promo/example-1/banner.webp",
+		"promo_image": "/static/image/promo/example-1/promo-banner.webp",
+		"date_start": "2023-10-11",
+		"date_end": "2023-11-30",
+		"sort": 1,
+		"group": 2,
+		"home_sort": 1,
+		"size": 6,
+		"name": "5% бонусов при оплате через Halyk QR",
+		"description": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		],
+		"content": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		]
+	},
+	{
+		"status": 1,
+		"link": "trade-in",
+		"home_image": "/static/image/promo/example-2/banner.webp",
+		"promo_image": "/static/image/promo/example-2/promo-banner.webp",
+		"date_start": "2023-10-11",
+		"date_end": "2023-12-03",
+		"sort": 2,
+		"group": 1,
+		"home_sort": 1,
+		"size": 6,
+		"name": "example-2",
+		"description": [
+			"<p>Инструкция по работе с example-2. Как предлагать. Почему это выгодно? Процесс оформления.</p>"
+		],
+		"content": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		]
+	},
+	{
+		"status": 1,
+		"link": "5%-bonuses",
+		"home_image": "/static/image/promo/example-3/banner.webp",
+		"promo_image": "/static/image/promo/example-3/promo-banner.webp",
+		"date_start": "2023-12-11",
+		"date_end": "2024-02-25",
+		"sort": 1,
+		"group": 2,
+		"home_sort": 1,
+		"size": 6,
+		"name": "5% бонусов при оплате через Kaspi QR",
+		"description": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		],
+		"content": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		]
+	},
+	{
+		"status": 1,
+		"link": "5%-bonuses",
+		"home_image": "/static/image/promo/example-4/banner.webp",
+		"promo_image": "/static/image/promo/example-4/promo-banner.webp",
+		"date_start": "2023-10-11",
+		"date_end": "2024-01-31",
+		"sort": 1,
+		"group": 2,
+		"home_sort": 1,
+		"size": 6,
+		"name": "5% бонусов при оплате через Home QR",
+		"description": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		],
+		"content": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		]
+	},
+	{
+		"status": 0,
+		"link": "5%-bonuses",
+		"home_image": "/static/image/promo/example-5/banner.webp",
+		"promo_image": "/static/image/promo/example-5/promo-banner.webp",
+		"date_start": "2023-10-11",
+		"date_end": "2024-01-31",
+		"sort": 1,
+		"group": 2,
+		"home_sort": 1,
+		"size": 6,
+		"name": "5% бонусов при оплате через Home QR",
+		"description": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		],
+		"content": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		]
+	},
+	{
+		"status": 1,
+		"link": "5%-bonuses",
+		"home_image": "/static/image/promo/example-6/banner.webp",
+		"promo_image": "/static/image/promo/example-6/promo-banner.webp",
+		"date_start": "2023-10-11",
+		"date_end": "2024-01-31",
+		"sort": 1,
+		"group": 2,
+		"home_sort": 1,
+		"size": 6,
+		"name": "5% бонусов при оплате через Home QR",
+		"description": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		],
+		"content": [
+			"<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+			"<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
+			"<span>1 бонус = 1 тенге</span>"
+		]
+	}
+]

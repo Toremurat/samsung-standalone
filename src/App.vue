@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <headingNav></headingNav>
+  <div :style="'margin-top: 77px;'">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import headingNav from './components/headingNav.vue';
 export default {
-  name: 'App',
+  name: 'MainApp',
   components: {
-    HelloWorld
+    headingNav
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+@import '/public/static/style/main.scss';
+#app > div > .container{
+  @media (min-width: 1600px){
+    max-width: 1600px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  @media (max-width: 1600px) and (min-width: 768px){
+    max-width: calc(100% - 160px);
+    padding-left: 80px;
+    padding-right: 80px;
+  }
 }
 </style>
