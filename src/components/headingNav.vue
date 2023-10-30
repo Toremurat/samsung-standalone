@@ -2,7 +2,8 @@
 	<nav class="header">
 		<div class="header-sticky container">
 			<div class="left-container">
-				<div class="burger" :class="{ morph: isDesktopDropdownActive || isMobileDropdownActive }" @click="toggleState();">
+				<div class="burger" :class="{ morph: isDesktopDropdownActive || isMobileDropdownActive }"
+					@click="toggleState();">
 					<div class="icon">
 						<i class="line burger top-line"></i>
 						<i class="line burger middle-line"></i>
@@ -12,20 +13,20 @@
 				<div class="vertical-divider"></div>
 				<div id="logo">
 					<router-link to="/">
-						<img src="/static/image/logo/logo.svg" alt="">
+						<img src="@/static/image/logo/logo.svg" alt="">
 					</router-link>
 				</div>
 			</div>
 			<div class="right-container desktop-only">
 				<div class="flex-row flex addr">
 					<div class="addr-1">
-						<img src="/static/icons/addr.svg" alt="" class="icon">
+						<img src="@/static/icons/addr.svg" alt="" class="icon">
 						<span class="text black_75 text_base2">
 							ТРЦ Dostyk Plaza
 						</span>
 					</div>
 					<div class="tel-1">
-						<img src="/static/icons/tel.svg" alt="" class="icon">
+						<img src="@/static/icons/tel.svg" alt="" class="icon">
 						<span class="text black_75 text_base2">
 							+7 771 933 33 22
 						</span>
@@ -37,7 +38,7 @@
 					<div class="col-sm-4">
 						<ul class="menu-list">
 							<li class="list-item text_base1_bold black_100 pdb-6">
-								<router-link to="/" class="text_base1_bold black_100">
+								<router-link to="/promo/" class="text_base1_bold black_100">
 									Акции
 								</router-link>
 							</li>
@@ -56,7 +57,7 @@
 					<div class="col-sm-4">
 						<ul class="menu-list">
 							<li class="list-item text_base1_bold black_100 pdb-5">
-								<router-link to="/" class="text_base1_bold black_100">
+								<router-link to="/promo/" class="text_base1_bold black_100">
 									Акции
 								</router-link>
 							</li>
@@ -98,7 +99,7 @@
 			<div class="vertical-dropdown-mobile" :class="{ active: isMobileDropdownActive }">
 				<ul class="sidebar-menu">
 					<li class="menu-items text_base1_bold black_100">
-						<router-link to="">Акции</router-link>
+						<router-link to="/promo/">Акции</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100">
 						<router-link to="">Контакты</router-link>
@@ -106,7 +107,8 @@
 					<li class="menu-items text_base1_bold black_100">
 						<router-link to="">Служба заботы</router-link>
 					</li>
-					<li class="menu-items text_base1_bold black_100" @click="toggleCollapse();">
+					<li class="menu-items text_base1_bold black_100 dropper" :class="{ toggle: isActive }"
+						@click="toggleCollapse();">
 						Информация покупателям
 					</li>
 					<div class="mobile-collapse" :class="{ active: isActive }">
@@ -160,10 +162,11 @@
 					<div class="addr-link">
 						<p class="text_base_2 black_50">Показать на</p>
 						<a href="http://">
-							<img src="/static/image/icon/2gis.svg" alt="">
+							<img src="@/static/icons/2gis.svg" alt="">
 						</a>
+						<span class="verticalDiv"></span>
 						<a href="http://">
-							<img src="/static/image/icon/yandex.svg" alt="">
+							<img src="@/static/icons/yandex.svg" alt="">
 						</a>
 					</div>
 				</div>
@@ -220,8 +223,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('../styles/main.css');
-
 // Стили для мобильного dropdown
 .header {
 	position: fixed;
@@ -253,7 +254,8 @@ export default {
 		transition: max-height 0.3s ease;
 
 		&.active {
-			max-height: 500px; // Установите желаемую максимальную высоту
+			max-height: calc(100vh - 64px); // Установите желаемую максимальную высоту
+			height: calc(100vh - 64px); // Установите желаемую максимальную высоту
 			opacity: 1;
 		}
 
@@ -313,11 +315,30 @@ export default {
 	padding: 12px 80px;
 	margin: 0 auto;
 
-	@media (max-width: 1600px) and (min-width: 768px) {
-		max-width: calc(100% - 160px);
+	@media (max-width: 1600px) and (min-width: 1366px) {
+		max-width: 100%;
 		padding-left: 80px;
 		padding-right: 80px;
 	}
+
+	@media (max-width: 1366px) and (min-width: 1080px) {
+		max-width: 100%;
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+
+	@media (max-width: 1080px) and (min-width: 900px) {
+		max-width: 100%;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	@media (max-width: 900px) {
+		max-width: calc(100% - 0px);
+		padding-left: 0;
+		padding-right: 0;
+	}
+
 }
 
 .left-container {
@@ -368,13 +389,21 @@ export default {
 .mobile-collapse {
 	opacity: 0;
 	background-color: #fff;
-	border: 1px solid #ccc;
-	padding: 10px;
+	// border: 1px solid #ededed;
+	padding: 0;
 	// display: none;
 }
 
 .mobile-collapse.active {
 	opacity: 1;
+}
+
+.mobile-collapse:not(.active) {
+	max-height: 0;
+}
+
+.mobile-collapse.active {
+	margin-bottom: 28px;
 }
 
 .burger .icon i {
@@ -397,15 +426,139 @@ export default {
 	transform: translateY(-12px);
 }
 
-.burger.morph .icon .middle-line[data-v-5dc86151] {
+.burger.morph .icon .middle-line {
 	display: block;
 	opacity: 0;
 }
 
-.burger.morph .icon .bottom-line[data-v-5dc86151] {
+.burger.morph .icon .bottom-line {
 	transform: rotate(45deg) translateY(-8px) translateX(-10px);
 }
 
-.burger.morph .icon .top-line[data-v-5dc86151] {
+.burger.morph .icon .top-line {
 	transform: rotate(-45deg) translateY(8px) translateX(-8px);
+}
+
+@media (max-width:900px) {
+	.right-container.desktop-only {
+		display: none !important;
+	}
+
+	.header-sticky.container {
+		padding: 0 !important;
+	}
+
+	.left-container {
+		padding: 12px 30px !important;
+	}
+
+	.sidebar-menu {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	#homePromo .title span {
+		width: 100%;
+		display: block;
+		padding: 0 !important;
+	}
+
+	.right-container.desktop-only {
+		display: none !important;
+	}
+
+	.vertical-dropdown-mobile {
+		width: 100%;
+	}
+
+	.sidebar-menu {
+		padding: 0 !important;
+	}
+
+	.sidebar-menu>.menu-items {
+		padding: 20px;
+		border-top: 1px solid #ededed;
+	}
+
+	nav+div {
+		margin-top: 66px !important;
+	}
+
+	.sidebar-menu .menu-items a {
+		color: #000;
+	}
+
+	.sidebar-menu .menu-items.dropper:before {
+		content: url(@/static/icons/smallArrow.svg);
+		display: block;
+		position: absolute;
+		right: 20px;
+		width: 21px;
+		height: 21px;
+		margin-top: 3px;
+		transition: ease all 0.3s;
+	}
+
+	.sidebar-menu .menu-items.toggle {
+		color: #2B47DA !important;
+	}
+
+	.sidebar-menu .menu-items.toggle:before {
+		transform: rotate(180deg);
+		transition: ease all 0.3s;
+	}
+
+	.sidebar-submenu {
+		padding: 0 !important;
+		margin: 0 20px 20px !important;
+	}
+
+	.sidebar-menu>.menu-items:last-of-type {
+		margin-bottom: -28px;
+	}
+
+	.sidebar-submenu .menu-items {
+		margin: 28px 0 0;
+	}
+
+	.sidebar-submenu .menu-items:first-of-type {
+		margin-top: 28px;
+	}
+
+	.sidebar-submenu .menu-items:last-of-type {
+		margin-bottom: 28px;
+	}
+
+	.tel-box {
+		padding: 28px 20px;
+		border-top: 1px solid #ededed;
+		border-bottom: 1px solid #ededed;
+	}
+
+	.tel-row+.tel-row p {
+		margin: 0;
+	}
+
+	.addr-box {
+		padding: 28px 20px;
+	}
+
+	.addr-link p {
+		margin: 20px 0 8px;
+		flex-basis: 100%;
+	}
+
+	.addr-link span {
+		height: 22px;
+		width: 1px;
+		display: inline-block;
+		background: #C9C9C9;
+		margin: 0 16px;
+	}
+
+	.addr-link {
+		display: flex;
+		align-items: center;
+		flex-flow: row wrap;
+	}
 }</style>

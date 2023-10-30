@@ -4,9 +4,9 @@
 		<h2 class="heading mrb-0">Новинки уже в продаже</h2>
 	</div>
 	<div class="carousel-section">
-		<carousel :items-to-show="4.5" :wrap-around="false">
+		<carousel :items-to-show="4.5" :wrap-around="false" :breakpoints="breakpoints">
 			<slide v-for="(carousel, index) in itemsArr" :key="index">
-				<img :src="'../static/image/carousel/' + carousel.img" alt="carousel.alt">
+				<img :src="'/static/image/carousel/' + carousel.img" alt="carousel.alt">
 			</slide>
 			<template #addons>
 				<Navigation>
@@ -25,7 +25,7 @@
 			<div class="glide__track" data-glide-el="track">
 				<ul class="glide__carousel">
 					<li class="glide-item" v-for="(carousel, index) in carouselFilter" :key="index">
-						<img :src="'../static/image/carousel/' + carousel.img" alt="carousel.alt">
+						<img :src="'@/static/image/carousel/' + carousel.img" alt="carousel.alt">
 					</li>
 				</ul>
 			</div>
@@ -63,26 +63,31 @@ export default {
 		return {
 			itemsArr: [],
 			errorData: [],
-			carouselStatus: 0,
+			carouselStatus: 1,
+			wrapAround: true,
 			breakpoints: {
 				320: {
-					itemsToShow: 2.5,
-					snapAlign: 'center',
+					itemsToShow: 1.3,
+					snapAlign: 'start',
 				},
 				// 700px and up
-				700: {
+				600: {
+					itemsToShow: 2.5,
+					snapAlign: 'start',
+				},
+				750: {
 					itemsToShow: 3.5,
-					snapAlign: 'center',
+					snapAlign: 'start',
 				},
 				// 1024 and up
 				1024: {
 					itemsToShow: 4.5,
-					snapAlign: 'center',
+					snapAlign: 'start',
 				},
-				1600: {
-					itemsToShow: 6.5,
-					snapAlign: 'center',
-				},
+				// 1600: {
+				// 	itemsToShow: 5.5,
+				// 	snapAlign: 'start',
+				// },
 				mousedrag: true,
 				touchDrag: true,
 
@@ -147,7 +152,7 @@ export default {
 	opacity: 1;
 
 	& .nav-slide {
-		content: url(/public/static/icons/arrow.svg);
+		content: url(@/static/icons/arrow.svg);
 		transform: rotate(180deg);
 		display: block;
 		width: 52px;
@@ -168,7 +173,7 @@ export default {
 	opacity: 1;
 
 	& .nav-slide {
-		content: url(/public/static/icons/arrow.svg);
+		content: url(@/static/icons/arrow.svg);
 		transform: rotate(0deg);
 		display: block;
 		width: 52px;
@@ -179,16 +184,19 @@ export default {
 }
 
 .carousel__prev:hover:not(.carousel__prev--disabled) .nav-slide {
-	content: url(/public/static/icons/arrow-hover.svg)!important
+	content: url(@/static/icons/arrow-hover.svg) !important
 }
+
 .carousel__next:hover:not(.carousel__next--disabled) .nav-slide {
-	content: url(/public/static/icons/arrow-hover.svg)!important
+	content: url(@/static/icons/arrow-hover.svg) !important
 }
+
 .carousel__prev--disabled .nav-slide {
-	content: url(/public/static/icons/disabledArrow.svg)!important
+	content: url(@/static/icons/disabledArrow.svg) !important
 }
+
 .carousel__next--disabled .nav-slide {
-	content: url(/public/static/icons/disabledArrow.svg)!important
+	content: url(@/static/icons/disabledArrow.svg) !important
 }
 
 
@@ -205,21 +213,21 @@ export default {
 }
 
 .glide__arrow.glide__arrow--left .wrap {
-	content: url(/public/static/icons/arrow.svg);
+	content: url(@/static/icons/arrow.svg);
 	transform: rotate(180deg)
-		/*! background: url(../static/icons/arrow.svg); */
+		/*! background: url(@/static/icons/arrow.svg); */
 }
 
 .glide__arrow.glide__arrow--right .wrap {
-	content: url(/public/static/icons/arrow.svg);
+	content: url(@/static/icons/arrow.svg);
 }
 
 .glide__arrow.glide__arrow--disabled .wrap {
-	content: url(/public/static/icons/disabledArrow.svg)
+	content: url(@/static/icons/disabledArrow.svg)
 }
 
 .glide__arrow:hover:not(.glide__arrow--disabled) .wrap {
-	content: url(/public/static/icons/arrow-hover.svg)
+	content: url(@/static/icons/arrow-hover.svg)
 }
 
 .glide img {
@@ -267,4 +275,15 @@ export default {
 .glide__bullet.glide__bullet--active {
 	background: #2B47DA;
 } */
+@media (max-width: 900px) {
+
+	.carousel__prev,
+	.carousel__next {
+		display: none !important;
+	}
+
+	.title.mrt-35.mrb-8 {
+		margin-top: 80px;
+	}
+}
 </style>

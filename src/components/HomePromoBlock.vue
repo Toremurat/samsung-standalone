@@ -1,7 +1,7 @@
 <template>
   <div id="homePromo">
     <div class="title  mrb-9">
-      <h2 class="heading mrt-0 mrb-0">Наши акции <span class="pdl-10"><router-link to="#"
+      <h2 class="heading mrt-0 mrb-0">Наши акции <span class="pdl-10"><router-link to="/promo/"
             class="text_base2_bold blue_80">Смотреть все
             акции</router-link></span></h2>
     </div>
@@ -150,6 +150,39 @@ export default {
 
 #homePromo .title a {
   position: relative;
+}
+
+@media (min-width:900px) and (max-width: 1600px) {
+  .promo-row {
+    align-items: stretch;
+  }
+
+  .image-box img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 900px) {
+  .promo-row {
+    flex-flow: column !important;
+  }
+
+  .promo-container.row {
+    display: flex;
+    flex-flow: column;
+    gap: 60px;
+  }
+
+  .image-box.rounded-6 {
+    order: -1;
+  }
+
+  #homePromo .title span {
+    width: 100%;
+    display: block;
+    padding: 0 !important;
+  }
 }
 </style>
 
