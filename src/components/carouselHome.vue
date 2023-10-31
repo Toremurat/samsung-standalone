@@ -20,32 +20,6 @@
 			</template>
 		</carousel>
 	</div>
-	<!-- <div class="carousel" v-if="itemsArr.length">
-		<div class="glide" id="carousel">
-			<div class="glide__track" data-glide-el="track">
-				<ul class="glide__carousel">
-					<li class="glide-item" v-for="(carousel, index) in carouselFilter" :key="index">
-						<img :src="'@/static/image/carousel/' + carousel.img" alt="carousel.alt">
-					</li>
-				</ul>
-			</div>
-			<div class="glide__bullets" data-glide-el="controls[nav]">
-				<button class="glide__bullet" :data-glide-dir="'=' + i" :alt="bullets.img" v-for="(bullets, i) in itemsArr"
-					:key="i"></button>
-			</div>
-			<div class="glide__arrows" data-glide-el="controls">
-				<button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-					<div class="wrap"></div>
-				</button>
-
-				<button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-					<div class="wrap"></div>
-				</button>
-
-			</div>
-
-		</div>
-	</div> -->
 </template>
 <script>
 import axios from 'axios'
@@ -132,9 +106,6 @@ export default {
 	},
 	created() {
 		this.getcarousel();
-
-	},
-	mounted() {
 
 	},
 }
