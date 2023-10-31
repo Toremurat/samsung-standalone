@@ -80,7 +80,7 @@ export default {
 	},
 	computed: {
 		isMobile() {
-			return window.innerWidth < 900;
+			return window.innerWidth < 768;
 		},
 	},
 	created() {
