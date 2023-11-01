@@ -24,6 +24,11 @@ const routes = [{
         name: 'Promo page',
         component: PromoPage,
     },
+    {
+        path: '/care-service',
+        name: 'care-service',
+        component: MainPage,
+    },
 ];
 
 const router = createRouter({
