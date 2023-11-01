@@ -40,14 +40,14 @@ export default {
 
   @media (max-width: 1366px) and (min-width: 1080px) {
     max-width: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   @media (max-width: 1080px) and (min-width: 900px) {
     max-width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 80px;
+    padding-right: 80px;
   }
 
   @media (max-width: 900px) {
@@ -91,5 +91,21 @@ export default {
     padding-bottom: 28px !important;
     border-bottom: 1px solid #ededed;
   }
+
+  #app>div>.container.footer.mrt-35 {
+    padding: 0 !important;
+  }
+
+  .carousel-wrapper.mrt-35.mrb-35 {
+    margin: 80px 0;
+  }
+
+  #app>div>.container {
+    padding: 0 !important;
+  }
+}
+
+.slider-section a {
+  pointer-events: none;
 }
 </style>

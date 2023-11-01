@@ -3,12 +3,11 @@ import axios from 'axios'
 import vueAxios from 'vue-axios'
 import router from './routes.js'
 import App from './App.vue'
-import './styles/main.scss';
+import './static/styles/main.scss';
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './styles/main.scss'
 
 
 

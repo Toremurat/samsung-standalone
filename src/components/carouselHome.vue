@@ -4,7 +4,7 @@
 		<h2 class="heading mrb-0">Новинки уже в продаже</h2>
 	</div>
 	<div class="carousel-section">
-		<carousel :items-to-show="4.5" :wrap-around="false" :breakpoints="breakpoints">
+		<carousel :items-to-show="4" :wrap-around="false" :breakpoints="breakpoints">
 			<slide v-for="(carousel, index) in itemsArr" :key="index">
 				<img :src="'/static/image/carousel/' + carousel.img" alt="carousel.alt">
 			</slide>
@@ -17,6 +17,7 @@
 						<div class="next nav-slide"></div>
 					</template>
 				</Navigation>
+				<Pagination></Pagination>
 			</template>
 		</carousel>
 	</div>
@@ -24,13 +25,14 @@
 <script>
 import axios from 'axios'
 import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Navigation } from 'vue3-carousel';
+import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
 
 export default {
 	components: {
 		Carousel,
 		Slide,
 		Navigation,
+		Pagination
 	},
 	name: 'productImg',
 	data() {
@@ -41,21 +43,21 @@ export default {
 			wrapAround: true,
 			breakpoints: {
 				320: {
-					itemsToShow: 1.3,
+					itemsToShow: 1,
 					snapAlign: 'start',
 				},
 				// 700px and up
 				600: {
-					itemsToShow: 2.5,
+					itemsToShow: 2,
 					snapAlign: 'start',
 				},
 				750: {
-					itemsToShow: 3.5,
+					itemsToShow: 3,
 					snapAlign: 'start',
 				},
 				// 1024 and up
 				1024: {
-					itemsToShow: 4.5,
+					itemsToShow: 4,
 					snapAlign: 'start',
 				},
 				// 1600: {
@@ -129,7 +131,7 @@ export default {
 		width: 52px;
 		height: 52px;
 		position: relative;
-		left: -74px;
+		left: -64px;
 	}
 
 
@@ -150,6 +152,7 @@ export default {
 		width: 52px;
 		height: 52px;
 		position: relative;
+		right: -64px;
 	}
 
 }
@@ -205,32 +208,7 @@ export default {
 	max-width: 100%;
 }
 
-/* .glide__track {
-	border-radius: 24px;
-	height: 100% !important;
-	width: 100% !important;
-}
-
-.glide-item {
-	text-align: center;
-	display: flex;
-	-webkit-align-items: center;
-	-webkit-justify-content: center;
-	padding: 20px 0;
-}
-
-.glide__bullets {
-	top: calc(100% + 10px);
-	position: absolute;
-	z-index: 2;
-	bottom: 2em;
-	left: 50%;
-	display: inline-flex;
-	list-style: none;
-	transform: translateX(-50%);
-}
-
-.glide__bullet {
+.carousel__pagination-button {
 	background: #d9d9d9;
 	width: 10px;
 	height: 10px;
@@ -243,9 +221,16 @@ export default {
 	margin: 0 0.25em;
 }
 
-.glide__bullet.glide__bullet--active {
+.carousel__pagination-button::after {
+	content: none;
+}
+
+.carousel__pagination-button.carousel__pagination-button--active {
 	background: #2B47DA;
-} */
+}
+.carousel__pagination{
+	display: none!important;
+}
 @media (max-width: 900px) {
 
 	.carousel__prev,
@@ -254,7 +239,31 @@ export default {
 	}
 
 	.title.mrt-35.mrb-8 {
-		margin-top: 80px;
+		margin-top: -40px;
+	}
+
+	.carousel-wrapper .title.mrt-35.mrb-8 {
+		margin-bottom: 16px;
+		padding: 0 0 0 20px;
+	}
+	.carousel__pagination {
+  margin: -5px 0 0!important;
+	display: flex!important;
+}
+
+}
+
+@media (max-width: 700px) {
+	.carousel img {
+		max-width: 100%;
+		width: calc(100% - 20px);
 	}
 }
+</style>
+<style>
+.carousel-section {
+	max-width: calc(100% - 20px);
+	margin: 0 auto;
+}
+
 </style>

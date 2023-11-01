@@ -28,5 +28,13 @@ export default {
         margin-top: 100px;
     }
 
+
+}
+
+@media (max-width: 560px) {
+    #app > div > .container {
+        padding: 20px 0!important;
+        max-width: calc(100% - 40px)!important;
+    }
 }
 </style>

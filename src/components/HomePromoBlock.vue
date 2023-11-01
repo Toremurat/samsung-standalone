@@ -12,8 +12,8 @@
           <div class="image-box rounded-6" :class="{ 'isOdd': index % 2 === 0, 'isEven': index % 2 !== 0 }">
             <img :src="promoItem.home_image" alt="image">
           </div>
-          <div class="info-box">
-            <div class="duration blue_80 mrb-5 text_base1_bold">
+          <div class="info-box " :class="{ 'pdl-5': index % 2 === 0, 'pdr-5': index % 2 !== 0 }">
+            <div class="duration blue_80 mrb-5 text_base1_bold" v-if="!isNaN(promoItem.remain)">
               до {{ promoItem.date_end }}
             </div>
             <!-- <span class="date" v-if="promoItem.startIn >= 0">
@@ -23,16 +23,16 @@
             Осталось {{ promoItem.remain }} {{ getDaysText(promoItem.remain) }}
           </span> -->
 
-            <div class="description  mrb-8">
+            <div class="description">
               <h3 class="promoItem-title">{{ promoItem.name }}</h3>
               <div class="description-wrap" v-for="promoDesc in promoItem.description" :key="promoDesc[0]">
-                <p v-html="promoDesc" :class="'mrt-5 text_base1'"></p>
+                <p v-html="promoDesc" :class="'mrt-5 mrb-0 text_base1'"></p>
               </div>
             </div>
-            <div class="link-wrapper pdt-5 pdb-5">
+            <!-- <div class="link-wrapper pdt-5 pdb-5 mrt-8">
               <router-link class="promo-link blue_80 blue_20_bg" :to="`/promo/${promoItem.link}`">Узнать
                 подробнее</router-link>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -97,6 +97,7 @@ export default {
               startIn: toStart,
             };
           });
+          console.log(this.remaining)
 
           // Сортировка по полю 'sort'
           this.promosList.sort((a, b) => a.sort - b.sort);
@@ -140,12 +141,15 @@ export default {
   content: '';
   width: 100%;
   height: 1px;
-  background: $blue_80;
   background: blue;
   display: block;
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
+}
+
+.heading.mrt-0.mrb-0 {
+  margin-bottom: 36px;
 }
 
 #homePromo .title a {
@@ -154,7 +158,7 @@ export default {
 
 @media (min-width:900px) and (max-width: 1600px) {
   .promo-row {
-    align-items: stretch;
+    align-items: center;
   }
 
   .image-box img {
@@ -164,6 +168,10 @@ export default {
 }
 
 @media (max-width: 900px) {
+  p>p {
+    margin: 0 !important;
+  }
+
   .promo-row {
     flex-flow: column !important;
   }
@@ -182,6 +190,27 @@ export default {
     width: 100%;
     display: block;
     padding: 0 !important;
+  }
+
+  .title.mrb-9 {
+    margin-bottom: 30px;
+  }
+
+  .promo-row {
+    gap: 20px !important;
+  }
+
+  .duration.blue_80.mrb-5.text_base1_bold {
+    margin-bottom: 0 !important;
+  }
+
+  .info-box.pdl-5,
+  .info-box.pdr-5 {
+    padding: 0;
+  }
+
+  .description .mrt-5.mrb-0.text_base1 {
+    margin-top: 12px;
   }
 }
 </style>

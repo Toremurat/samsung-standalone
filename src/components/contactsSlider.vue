@@ -194,4 +194,11 @@ export default {
     .glide__track {
         border-radius: 0;
     }
-}</style>
+
+    #app>div>.container#contactsHero {
+        margin: 80px 20px !important;
+        max-width: 100% !important;
+        width: calc(100% - 40px);
+    }
+}
+</style>

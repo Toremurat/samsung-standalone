@@ -2,8 +2,7 @@
 	<nav class="header">
 		<div class="header-sticky container">
 			<div class="left-container">
-				<div class="burger" :class="{ morph: isDesktopDropdownActive || isMobileDropdownActive }"
-					@click="toggleState();">
+				<div class="burger" :class="{ morph: isDesktopDropdownActive || isMobileDropdownActive }" @click="toggleState();">
 					<div class="icon">
 						<i class="line burger top-line"></i>
 						<i class="line burger middle-line"></i>
@@ -13,23 +12,28 @@
 				<div class="vertical-divider"></div>
 				<div id="logo">
 					<router-link to="/">
-						<img src="@/static/image/logo/logo.svg" alt="">
+						<img src="@/static/image/logo/logo.svg" alt="" class="desktop-only">
+						<img src="@/static/image/logo/logo-m.webp" alt="" class="mobile-only">
 					</router-link>
 				</div>
 			</div>
 			<div class="right-container desktop-only">
 				<div class="flex-row flex addr">
 					<div class="addr-1">
-						<img src="@/static/icons/addr.svg" alt="" class="icon">
-						<span class="text black_75 text_base2">
-							ТРЦ Dostyk Plaza
-						</span>
+						<a targer="_blank" href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
+							<img src="@/static/icons/addr.svg" alt="" class="icon">
+							<span class="text black_75 text_base2">
+								ТРЦ Dostyk Plaza
+							</span>
+						</a>
 					</div>
 					<div class="tel-1">
-						<img src="@/static/icons/tel.svg" alt="" class="icon">
-						<span class="text black_75 text_base2">
-							+7 771 933 33 22
-						</span>
+						<a targer="_blank" href="tel:+77719333322">
+							<img src="@/static/icons/tel.svg" alt="" class="icon">
+							<span class="text black_75 text_base2">
+								+7 771 933 33 22
+							</span>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -149,7 +153,7 @@
 						<p class="text_base_2 black_50">Единый номер</p>
 					</div>
 					<div class="tel-row">
-						<a href="https://wa.me/+77717208000" class="text_base_1_bold blue_80">
+						<a href="https://wa.me/+77777888889" class="text_base_1_bold blue_80">
 							+7 777 788 88 89
 						</a>
 						<p class="text_base_2 black_50">WhatsApp консультация</p>
@@ -161,11 +165,11 @@
 					</div>
 					<div class="addr-link">
 						<p class="text_base_2 black_50">Показать на</p>
-						<a href="http://">
+						<a href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
 							<img src="@/static/icons/2gis.svg" alt="">
 						</a>
 						<span class="verticalDiv"></span>
-						<a href="http://">
+						<a href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
 							<img src="@/static/icons/yandex.svg" alt="">
 						</a>
 					</div>
@@ -187,6 +191,17 @@ export default {
 		};
 	},
 	methods: {
+		globalClick(event) {
+			// Получаем элемент .header-sticky
+			const headerSticky = this.$el.querySelector('.header-sticky');
+			// Получаем элемент .vertical-dropdown-desktop
+			const dropdown = this.$el.querySelector('.vertical-dropdown-desktop');
+
+			// Проверяем, что клик не произошел внутри .header-sticky или .vertical-dropdown-desktop
+			if (!headerSticky.contains(event.target) && !dropdown.contains(event.target)) {
+				this.isDesktopDropdownActive = false;
+			}
+		},
 		toggleState() {
 			// Получаем ширину экрана
 			const windowWidth = window.innerWidth;
@@ -218,6 +233,15 @@ export default {
 				element.style.height = endHeight + "px";
 			});
 		},
+	},
+	created() {
+		// Добавляем обработчик события клика к объекту window
+		window.addEventListener('click', this.globalClick);
+	},
+
+	unmounted() {
+		// Удаляем обработчик события клика при уничтожении компонента
+		window.removeEventListener('click', this.globalClick);
 	},
 };
 </script>
@@ -361,7 +385,7 @@ export default {
 .vertical-divider {
 	width: 1px;
 	height: 100%;
-	background: gray;
+	background: #ededed;
 	margin-right: 2px;
 }
 
@@ -553,7 +577,7 @@ export default {
 		width: 1px;
 		display: inline-block;
 		background: #C9C9C9;
-		margin: 0 16px;
+		margin: 0;
 	}
 
 	.addr-link {
@@ -561,4 +585,84 @@ export default {
 		align-items: center;
 		flex-flow: row wrap;
 	}
-}</style>
+
+	.vertical-divider[data-v-5dc86151] {
+		min-width: 1px;
+		height: 100%;
+		background: #ededed;
+		margin-right: 2px;
+		display: inline-block;
+	}
+
+	#logo img {
+		max-height: 40px;
+	}
+
+	.left-container {
+		gap: 20px;
+	}
+
+	.text_base_1_bold {
+		font-size: 14px;
+		line-height: 150%;
+		font-weight: 600;
+		font-family: inter;
+	}
+
+	.text_base_1 {
+		font-size: 14px;
+		line-height: 150%;
+	}
+
+	.text_base_2 {
+		font-size: 14px;
+		line-height: 150%;
+	}
+
+	.tel-row {
+		display: flex;
+		flex-flow: column;
+		gap: 5px;
+	}
+
+	.tel-row+.tel-row {
+		margin-top: 20px;
+	}
+
+	.addr-link p {
+		margin-bottom: -7px !important;
+	}
+
+	p {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	.menu-items.text_base_2.black_100>a {
+		font-family: Inter;
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 400;
+	}
+
+	.menu-items.text_base1_bold.black_100 a {
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 140%;
+	}
+}
+
+.burger {
+	cursor: pointer;
+}
+
+.menu-list li a:hover {
+	color: #2B47DA !important;
+	transition: ease all .15s;
+}
+
+.menu-list li a {
+	transition: ease all .15s;
+}
+</style>
