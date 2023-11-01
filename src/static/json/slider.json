@@ -5,14 +5,14 @@
         "alt": "delivery",
         "link": "",
         "sort": 4,
-        "status": 1
+        "status": 0
     },
     {
         "slide": "halyk-bonus.webp",
         "slide_m": "halyk-bonus_mobile.webp",
         "alt": "5-halyk",
         "link": "",
-        "sort": 1,
+        "sort": 2,
         "status": 1
     },
     {
@@ -20,7 +20,7 @@
         "slide_m": "halyk-rassrochka_mobile.webp",
         "alt": "halyk-rassrochka",
         "link": "halyk-rassrochka",
-        "sort": 5,
+        "sort": 3,
         "status": 1
     },
     {
@@ -28,7 +28,7 @@
         "slide_m": "kaspi-juma_mobile.webp",
         "alt": "kaspi-juma",
         "link": "kaspi-juma",
-        "sort": 3,
+        "sort": 1,
         "status": 1
     },
     {
@@ -44,7 +44,7 @@
         "slide_m": "trade-in_mobile.webp",
         "alt": "trade-in",
         "link": "trade-in",
-        "sort": 2,
+        "sort": 4,
         "status": 1
     }
 ]
