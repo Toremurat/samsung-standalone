@@ -1,5 +1,4 @@
 
-import CareServiceWidget from '@/components/careServiceWidget.vue';
 <template>
     <div v-if="postData" class="promo-wrapper container mgb-35 pdt-10">
         <div class="promo-header">
@@ -103,7 +102,7 @@ Date.prototype.toShortFormat = function () {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import url(../styles/main.css);
+@import url(@/static/styles/main.css);
 
 .promo-dates {
     display: flex;
@@ -202,4 +201,6 @@ h4.header {
     width: 100%;
     border-radius: 24px;
 }
+
+
 </style>

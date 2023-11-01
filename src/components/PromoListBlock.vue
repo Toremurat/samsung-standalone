@@ -1,7 +1,7 @@
 <template>
 	<div id="homePromo">
 		<div class="title mrb-9">
-			<h1 class="heading pdt-10 mrb-0">Акции</h1>
+			<h1 class="heading pdt-0 mrb-0">Акции</h1>
 		</div>
 		<div class="promo-wrapper" v-if="groupedPromos && groupedPromos.length > 0">
 			<div v-for="(group, index) in groupedPromos" :key="index" class="group-promo col-sm-12">
@@ -158,7 +158,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url(../styles/main.css);
+@import url(@/static/styles/main.css);
 
 .promo-item {
 	width: 100%;
@@ -220,6 +220,7 @@ export default {
 	display: flex;
 	flex-flow: row wrap;
 	gap: 40px;
+
 	@media (max-width: 900px) {
 		gap: 20px;
 	}
@@ -239,5 +240,41 @@ export default {
 
 .flex-column {
 	gap: 0;
+}
+
+@media (min-width: 900px) {
+	#homePromo .heading.pdt-0.mrb-0 {
+		padding-top: 40px;
+	}
+}
+
+@media (min-width: 780px) and (max-width: 1200px) {
+
+	.promo-row.col-sm-12,
+	.promo-row.col-sm-6,
+	.promo-row.col-sm-4 {
+		max-width: 50%;
+		flex-basis: calc(50% - 20px);
+	}
+}
+
+@media (max-width: 560px) {
+	.promo-link.blue_80.blue_20_bg {
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 140%;
+		padding: 16px 20px;
+	}
+
+	.dates {
+		text-align: right;
+	}
+
+	.info-box {
+		padding: 24px;
+	}
+
+
 }
 </style>

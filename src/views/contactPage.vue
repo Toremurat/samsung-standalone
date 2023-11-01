@@ -47,23 +47,23 @@
 							</p>
 							<div class="addr-link mrb-10">
 								<p class="text_base_2 black_50  mrb-0">Проложить маршрут</p>
-								<a href="http://">
+								<a href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
 									<img src="@/static/icons/2gis.svg" alt="">
 								</a>
 								<span class="verticalDiv black_25_bg"></span>
-								<a href="http://">
+								<a href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
 									<img src="@/static/icons/yandex.svg" alt="">
 								</a>
 							</div>
 						</div>
 						<p class="text_base1_bold mrb-4 mrt-0">
-							<a href="tel:" class="text_base1_bold blue_80">+7 771 933 33 22</a>
+							<a href="tel:+77719333322" class="text_base1_bold blue_80">+7 771 933 33 22</a>
 							<span class="text_base2 black_50">
 								Единый номер
 							</span>
 						</p>
 						<p class="text_base1_bold mrt-0 mrb-0">
-							<a href="tel:" class="text_base1_bold blue_80">+7 777 788 88 89</a>
+							<a href="https://wa.me/+77777888889" class="text_base1_bold blue_80">+7 777 788 88 89</a>
 							<span class="text_base2 black_50">
 								WhatsApp консультация
 							</span>
@@ -92,7 +92,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url(../styles/main.css);
+@import url(@/static/styles/main.css);
 
 #contactsSlider {
 	margin: 0 !important;
@@ -173,9 +173,20 @@ export default {
 	.contact-content .flex-row.align-center {
 		flex-flow: column !important;
 	}
-	.contact-content .text{
-		padding: 0!important;
-		max-width: 100%!important;
+
+	.contact-content .text {
+		padding: 0 !important;
+		max-width: 100% !important;
+	}
+
+	.container.mrb-15,
+	#textHero {
+		max-width: calc(100% - 40px) !important;
+		padding: 0 20px !important;
+	}
+	.container.mrb-15 .glide img.mobile-only{
+		border-radius: 24px!important;
 	}
 }
+
 </style>

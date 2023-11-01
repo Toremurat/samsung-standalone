@@ -49,13 +49,13 @@
             <div class="col-r">
                 <div class="footer-contacts pdl-8">
                     <p class="text_base1_bold mrb-4 mrt-0">
-                        <a href="tel:" class="blue_80">+7 771 933 33 22</a>
+                        <a href="tel:+77719333322" class="blue_80">+7 771 933 33 22</a>
                         <span class="text_base2 black_50">
                             Единый номер
                         </span>
                     </p>
                     <p class="text_base1_bold mrt-0 mrb-10">
-                        <a href="tel:" class="blue_80">+7 777 788 88 89</a>
+                        <a href="https://wa.me/+77777888889" class="blue_80">+7 777 788 88 89</a>
                         <span class="text_base2 black_50">
                             WhatsApp консультация
                         </span>
@@ -66,11 +66,11 @@
                     <div class="addr-box">
                         <div class="addr-link">
                             <p class="text_base_2 black_50  mrb-1">Проложить маршрут</p>
-                            <a href="http://">
+                            <a href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
                                 <img src="@/static/icons/2gis.svg" alt="">
                             </a>
                             <span class="verticalDiv black_25_bg"></span>
-                            <a href="http://">
+                            <a href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
                                 <img src="@/static/icons/yandex.svg" alt="">
                             </a>
                         </div>
@@ -80,18 +80,18 @@
             <div class="col-r">
                 <div class="footer-subscribe pdl-20">
                     <div class="inst ">
-                        <a href="/">
+                        <a href="https://www.instagram.com/samsungkz/">
                             <img src="@/static/icons/inst.svg" alt="" class="footer-inst mrr-3">
                             <p class="blue_80_hover text_base1_bold mrb-0 mrt-0 desktop-only">
                                 Подписывайтесь<br>на наш Instagram
                             </p>
                         </a>
                     </div>
-                    <a href="/" class="mobile-only">
+                    <a href="https://www.instagram.com/samsungkz/" class="mobile-only">
                         <p class="text_base2_bold mrt-4 mrb-8">Подписывайтесь на наш Instagram</p>
                         <p class="text_base2 mrt-4 mrb-8">Чтобы следить за новинками и акциями</p>
                     </a>
-                    <p class="text_base2 mrt-4 mrb-8">Чтобы следить за новинками и акциями</p>
+                    <p class="text_base2 mrt-4 mrb-8 desktop-only">Чтобы следить за новинками и акциями</p>
                     <a href="email:samsung@evrika.com" class="text_base1 blue_80 email">samsung@evrika.com</a>
                 </div>
             </div>
@@ -314,6 +314,10 @@ hr {
         max-width: 170px !important;
     }
 
+    .footer-subscribe.pdl-20 {
+        padding-left: 0 !important;
+    }
+
 }
 
 @media (max-width: 900px) {
@@ -402,7 +406,7 @@ hr {
     }
 
     .footer-contacts p.text_base_2.black_50.mrb-1 {
-        flex-basis: auto;
+        flex-basis: 100%;
     }
 
     .footer-subscribe.pdl-20 {
@@ -424,6 +428,51 @@ hr {
     .footer-subscribe.pdl-20 a>p {
         margin: 0;
         color: #000 !important;
+    }
+
+    .footer-contacts p.text_base_2.black_50.mrb-1 {
+        margin-bottom: -4px;
+    }
+
+    .copyright {
+        padding: 0 20px;
+    }
+
+    .footer-contacts .text_base1.black_100.mrb-4 {
+        font-size: 16px !important;
+    }
+
+    .footer-submenu.pdl-0 {
+        padding: 20px 20px !important;
+    }
+
+    .footer-submenu.pdl-0 li:not(:last-of-type) {
+        margin-bottom: 20px;
+    }
+
+    .footer-wrap li.text_base1_bold a {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 140%;
+    }
+
+    .inst+.mobile-only {
+        flex-basis: calc(100% - 73px);
+    }
+
+    .footer-contacts p.text_base_2.black_50.mrb-1 {
+        font-size: 14px;
+    }
+
+    .contactsMainOverlay .text_base1.black_75.mrb-15.mrt-0 {
+        margin-bottom: 28px !important;
+    }
+}
+
+@media (max-width:1260px) and (min-width: 900px){
+    .footer-contacts.pdl-8 .text_base1_bold:not(last-of-type) {
+        flex-flow: column !important;
     }
 }
 </style>

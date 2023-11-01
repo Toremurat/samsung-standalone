@@ -2,11 +2,11 @@
 	<!-- eslint-disable  -->
 
 	<div class="slider-section mrb-35 ">
-		<carousel :items-to-show="1" :wrap-around="false">
+		<carousel :items-to-show="1" :wrap-around="false" :snap-align="center">
 			<slide v-for="(slider, index) in slidesArr" :key="index">
 				<router-link :to="slider.link">
-					<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only"  v-if="!isMobile">
-					<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only" v-else>
+					<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only">
+					<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only">
 				</router-link>
 			</slide>
 			<template #addons>
@@ -42,7 +42,7 @@ export default {
 			errorData: [],
 			data: [],
 			slidesStatus: 0,
-			wrapAround: true,
+			wrapAround: false,
 			mousedrag: true,
 			touchDrag: true,
 		}
@@ -92,19 +92,27 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.slider-section{
+.slider-section {
 	margin-top: 95px;
+
+	@media (max-width: 560px) {
+		// margin: 0 0 0 -10px;
+	}
 }
+
 .carousel__viewport img {
-  border-radius: 24px;
-  overflow: hidden;
+	border-radius: 24px;
+	overflow: hidden;
 }
+
 .carousel__slide img {
-  max-width: 100%;
+	max-width: 100%;
 }
+
 .carousel button.carousel__prev {
 	margin-left: -150px !important;
 	opacity: 1;
+
 	& .nav-slide {
 		content: url(@/static/icons/arrow.svg);
 		transform: rotate(180deg);
@@ -112,9 +120,10 @@ export default {
 		width: 52px;
 		height: 52px;
 		position: relative;
-		left: -74px;
+		left: -64px;
 	}
 }
+
 .carousel button.carousel__next {
 	right: -50px;
 	opacity: 1;
@@ -126,9 +135,10 @@ export default {
 		width: 52px;
 		height: 52px;
 		position: relative;
-		right: -74px;
+		right: -64px;
 	}
 }
+
 .carousel__prev:hover:not(.carousel__prev--disabled) .nav-slide {
 	content: url(@/static/icons/arrow-hover.svg) !important
 }
@@ -149,6 +159,7 @@ export default {
 .img {
 	max-width: 100%;
 }
+
 @media (max-width: 900px) {
 
 	.carousel__prev,
@@ -159,5 +170,51 @@ export default {
 	.title.mrt-35.mrb-8 {
 		margin-top: 80px;
 	}
+
+	.carousel__viewport {
+		padding: 0 !important;
+	}
+
+	.slider-section.mrb-35 {
+		margin-bottom: 80px;
+		margin-top: -10px;
+	}
 }
-</style>j
+</style>
+<style>
+@media (max-width: 900px) {
+	.carousel>.carousel__viewport {
+		padding: 0 !important;
+	}
+
+	.container.mobile-normal .carousel__pagination {
+		margin: 10px 0 0;
+	}
+
+	.carousel .carousel__prev,
+	.carousel .carousel__next {
+		display: none !important;
+	}
+}
+
+.carousel__pagination-button {
+	background: #d9d9d9;
+	width: 10px;
+	height: 10px;
+	box-shadow: none;
+	border: none;
+	padding: 0;
+	border-radius: 50%;
+	transition: all 100ms ease-in-out;
+	line-height: 0;
+	margin: 0 0.25em;
+}
+
+.carousel__pagination-button::after {
+	content: none;
+}
+
+.carousel__pagination-button.carousel__pagination-button--active {
+	background: #2B47DA;
+}
+</style>

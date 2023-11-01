@@ -10,7 +10,7 @@ var _routes = _interopRequireDefault(require("./routes.js"));
 
 var _App = _interopRequireDefault(require("./App.vue"));
 
-require("./styles/main.scss");
+require("./static/styles/main.scss");
 
 require("bootstrap/dist/css/bootstrap.css");
 
