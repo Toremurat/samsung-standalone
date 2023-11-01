@@ -7,13 +7,17 @@
             </div>
             <div class="promo-description">
                 <h1 class="heading pdt-10 pdb-5 mrb-0 mrt-0" v-title="this.postData.name">{{ this.postData.name }}</h1>
-                <p class="promo-dates text_base1_bold blue_80 mrb-20" v-if="this.postData.remain != ''"><span
-                        class="clock"></span>Действует до {{
-                            this.postData.date_end }}</p>
-                <p class="promo-dates ended text_base1_bold mrb-20 " v-else><span class="clock"></span>Акция закончилась</p>
+                <p class="promo-dates text_base1_bold blue_80 mrb-20"
+                    v-if="this.postData.remain != '' && !isNaN(this.postData.remain)"><span class="clock"></span>Действует
+                    до {{
+                        this.postData.date_end }}</p>
+                <p class="promo-dates ended text_base1_bold mrb-20 " v-else-if="!isNaN(this.postData.remain)"><span
+                        class="clock"></span>Акция закончилась</p>
+                <div class="filler" v-else></div>
             </div>
         </div>
-        <div id="promo-content" class="description-wrapper" v-for="contentData in this.postData.content" :key="contentData[0]">
+        <div id="promo-content" class="description-wrapper" v-for="contentData in this.postData.content"
+            :key="contentData[0]">
             <div v-html="contentData" :class="'mrt-5 text_base1'"></div>
         </div>
     </div>
@@ -202,5 +206,40 @@ h4.header {
     border-radius: 24px;
 }
 
+#app>div>.promo-wrapper.container.mgb-35.pdt-10,
+#app>div>.container.mgt-35 {
+    @media (min-width: 1600px) {
+        max-width: 1600px;
+        padding-left: 80px;
+        padding-right: 80px;
+    }
 
+    @media (max-width: 1600px) and (min-width: 1366px) {
+        max-width: 100%;
+    }
+
+    @media (max-width: 1366px) and (min-width: 1080px) {
+        max-width: 100%;
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+
+    @media (max-width: 1080px) and (min-width: 900px) {
+        max-width: 100%;
+        padding-left: 20px !important;
+        padding-right: 30px !important;
+    }
+
+    @media (max-width: 900px) {
+        max-width: calc(100% - 10px);
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container.bottom footer .pdl-20 {
+        padding: 28px 0 0 !important;
+    }
+}
 </style>

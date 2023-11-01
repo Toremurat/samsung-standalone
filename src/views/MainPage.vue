@@ -24,11 +24,13 @@
       <div class="addr-box">
         <div class="addr-link">
           <p class="text_base_2 black_50  mrb-1" style="flex-basis:100%">Проложить маршрут</p>
-          <a href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
+          <a
+            href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
             <img src="@/static/icons/2gis.svg" alt="">
           </a>
           <span class="verticalDiv black_25_bg"></span>
-          <a href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
+          <a
+            href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
             <img src="@/static/icons/yandex.svg" alt="">
           </a>
         </div>
@@ -181,11 +183,16 @@ export default {
 
   }
 
+  #app > div > .container.mobile-normal {
+    padding: 20px 0 0 0 !important;
+  }
+
   .container.footer.mrt-35 {
     margin-top: 80px !important;
   }
-  .text_base1.black_75.mrb-15.mrt-0{
-    margin-bottom: 28px!important;
+
+  .text_base1.black_75.mrb-15.mrt-0 {
+    margin-bottom: 28px !important;
   }
 }
 </style>
@@ -202,5 +209,4 @@ export default {
   .glide__bullets {
     top: calc(100% - 8px) !important;
   }
-}
-</style >
+}</style >

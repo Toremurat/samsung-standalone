@@ -713,12 +713,12 @@ h1.heading {
 }
 @media (max-width: 1366px) {
   h1.heading {
-    font-size: 36px;
+    font-size: 44px;
   }
 }
 @media (max-width: 900px) {
   h1.heading {
-    font-size: 28px;
+    font-size: 32px;
   }
 }
 

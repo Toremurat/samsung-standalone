@@ -17,7 +17,7 @@
 								<router-link class="promo-link blue_80 blue_20_bg" :to="`/promo/${promoItem.link}`">Узнать
 									подробнее</router-link>
 							</div>
-							<div class="dates">
+							<div class="dates" v-if="!isNaN(promoItem.remain)">
 								<span class="date text_base2_bold" v-if="promoItem.startIn >= 0">
 									{{ promoItem.startIn }} {{ getDaysText(promoItem.startIn) }} до начала
 								</span>

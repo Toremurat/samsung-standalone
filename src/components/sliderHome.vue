@@ -4,8 +4,10 @@
 	<div class="slider-section mrb-35 ">
 		<carousel :items-to-show="1" :wrap-around="false" :snap-align="center">
 			<slide v-for="(slider, index) in slidesArr" :key="index">
-					<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only" v-if="!isMobile" :route="slider.link" @click="toRoute">
-					<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only" v-else :route="slider.link" @click="toRoute">
+				<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only" v-if="!isMobile"
+					:route="slider.link" @click="toRoute">
+				<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only" v-else
+					:route="slider.link" @click="toRoute">
 			</slide>
 			<template #addons>
 				<Navigation v-if="!isMobile">
@@ -101,7 +103,8 @@ export default {
 img {
 	cursor: pointer;
 }
-.slider-section{
+
+.slider-section {
 	margin-top: 95px;
 
 	@media (max-width: 560px) {
@@ -191,6 +194,14 @@ img {
 }
 </style>
 <style>
+@media (max-width: 1170px) {
+
+	.carousel .carousel__prev,
+	.carousel .carousel__next {
+		display: none !important;
+	}
+}
+
 @media (max-width: 900px) {
 	.carousel>.carousel__viewport {
 		padding: 0 !important;
@@ -225,5 +236,4 @@ img {
 
 .carousel__pagination-button.carousel__pagination-button--active {
 	background: #2B47DA;
-}
-</style>
+}</style>

@@ -66,11 +66,13 @@
                     <div class="addr-box">
                         <div class="addr-link">
                             <p class="text_base_2 black_50  mrb-1">Проложить маршрут</p>
-                            <a href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
+                            <a
+                                href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
                                 <img src="@/static/icons/2gis.svg" alt="">
                             </a>
                             <span class="verticalDiv black_25_bg"></span>
-                            <a href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
+                            <a
+                                href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
                                 <img src="@/static/icons/yandex.svg" alt="">
                             </a>
                         </div>
@@ -470,9 +472,12 @@ hr {
     }
 }
 
-@media (max-width:1260px) and (min-width: 900px){
+@media (max-width:1260px) and (min-width: 900px) {
     .footer-contacts.pdl-8 .text_base1_bold:not(last-of-type) {
         flex-flow: column !important;
     }
-}
-</style>
+
+    .footer-wrap {
+        gap: 20px;
+    }
+}</style>

@@ -40,14 +40,14 @@ export default {
 
   @media (max-width: 1366px) and (min-width: 1080px) {
     max-width: 100%;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   @media (max-width: 1080px) and (min-width: 900px) {
     max-width: 100%;
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 20px;
+    padding-right: 30px;
   }
 
   @media (max-width: 900px) {
@@ -57,10 +57,20 @@ export default {
   }
 }
 
+@media (max-width: 1200px) {
+  .container.bottom footer .pdl-20 {
+    padding: 28px 0 0 !important;
+  }
+}
+
 @media (max-width: 900px) {
   .container.mobile-full {
     max-width: 100% !important;
     padding: 0 !important;
+  }
+
+  .container.bottom footer .pdl-20 {
+    padding: 28px 0 0 !important;
   }
 
   .carousel__viewport {

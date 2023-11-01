@@ -11,7 +11,7 @@
 				</div>
 				<div class="vertical-divider"></div>
 				<div id="logo">
-					<router-link to="/">
+					<router-link @click="closeDropdowns" to="/">
 						<img src="@/static/image/logo/logo.svg" alt="" class="desktop-only">
 						<img src="@/static/image/logo/logo-m.webp" alt="" class="mobile-only">
 					</router-link>
@@ -20,7 +20,8 @@
 			<div class="right-container desktop-only">
 				<div class="flex-row flex addr">
 					<div class="addr-1">
-						<a targer="_blank" href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
+						<a targer="_blank"
+							href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
 							<img src="@/static/icons/addr.svg" alt="" class="icon">
 							<span class="text black_75 text_base2">
 								ТРЦ Dostyk Plaza
@@ -42,17 +43,17 @@
 					<div class="col-sm-4">
 						<ul class="menu-list">
 							<li class="list-item text_base1_bold black_100 pdb-6">
-								<router-link to="/promo/" class="text_base1_bold black_100">
+								<router-link @click="closeDropdowns" to="/promo/" class="text_base1_bold black_100">
 									Акции
 								</router-link>
 							</li>
 							<li class="list-item text_base1_bold black_100 pdb-6">
-								<router-link to="/" class="text_base1_bold black_100">
+								<router-link @click="closeDropdowns" to="/" class="text_base1_bold black_100">
 									Контакты
 								</router-link>
 							</li>
 							<li class="list-item text_base1_bold black_100">
-								<router-link to="/" class="text_base1_bold black_100">
+								<router-link @click="closeDropdowns" to="/" class="text_base1_bold black_100">
 									Служба заботы
 								</router-link>
 							</li>
@@ -61,37 +62,37 @@
 					<div class="col-sm-4">
 						<ul class="menu-list">
 							<li class="list-item text_base1_bold black_100 pdb-5">
-								<router-link to="/promo/" class="text_base1_bold black_100">
+								<router-link @click="closeDropdowns" to="/promo/" class="text_base1_bold black_100">
 									Акции
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/" class=" black_100">
 									Информация покупателям
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/" class=" black_100">
 									Оплата
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/" class=" black_100">
 									Доставка
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/" class=" black_100">
 									Возврат и обмен
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/" class=" black_100">
 									Сервис
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100">
-								<router-link to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/" class=" black_100">
 									Публичная оферта
 								</router-link>
 							</li>
@@ -103,13 +104,13 @@
 			<div class="vertical-dropdown-mobile" :class="{ active: isMobileDropdownActive }">
 				<ul class="sidebar-menu">
 					<li class="menu-items text_base1_bold black_100">
-						<router-link to="/promo/">Акции</router-link>
+						<router-link @click="closeDropdowns" to="/promo/">Акции</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100">
-						<router-link to="">Контакты</router-link>
+						<router-link @click="closeDropdowns" to="">Контакты</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100">
-						<router-link to="">Служба заботы</router-link>
+						<router-link @click="closeDropdowns" to="">Служба заботы</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100 dropper" :class="{ toggle: isActive }"
 						@click="toggleCollapse();">
@@ -118,27 +119,27 @@
 					<div class="mobile-collapse" :class="{ active: isActive }">
 						<ul class="sidebar-submenu">
 							<li class="menu-items text_base_2 black_100">
-								<router-link to="/">
+								<router-link @click="closeDropdowns" to="/">
 									Оплата
 								</router-link>
 							</li>
 							<li class="menu-items text_base_2 black_100">
-								<router-link to="/">
+								<router-link @click="closeDropdowns" to="/">
 									Доставка
 								</router-link>
 							</li>
 							<li class="menu-items text_base_2 black_100">
-								<router-link to="/">
+								<router-link @click="closeDropdowns" to="/">
 									Возврат и обмен
 								</router-link>
 							</li>
 							<li class="menu-items text_base_2 black_100">
-								<router-link to="/">
+								<router-link @click="closeDropdowns" to="/">
 									Сервис
 								</router-link>
 							</li>
 							<li class="menu-items text_base_2 black_100">
-								<router-link to="/">
+								<router-link @click="closeDropdowns" to="/">
 									Публичная оферта
 								</router-link>
 							</li>
@@ -165,11 +166,13 @@
 					</div>
 					<div class="addr-link">
 						<p class="text_base_2 black_50">Показать на</p>
-						<a href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
+						<a
+							href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
 							<img src="@/static/icons/2gis.svg" alt="">
 						</a>
 						<span class="verticalDiv"></span>
-						<a href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
+						<a
+							href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
 							<img src="@/static/icons/yandex.svg" alt="">
 						</a>
 					</div>
@@ -216,6 +219,10 @@ export default {
 				this.isMobileDropdownActive = false; // Закрываем мобильный dropdown
 			}
 		},
+		closeDropdowns() {
+			this.isMobileDropdownActive = false; // Закрываем мобильное меню
+			this.isDesktopDropdownActive = false; // Закрываем десктопное меню
+		},
 		toggleCollapse() {
 			const collapse = document.querySelector(".mobile-collapse");
 			this.isActive = !this.isActive;
@@ -248,6 +255,11 @@ export default {
 
 <style lang="scss" scoped>
 // Стили для мобильного dropdown
+.tel-box {
+	z-index: 2;
+	position: relative;
+}
+
 .header {
 	position: fixed;
 	width: 100%;
@@ -464,6 +476,8 @@ export default {
 }
 
 @media (max-width:900px) {
+
+
 	.right-container.desktop-only {
 		display: none !important;
 	}
@@ -630,7 +644,7 @@ export default {
 	}
 
 	.addr-link p {
-		margin-bottom: -7px !important;
+		margin-bottom: 0px !important;
 	}
 
 	p {
@@ -664,5 +678,4 @@ export default {
 
 .menu-list li a {
 	transition: ease all .15s;
-}
-</style>
+}</style>

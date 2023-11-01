@@ -27,13 +27,12 @@
 					</h2>
 					<p class="text_base1 mrb-5">
 						В магазине вы найдете мобильные устройства, ТВ и аудио технику, бытовую технику, дисплеи и многое другое. Все
-						это в одном магазине, где вас ждет превосходное обслуживание и экспертное сопровождение.
+						это в одном месте, где вас ждет превосходное обслуживание и экспертное сопровождение.
 					</p>
 					<p class="text_base1 mrb-5">
-						В магазине вы найдете мобильные устройства, ТВ и аудио технику, бытовую технику, дисплеи и многое другое. Все
-						это в одном магазине, где вас ждет превосходное обслуживание и экспертное сопровождение.В магазине вы найдете
-						мобильные устройства, ТВ и аудио технику, бытовую технику, дисплеи и многое другое. Все это в одном магазине,
-						где вас ждет превосходное обслуживание.
+						Фирменный магазин Samsung - это именно то место, где вы можете первыми познакомиться с инновационными
+						продуктами и революционными технологиями. Вас ждут советы и профессиональные консультации квалифицированных
+						специалистов.
 					</p>
 				</div>
 				<div class="contact-box">
@@ -47,11 +46,13 @@
 							</p>
 							<div class="addr-link mrb-10">
 								<p class="text_base_2 black_50  mrb-0">Проложить маршрут</p>
-								<a href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
+								<a
+									href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
 									<img src="@/static/icons/2gis.svg" alt="">
 								</a>
 								<span class="verticalDiv black_25_bg"></span>
-								<a href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
+								<a
+									href="https://yandex.ru/maps/162/almaty/?indoorLevel=1&ll=76.956320%2C43.233477&mode=routes&rtext=~43.233492%2C76.956694&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D32933881704&z=19.81">
 									<img src="@/static/icons/yandex.svg" alt="">
 								</a>
 							</div>
@@ -138,6 +139,29 @@ export default {
 	gap: 12px;
 }
 
+@media (max-width: 1240px) {
+
+	.addr-link .text_base_2.black_50.mrb-0 {
+		flex-basis: 100%;
+	}
+
+	.addr-link {
+		row-gap: 4px;
+		flex-flow: row wrap;
+	}
+}
+
+@media (max-width: 1110px) {
+	.inner .text_base1_bold {
+		flex-flow: row wrap;
+		row-gap: 0;
+	}
+
+	.inner .text_base1_bold a {
+		flex-basis: 100%;
+	}
+}
+
 @media (max-width: 900px) {
 
 	.glide-item img.mobile-only {
@@ -184,9 +208,15 @@ export default {
 		max-width: calc(100% - 40px) !important;
 		padding: 0 20px !important;
 	}
-	.container.mrb-15 .glide img.mobile-only{
-		border-radius: 24px!important;
-	}
-}
 
+	.container.mrb-15 .glide img.mobile-only {
+		border-radius: 24px !important;
+	}
+
+}
+</style>
+<style>
+	#app > div > .container.footer.mrt-35{
+		padding: 0 20px!important;
+	}
 </style>
