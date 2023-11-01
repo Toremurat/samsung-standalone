@@ -29,10 +29,10 @@
                 <p v-html="promoDesc" :class="'mrt-5 mrb-0 text_base1'"></p>
               </div>
             </div>
-            <!-- <div class="link-wrapper pdt-5 pdb-5 mrt-8">
+            <div class="link-wrapper pdt-5 pdb-5 mrt-8">
               <router-link class="promo-link blue_80 blue_20_bg" :to="`/promo/${promoItem.link}`">Узнать
                 подробнее</router-link>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -158,7 +158,13 @@ export default {
 
 @media (min-width:900px) and (max-width: 1600px) {
   .promo-row {
+    align-items: stretch;
+  }
+
+  .info-box {
+    display: flex;
     align-items: center;
+    flex-flow: row wrap;
   }
 
   .image-box img {
@@ -212,6 +218,16 @@ export default {
   .description .mrt-5.mrb-0.text_base1 {
     margin-top: 12px;
   }
+}
+</style>
+<style>
+.promo-link:hover {
+  color: white!important;
+  background: #2b47da!important;
+  transition: all ease .3s;
+}
+.promo-link {
+  transition: all ease .3s;
 }
 </style>
 

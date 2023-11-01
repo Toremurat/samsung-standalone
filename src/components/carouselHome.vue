@@ -4,7 +4,7 @@
 		<h2 class="heading mrb-0">Новинки уже в продаже</h2>
 	</div>
 	<div class="carousel-section">
-		<carousel :items-to-show="4" :wrap-around="false" :breakpoints="breakpoints">
+		<carousel :items-to-show="4" :wrap-around="true" :breakpoints="breakpoints" >
 			<slide v-for="(carousel, index) in itemsArr" :key="index">
 				<img :src="'/static/image/carousel/' + carousel.img" alt="carousel.alt">
 			</slide>
@@ -39,7 +39,7 @@ export default {
 		return {
 			itemsArr: [],
 			errorData: [],
-			carouselStatus: 1,
+			carouselStatus: 0,
 			wrapAround: true,
 			breakpoints: {
 				320: {
@@ -87,7 +87,7 @@ export default {
 					});
 
 					this.itemsArr.sort((a, b) => a.sort - b.sort);
-					this.itemsArr.filter(carousel => carousel.status !== this.carouselStatus);
+					this.itemsArr = this.itemsArr.filter(carousel => carousel.status !== this.carouselStatus);
 				})
 
 				.catch((error) => {
@@ -131,7 +131,7 @@ export default {
 		width: 52px;
 		height: 52px;
 		position: relative;
-		left: -64px;
+		left: -54px;
 	}
 
 
@@ -152,7 +152,7 @@ export default {
 		width: 52px;
 		height: 52px;
 		position: relative;
-		right: -64px;
+		right: -54px;
 	}
 
 }
@@ -181,7 +181,7 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	width: 1600px;
-	left: -64px;
+	left: -54px;
 	position: absolute;
 	top: calc(50% - 26px);
 }
@@ -231,12 +231,21 @@ export default {
 .carousel__pagination{
 	display: none!important;
 }
-@media (max-width: 900px) {
+.carousel-section {
+  margin: 0 0 10px -10px;
+}
+@media (max-width:1171px){
+	.carousel__pagination {
+  margin: 10px 0 0!important;
+	display: flex!important;
+}
 
-	.carousel__prev,
-	.carousel__next {
-		display: none !important;
-	}
+}
+@media (max-width: 900px) {
+	.carousel-section {
+  margin: 0 0 0px -10px;
+}
+
 
 	.title.mrt-35.mrb-8 {
 		margin-top: -40px;
@@ -246,11 +255,6 @@ export default {
 		margin-bottom: 16px;
 		padding: 0 0 0 20px;
 	}
-	.carousel__pagination {
-  margin: -5px 0 0!important;
-	display: flex!important;
-}
-
 }
 
 @media (max-width: 700px) {
@@ -262,8 +266,13 @@ export default {
 </style>
 <style>
 .carousel-section {
-	max-width: calc(100% - 20px);
-	margin: 0 auto;
+  width: calc(100% + 20px);
+  margin: 0 0 0 -10px;
 }
-
+@media (max-width: 1360px){
+	.carousel__prev,
+	.carousel__next {
+		display: none !important;
+	}
+}
 </style>

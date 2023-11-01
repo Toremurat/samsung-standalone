@@ -48,12 +48,12 @@
 								</router-link>
 							</li>
 							<li class="list-item text_base1_bold black_100 pdb-6">
-								<router-link @click="closeDropdowns" to="/" class="text_base1_bold black_100">
+								<router-link @click="closeDropdowns" to="/contacts/" class="text_base1_bold black_100">
 									Контакты
 								</router-link>
 							</li>
 							<li class="list-item text_base1_bold black_100">
-								<router-link @click="closeDropdowns" to="/" class="text_base1_bold black_100">
+								<router-link @click="closeDropdowns" to="/care-service" class="text_base1_bold black_100">
 									Служба заботы
 								</router-link>
 							</li>
@@ -107,10 +107,10 @@
 						<router-link @click="closeDropdowns" to="/promo/">Акции</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100">
-						<router-link @click="closeDropdowns" to="">Контакты</router-link>
+						<router-link @click="closeDropdowns" to="/contacts/">Контакты</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100">
-						<router-link @click="closeDropdowns" to="">Служба заботы</router-link>
+						<router-link @click="closeDropdowns" to="/care-service">Служба заботы</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100 dropper" :class="{ toggle: isActive }"
 						@click="toggleCollapse();">
@@ -417,6 +417,11 @@ export default {
 	gap: 8px;
 	align-items: center;
 }
+.flex-row.flex.addr > div a {
+	align-items: center;
+	display: flex;
+}
+
 
 .header {
 	border-bottom: 1px solid rgba(238, 238, 238, 0.93);
