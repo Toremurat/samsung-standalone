@@ -4,10 +4,8 @@
 	<div class="slider-section mrb-35 ">
 		<carousel :items-to-show="1" :wrap-around="false" :snap-align="center">
 			<slide v-for="(slider, index) in slidesArr" :key="index">
-				<router-link :to="slider.link">
-					<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only">
-					<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only">
-				</router-link>
+					<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only" v-if="!isMobile" :route="slider.link" @click="toRoute">
+					<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only" v-else :route="slider.link" @click="toRoute">
 			</slide>
 			<template #addons>
 				<Navigation v-if="!isMobile">
@@ -75,7 +73,15 @@ export default {
 					this.errorData.push(error)
 				});
 		},
-
+		toRoute(e) {
+			let route = e.target.getAttribute('route');
+			if (route == '') {
+				route = '/';
+			} else {
+				route = '/promo/' + route;
+			}
+			this.$router.push(route);
+		}
 
 	},
 	computed: {
@@ -92,7 +98,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.slider-section {
+img {
+	cursor: pointer;
+}
+.slider-section{
 	margin-top: 95px;
 
 	@media (max-width: 560px) {
