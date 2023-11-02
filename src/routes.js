@@ -3,6 +3,7 @@ import MainPage from "@/views/MainPage.vue";
 import PromoList from "@/views/PromoList.vue";
 import PromoPage from "@/views/PromoPage.vue";
 import contactPage from "@/views/contactPage.vue";
+import CareService from "@/views/CareService.vue";
 
 const routes = [{
         path: '/',
@@ -26,8 +27,8 @@ const routes = [{
     },
     {
         path: '/care-service',
-        name: 'care-service',
-        component: MainPage,
+        name: 'Care service',
+        component: CareService,
     },
 ];
 

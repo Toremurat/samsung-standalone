@@ -4,8 +4,8 @@
         "link": "smart-bonus",
         "home_image": "/static/image/promo/smart-bonus/banner.webp",
         "promo_image": "/static/image/promo/smart-bonus/promo-banner.webp",
-        "date_start": "2023-10-11",
-        "date_end": "2023-11-30",
+        "date_start": "",
+        "date_end": "",
         "sort": 8,
         "group": 2,
         "home_sort": 1,
@@ -26,8 +26,8 @@
         "link": "delivery",
         "home_image": "/static/image/promo/delivery/banner.webp",
         "promo_image": "/static/image/promo/delivery/promo-banner.webp",
-        "date_start": "2023-10-11",
-        "date_end": "2023-12-03",
+        "date_start": "",
+        "date_end": "",
         "sort": 2,
         "group": 1,
         "home_sort": 1,
@@ -39,7 +39,10 @@
         "content": [
             "<p>Как получить бонусы. Условия предоставления бонусов.</p>",
             "<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>",
-            "<span>1 бонус = 1 тенге</span>"
+            "<span>1 бонус = 1 тенге</span>",
+            "<h2>Заголовок</h2>",
+            "<p>Как получить бонусы. Условия предоставления бонусов.</p>",
+            "<p>Оплачивайте до 99% от стоимости товаров в любом из магазинов-участников клуба</p>"
         ]
     },
     {
@@ -47,8 +50,8 @@
         "link": "gnc",
         "home_image": "/static/image/promo/gnc/banner.webp",
         "promo_image": "/static/image/promo/gnc/promo-banner.webp",
-        "date_start": "2023-12-11",
-        "date_end": "2024-02-25",
+        "date_start": "",
+        "date_end": "",
         "sort": 3,
         "group": 2,
         "home_sort": 1,
