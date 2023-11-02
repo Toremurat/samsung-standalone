@@ -64,7 +64,7 @@ export default {
 					});
 
 					this.slidesArr.sort((a, b) => a.sort - b.sort);
-					this.slidesArr.filter(slider => slider.status !== this.slidesStatus);
+					this.slidesArr = this.slidesArr.filter(slider => slider.status !== this.slidesStatus);
 				})
 
 				.catch((error) => {
