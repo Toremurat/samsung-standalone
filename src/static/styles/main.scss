@@ -330,7 +330,7 @@ h1.heading {
 h2.heading {
   font-size: 44px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 120%;
 
   @media (max-width: 1366px) {
@@ -346,7 +346,7 @@ h3 {
   &.promoItem-title {
     font-size: 36px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 130%;
 
     @media (max-width: 1366px) {
@@ -361,7 +361,7 @@ h3 {
   &.header {
     font-size: 36px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 130%;
 
     @media (max-width: 1366px) {
@@ -370,6 +370,38 @@ h3 {
 
     @media (max-width: 900px) {
       font-size: 24px;
+    }
+  }
+}
+
+h4 {
+  &.promoItem-title {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%;
+
+    @media (max-width: 1366px) {
+      font-size: 22px;
+    }
+
+    @media (max-width: 900px) {
+      font-size: 18px;
+    }
+  }
+
+  &.header {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%;
+
+    @media (max-width: 1366px) {
+      font-size: 22px;
+    }
+
+    @media (max-width: 900px) {
+      font-size: 18px;
     }
   }
 }

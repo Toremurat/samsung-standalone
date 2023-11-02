@@ -110,7 +110,7 @@
 						<router-link @click="closeDropdowns" to="/contacts/">Контакты</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100">
-						<router-link @click="closeDropdowns" to="/care-service">Служба заботы</router-link>
+						<router-link @click="closeDropdowns" to="/care-service/">Служба заботы</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100 dropper" :class="{ toggle: isActive }"
 						@click="toggleCollapse();">

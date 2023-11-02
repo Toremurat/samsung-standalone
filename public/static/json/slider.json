@@ -10,8 +10,8 @@
     {
         "slide": "halyk-bonus.webp",
         "slide_m": "halyk-bonus_mobile.webp",
-        "alt": "5-halyk",
-        "link": "",
+        "alt": "halyk-bonus-5",
+        "link": "halyk-bonus-5",
         "sort": 2,
         "status": 1
     },
@@ -19,7 +19,7 @@
         "slide": "halyk-rassrochka.webp",
         "slide_m": "halyk-rassrochka_mobile.webp",
         "alt": "halyk-rassrochka",
-        "link": "halyk-rassrochka",
+        "link": "halyk-rassrochka-0-0-24",
         "sort": 3,
         "status": 1
     },
@@ -27,7 +27,7 @@
         "slide": "kaspi-juma.webp",
         "slide_m": "kaspi-juma_mobile.webp",
         "alt": "kaspi-juma",
-        "link": "kaspi-juma",
+        "link": "kaspi-zhuma-0-0-24",
         "sort": 1,
         "status": 1
     },
