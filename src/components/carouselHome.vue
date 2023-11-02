@@ -4,7 +4,7 @@
 		<h2 class="heading mrb-0">Новинки уже в продаже</h2>
 	</div>
 	<div class="carousel-section">
-		<carousel :items-to-show="4" :wrap-around="true" :breakpoints="breakpoints" >
+		<carousel :items-to-show="4" :wrap-around="true" :breakpoints="breakpoints">
 			<slide v-for="(carousel, index) in itemsArr" :key="index">
 				<img :src="'/static/image/carousel/' + carousel.img" alt="carousel.alt">
 			</slide>
@@ -228,23 +228,29 @@ export default {
 .carousel__pagination-button.carousel__pagination-button--active {
 	background: #2B47DA;
 }
-.carousel__pagination{
-	display: none!important;
-}
-.carousel-section {
-  margin: 0 0 10px -10px;
-}
-@media (max-width:1171px){
-	.carousel__pagination {
-  margin: 10px 0 0!important;
-	display: flex!important;
+
+.carousel__pagination {
+	display: none !important;
 }
 
+.carousel-section {
+	margin: 0 0 10px -10px;
 }
+
+@media (max-width:1360px) {
+	.carousel__pagination {
+		display: flex !important;
+		top: 20px;
+		margin: 0;
+		position: relative;
+	}
+
+}
+
 @media (max-width: 900px) {
 	.carousel-section {
-  margin: 0 0 0px -10px;
-}
+		margin: 0 0 0px -10px;
+	}
 
 
 	.title.mrt-35.mrb-8 {
@@ -255,6 +261,11 @@ export default {
 		margin-bottom: 16px;
 		padding: 0 0 0 20px;
 	}
+
+	.carousel-section {
+		width: calc(100% - 20px);
+		margin: 0 20px 0 10px;
+	}
 }
 
 @media (max-width: 700px) {
@@ -262,14 +273,21 @@ export default {
 		max-width: 100%;
 		width: calc(100% - 20px);
 	}
+
+}
+
+.carousel img {
+	border-radius: 24px;
 }
 </style>
 <style>
 .carousel-section {
-  width: calc(100% + 20px);
-  margin: 0 0 0 -10px;
+	width: calc(100% + 20px);
+	margin: 0 0 0 -10px;
 }
-@media (max-width: 1360px){
+
+@media (max-width: 1360px) {
+
 	.carousel__prev,
 	.carousel__next {
 		display: none !important;

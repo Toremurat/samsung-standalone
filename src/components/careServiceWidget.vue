@@ -114,7 +114,13 @@ export default {
     }
 }
 
-@media (max-width: 1040px) {
+@media (min-width: 900px) and (max-width: 1150px){
+    .flex.flow-row.align-center.care-widget:after,
+    .flex.flow-row.align-center.care-widget:before{
+        content: none!important
+    }
+}
+@media (max-width: 900px) {
     .care-text {
         max-width: 70%;
     }

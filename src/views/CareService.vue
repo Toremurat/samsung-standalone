@@ -1,5 +1,5 @@
 <template>
-    <div class="care-service_wrapper container mrb-35">
+    <div class="care-service_wrapper container mrb-35 ">
         <h1 class="heading">Служба заботы</h1>
         <div v-if="!successPage" class="content-block">
             <div class="care-description mrb-10">
@@ -129,6 +129,10 @@ export default {
 <style scoped lang="scss">
 @import url(@/static/styles/main.css);
 
+.care-service_wrapper {
+    margin-top: 110px;
+}
+
 .green {
     color: #008F25
 }
@@ -254,6 +258,11 @@ h1 {
 }
 
 @media (max-width: 900px) {
+
+    .care-service_wrapper {
+        margin-top: 40px;
+    }
+
     .care-service_wrapper.container {
         flex-flow: column !important;
         align-items: center;
@@ -295,6 +304,20 @@ h1 {
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
+    }
+}
+
+label {
+    padding-bottom: 8px;
+}
+
+.care-service-form.form-group h3.header {
+    margin-bottom: 28px;
+}
+
+@media (max-width: 900px) and (min-width: 560px) {
+    #app>div>.container.care-service_wrapper {
+        padding: 0 30px !important;
     }
 }
 
