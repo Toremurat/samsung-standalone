@@ -209,7 +209,7 @@ footer.desktop-only {
     .footer-wrap {
         display: flex;
         flex-flow: row wrap;
-        align-items: start;
+        align-items: flex-start;
         justify-content: space-between;
         gap: auto;
     }
@@ -226,7 +226,7 @@ footer.desktop-only {
         gap: 28px !important;
         display: flex;
         flex-flow: column;
-        align-items: start;
+        align-items: flex-start;
     }
 
     .footer-contacts p {
@@ -266,7 +266,7 @@ footer.desktop-only {
 
     .inst a .text {
         display: flex;
-        align-items: start;
+        align-items: flex-start;
         flex-flow: column;
         justify-items: center;
     }
@@ -275,6 +275,7 @@ footer.desktop-only {
         .footer-wrap .certain {
             display: none !important;
         }
+
         .notCertain {
             display: block !important;
         }
@@ -397,7 +398,7 @@ hr {
 .footer-wrap {
     display: flex;
     flex-flow: row nowrap;
-    align-items: start;
+    align-items: flex-start;
     gap: 40px;
 
     @media (max-width: 1600px) {
@@ -711,12 +712,21 @@ hr {
         gap: 20px;
     }
 }
+
 #footer-collapse.active {
-  border-color: transparent;
-  transition: border-color ease .01s;
+    border-color: transparent;
+    transition: border-color ease .01s;
+}
+
+.care-link a:hover {
+    background: #1D39C9;
+    transition: ease all .3;
+}
+
+.care-link a {
+    transition: ease all .3s;
 }
 
 .copyright p {
     font-weight: 400 !important;
-}
-</style>
+}</style>

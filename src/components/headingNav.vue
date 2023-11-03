@@ -391,7 +391,7 @@ export default {
 	align-items: center;
 	padding: 6px 0;
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 }
 
 .vertical-divider {
@@ -406,7 +406,7 @@ export default {
 .flex-row.flex.addr {
 	display: flex;
 	flex-flow: row nowrap;
-	justify-content: end;
+	justify-content: flex-end;
 	gap: 40px;
 	align-items: center;
 }
@@ -417,7 +417,8 @@ export default {
 	gap: 8px;
 	align-items: center;
 }
-.flex-row.flex.addr > div a {
+
+.flex-row.flex.addr>div a {
 	align-items: center;
 	display: flex;
 }
@@ -482,6 +483,13 @@ export default {
 
 @media (max-width:900px) {
 
+	.mobile-collapse:not(.active) {
+		height: 0;
+	}
+
+	.mobile-collapse.active {
+		height: 100%;
+	}
 
 	.right-container.desktop-only {
 		display: none !important;

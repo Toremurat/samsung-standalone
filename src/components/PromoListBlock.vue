@@ -134,7 +134,6 @@ export default {
 		}
 	},
 	created() {
-		console.log('ready');
 		this.getPromos();
 	},
 	beforeMount() {

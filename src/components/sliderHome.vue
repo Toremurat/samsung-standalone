@@ -2,7 +2,7 @@
 	<!-- eslint-disable  -->
 
 	<div class="slider-section mrb-35 ">
-		<carousel :items-to-show="1" :wrap-around="false" :snap-align="center">
+		<carousel :items-to-show="1" :wrap-around="false">
 			<slide v-for="(slider, index) in slidesArr" :key="index">
 				<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only" v-if="!isMobile"
 					:route="slider.link" @click="toRoute">

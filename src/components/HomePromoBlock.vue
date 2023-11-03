@@ -10,7 +10,7 @@
         <div v-for="(promoItem, index) in promoFiltered" :key="index" class="promo-row col-sm-12 flex-row align-center"
           :style="'order:' + promoItem.sort" :class="'col-sm-' + promoItem.size + ' index-' + (index + 1)">
           <div class="image-box rounded-6" :class="{ 'isOdd': index % 2 === 0, 'isEven': index % 2 !== 0 }">
-            <img :src="promoItem.home_image" alt="image">
+            <img :src="promoItem.home_image" alt="image" :style="{ 'max-height': maxWidth }">
           </div>
           <div class="info-box " :class="{ 'pdl-5': index % 2 === 0, 'pdr-5': index % 2 !== 0 }">
             <div class="duration blue_80 mrb-5 text_base1_bold" v-if="!isNaN(promoItem.remain)">
@@ -24,7 +24,7 @@
           </span> -->
 
             <div class="description">
-              <h3 class="promoItem-title">{{ promoItem.name }}</h3>
+              <h3 class="promoItem-title mrb-5">{{ promoItem.name }}</h3>
               <div class="description-wrap" v-for="promoDesc in promoItem.description" :key="promoDesc[0]">
                 <p v-html="promoDesc" :class="'mrt-5 mrb-0 text_base1'"></p>
               </div>
@@ -60,6 +60,7 @@ export default {
   name: 'promosList',
   props: {
   },
+  
   data() {
     return {
       promosList: [],
@@ -67,6 +68,7 @@ export default {
       isHover: false,
       loadMessage: 'Загрузка...',
       statusFilter: 0,
+      maxWidth: null,
     }
   },
   methods: {
@@ -97,7 +99,6 @@ export default {
               startIn: toStart,
             };
           });
-          console.log(this.remaining)
 
           // Сортировка по полю 'sort'
           this.promosList.sort((a, b) => a.sort - b.sort);
@@ -119,14 +120,37 @@ export default {
       } else {
         return 'дней';
       }
-    }
+    },
+    updateMaxHeight() {
+      if (window.innerWidth < 1360 && window.innerWidth > 900) {
+        const infoBoxes = document.querySelectorAll('.info-box');
+        let maxInfoBoxHeight = 0;
+
+        infoBoxes.forEach((box) => {
+          const boxHeight = box.offsetHeight;
+          if (boxHeight > maxInfoBoxHeight) {
+            maxInfoBoxHeight = boxHeight;
+          }
+        });
+
+        this.maxHeight = maxInfoBoxHeight + 'px';
+      } else {
+        this.maxHeight = null;
+      }
+    },
   },
   created() {
-    console.log('ready');
     this.getPromos();
+    this.updateMaxHeight();
   },
   beforeMount() {
 
+  },
+  mounted(){
+    window.addEventListener('resize', this.updateMaxHeight);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.updateMaxHeight);
   },
   computed: {
     promoFiltered() {
@@ -137,6 +161,10 @@ export default {
 </script>
 
 <style scoped>
+.description-wrap p>p {
+  margin-bottom: 0;
+}
+
 #homePromo .title a:before {
   content: '';
   width: 100%;
@@ -150,6 +178,27 @@ export default {
 
 .heading.mrt-0.mrb-0 {
   margin-bottom: 36px;
+}
+
+.promo-row.col-sm-12.flex-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+}
+
+.info-box {
+  align-items: self-start;
+  flex-basis: auto;
+}
+
+.info-box .duration {
+  align-self: flex-end;
+}
+
+.image-box.rounded-6 {
+  min-width: unset;
+  height: 100%;
 }
 
 #homePromo .title a {
@@ -168,12 +217,39 @@ export default {
   }
 
   .image-box img {
-    height: 100%;
+    height: auto;
     object-fit: cover;
+    border-radius: 24px;
   }
 }
 
 @media (max-width: 900px) {
+  .promo-row.col-sm-12.flex-row {
+    display: flex;
+    flex-flow: column !important;
+    gap: 24px !important;
+  }
+
+  .mrt-5 {
+    margin-top: 16px !important;
+  }
+
+  .mrb-5 {
+    margin-bottom: 16px !important;
+  }
+
+  .promoItem-title.mrb-5 {
+    margin-bottom: -8px !important;
+  }
+
+  .promo-row .duration.blue_80.mrb-5.text_base1_bold {
+    margin-bottom: 8px !important;
+  }
+
+  .link-wrapper.mrt-8 {
+    margin-top: 28px;
+  }
+
   p>p {
     margin: 0 !important;
   }
@@ -222,10 +298,11 @@ export default {
 </style>
 <style>
 .promo-link:hover {
-  color: white!important;
-  background: #2b47da!important;
+  color: #1D39C9;
+  background: #E5E8FA!important;
   transition: all ease .3s;
 }
+
 .promo-link {
   transition: all ease .3s;
 }

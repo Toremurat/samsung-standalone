@@ -89,7 +89,7 @@ export default {
         background: #EAEDFF;
         background-size: cover;
         flex-flow: column;
-        align-items: start;
+        align-items: flex-start;
         gap: 28px;
         padding: 24px 24px 38px;
     }

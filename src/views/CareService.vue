@@ -275,7 +275,7 @@ h1 {
     }
 
     .heading {
-        align-self: start;
+        align-self: flex-start;
         order: -1;
     }
 

@@ -237,8 +237,8 @@ h4.header {
 
     @media (max-width: 1366px) and (min-width: 1080px) {
         max-width: 100%;
-        padding-left: 40px !important;
-        padding-right: 40px !important;
+        padding-left: 80px;
+        padding-right: 80px;
     }
 
     @media (max-width: 1080px) and (min-width: 900px) {
@@ -248,15 +248,27 @@ h4.header {
     }
 
     @media (max-width: 900px) {
-        max-width: calc(100% - 10px);
-        padding-left: 30px !important;
-        padding-right: 30px !important;
+        max-width: calc(100%);
+        padding-left: 20px !important;
+        padding-right: 20px !important;
     }
 }
 
 @media (max-width: 1200px) {
     .container.bottom footer .pdl-20 {
         padding: 28px 0 0 !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .promo-dates.ended.text_base1_bold.blue_80.mrb-20 {
+        margin-bottom: 60px;
+    }
+
+    h1.heading {
+        font-size: 32px;
+        padding-top: 32px !important;
+        padding-bottom: 0 !important;
     }
 }
 </style>
@@ -337,7 +349,7 @@ h4.header {
             border-radius: 20px;
             background: #eaedff;
             display: flex;
-            align-items: start;
+            align-items: flex-start;
 
             @media (max-width: 900px) {
                 font-size: 16px;
@@ -356,7 +368,7 @@ h4.header {
             border-radius: 20px;
             background: #EBFFE8;
             display: flex;
-            align-items: start;
+            align-items: flex-start;
 
             @media (max-width: 900px) {
                 font-size: 16px;
@@ -375,7 +387,7 @@ h4.header {
             border-radius: 20px;
             background: #FFEDED;
             display: flex;
-            align-items: start;
+            align-items: flex-start;
 
             @media (max-width: 900px) {
                 font-size: 16px;
@@ -525,8 +537,8 @@ h4.header {
         transition: ease all .3s;
 
         &:hover {
-            background: #2b47da;
-            color: #fff;
+            background: #E5E8FA;
+            color: #1D39C9;
             transition: ease all .3s;
         }
 
@@ -541,6 +553,7 @@ h4.header {
     @media (max-width: 900px) {
         margin: 60px 0 100px;
     }
+
 
 }
 </style>

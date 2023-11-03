@@ -20,7 +20,7 @@
         технику,
         дисплеи и многое другое. Все это в одном магазине, где вас ждет превосходное обслуживание и экспертное
         сопровождение.</p>
-      <p class="text_base1_bold black_100  mrb-4">Алматы, Самал-2, 111, ТРЦ Dostyk Plaza, 1 этаж</p>
+      <p class="text_base1_bold black_100  mrb-4">Алматы, Самал-2, 111, <br class="xs-only">ТРЦ Dostyk Plaza, 1 этаж</p>
       <div class="addr-box">
         <div class="addr-link">
           <p class="text_base_2 black_50  mrb-1" style="flex-basis:100%">Проложить маршрут</p>
@@ -60,19 +60,39 @@ export default {
   }
 }
 </script>
+<style>
+#contactsHero .slider .glide-item {
+  height: 695px !important;
+}
 
+#contactsHero .slider .glide-item img {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+@media (max-width: 1366px) {
+  #contactsHero .slider .glide-item {
+    height: 665px !important;
+  }
+}
+</style>
 <style scoped lang="scss">
 @import url(@/static/styles/main.css);
 
+.xs-only {
+  display: none;
+}
+
 .contactsMainOverlay {
   position: absolute;
-  top: 60px;
   background: #fff;
   margin-left: 40px;
-  width: 560px;
-  height: calc(100% - 120px);
   border-radius: 12px;
   padding: 60px;
+  top: 60px;
+  width: 560px;
+  height: calc(100% - 120px);
+
 }
 
 .addr-link {
@@ -140,36 +160,36 @@ export default {
 @media (max-width: 1599px) {
   .contactsMainOverlay {
     height: auto;
-    width: auto;
-    max-width: 52%;
+    // width: auto;
+    // max-width: 52%;
   }
 }
 
 @media (max-width: 1400px) {
   .contactsMainOverlay {
-    max-width: 65%;
-    padding: 50px;
+    // max-width: 65%;
+    // padding: 50px;
   }
 }
 
 @media (max-width: 1280px) {
   .contactsMainOverlay {
-    max-width: 75%;
-    padding: 40px;
+    // max-width: 75%;
+    // padding: 40px;
   }
 }
 
 @media (max-width: 1150px) {
   .contactsMainOverlay {
-    max-width: 85%;
-    padding: 35px;
+    // max-width: 85%;
+    // padding: 35px;
   }
 }
 
 @media (max-width: 990px) {
   .contactsMainOverlay {
-    max-width: 90%;
-    padding: 25px;
+    // max-width: 90%;
+    // padding: 25px;
 
   }
 }
@@ -183,7 +203,7 @@ export default {
 
   }
 
-  #app > div > .container.mobile-normal {
+  #app>div>.container.mobile-normal {
     padding: 20px 0 0 0 !important;
   }
 
@@ -198,6 +218,9 @@ export default {
 </style>
 <style>
 @media (max-width: 560px) {
+  .xs-only {
+    display: block !important;
+  }
 
   .carousel__pagination-button,
   .glide__bullet {
@@ -209,4 +232,10 @@ export default {
   .glide__bullets {
     top: calc(100% - 8px) !important;
   }
-}</style >
+}
+
+.flex-row.flex.addr>div a:hover span {
+  color: #2B47DA !important;
+  transition: ease all .3s;
+}
+</style >
