@@ -1,8 +1,9 @@
 <template>
 	<nav class="header">
 		<div class="header-sticky container">
-			<div class="left-container">
-				<div class="burger" :class="{ morph: isDesktopDropdownActive || isMobileDropdownActive }" @click="toggleState();">
+			<div class="left-container" @touch="closeDropdowns();">
+				<div class="burger" :class="{ morph: isDesktopDropdownActive || isMobileDropdownActive }"
+					@click="toggleState();">
 					<div class="icon">
 						<i class="line burger top-line"></i>
 						<i class="line burger middle-line"></i>
@@ -21,7 +22,8 @@
 				<div class="flex-row flex addr">
 					<div class="addr-1">
 						<a targer="_blank"
-							href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
+							href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77"
+							target="_blank">
 							<img src="@/static/icons/addr.svg" alt="" class="icon">
 							<span class="text black_75 text_base2">
 								ТРЦ Dostyk Plaza
@@ -61,38 +63,50 @@
 					</div>
 					<div class="col-sm-4">
 						<ul class="menu-list">
-							<li class="list-item text_base1_bold black_100 pdb-5">
-								<router-link @click="closeDropdowns" to="/promo/" class="text_base1_bold black_100">
-									Акции
-								</router-link>
-							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link @click="closeDropdowns" to="/" class=" black_100">
+								<p class=" text_base1_bold black_100 mrt-0 mrb-0">
 									Информация покупателям
-								</router-link>
+								</p>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link @click="closeDropdowns" to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/payment" class=" black_100">
 									Оплата
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link @click="closeDropdowns" to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/delivery" class=" black_100">
 									Доставка
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link @click="closeDropdowns" to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/return-and-exchange" class=" black_100">
 									Возврат и обмен
 								</router-link>
 							</li>
 							<li class="list-item text_base2 black_100 pdb-6">
-								<router-link @click="closeDropdowns" to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/service" class=" black_100">
 									Сервис
 								</router-link>
 							</li>
+
+							<li class="list-item text_base2 black_100 pdb-6">
+                                <router-link to="/guarantee" @click="closeDropdowns" class=" black_100">
+                                    Гарантия низкой цены
+                                </router-link>
+                            </li>
+                            <li class="list-item text_base2 black_100 pdb-6">
+                                <router-link to="/trade-in" @click="closeDropdowns" class=" black_100">
+                                    Trade-in
+                                </router-link>
+                            </li>
+                            <li class="list-item text_base2 black_100 pdb-6">
+                                <router-link to="/smart-bonus" @click="closeDropdowns" class=" black_100">
+                                    Smart Bonus
+                                </router-link>
+                            </li>
+
 							<li class="list-item text_base2 black_100">
-								<router-link @click="closeDropdowns" to="/" class=" black_100">
+								<router-link @click="closeDropdowns" to="/public-policy" class=" black_100">
 									Публичная оферта
 								</router-link>
 							</li>
@@ -119,27 +133,44 @@
 					<div class="mobile-collapse" :class="{ active: isActive }">
 						<ul class="sidebar-submenu">
 							<li class="menu-items text_base_2 black_100">
-								<router-link @click="closeDropdowns" to="/">
+								<router-link @click="closeDropdowns" to="/payment">
 									Оплата
 								</router-link>
 							</li>
 							<li class="menu-items text_base_2 black_100">
-								<router-link @click="closeDropdowns" to="/">
+								<router-link @click="closeDropdowns" to="/delivery">
 									Доставка
 								</router-link>
 							</li>
 							<li class="menu-items text_base_2 black_100">
-								<router-link @click="closeDropdowns" to="/">
+								<router-link @click="closeDropdowns" to="/return-and-exchange">
 									Возврат и обмен
 								</router-link>
 							</li>
 							<li class="menu-items text_base_2 black_100">
-								<router-link @click="closeDropdowns" to="/">
+								<router-link @click="closeDropdowns" to="/service">
 									Сервис
 								</router-link>
 							</li>
+
 							<li class="menu-items text_base_2 black_100">
-								<router-link @click="closeDropdowns" to="/">
+                                <router-link @click="closeDropdowns" to="/guarantee">
+                                    Гарантия низкой цены
+                                </router-link>
+                            </li>
+                            <li class="menu-items text_base_2 black_100">
+                                <router-link @click="closeDropdowns" to="/trade-in">
+                                    Trade-in
+                                </router-link>
+                            </li>
+                            <li class="menu-items text_base_2 black_100">
+                                <router-link @click="closeDropdowns" to="/smart-bonus">
+                                    Smart Bonus
+                                </router-link>
+                            </li>
+
+							<li class="menu-items text_base_2 black_100">
+								<router-link @click="closeDropdowns" to="/public-policy">
 									Публичная оферта
 								</router-link>
 							</li>
@@ -165,7 +196,7 @@
 						Алматы, Самал-2, 111,<br> ТРЦ Dostyk Plaza, 1 этаж
 					</div>
 					<div class="addr-link">
-						<p class="text_base_2 black_50">Показать на</p>
+						<p class="text_base_2 black_50">Проложить маршрут</p>
 						<a
 							href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
 							<img src="@/static/icons/2gis.svg" alt="">
@@ -252,7 +283,11 @@ export default {
 	},
 };
 </script>
-
+<style>
+#logo a {
+	display: block;
+}
+</style>
 <style lang="scss" scoped>
 // Стили для мобильного dropdown
 .tel-box {
@@ -290,9 +325,10 @@ export default {
 		transition: max-height 0.3s ease;
 
 		&.active {
-			max-height: calc(100vh - 64px); // Установите желаемую максимальную высоту
-			height: calc(100vh - 64px); // Установите желаемую максимальную высоту
+			min-height: calc(100vh - 64px);
+			height: calc(100% - 64px);
 			opacity: 1;
+			overflow-y: scroll;
 		}
 
 		display: block;
@@ -411,7 +447,7 @@ export default {
 	align-items: center;
 }
 
-.flex-row.flex.addr>div {
+.flex-row.flex.addr>div a {
 	display: flex;
 	flex-flow: row nowrap;
 	gap: 8px;
@@ -565,19 +601,19 @@ export default {
 	}
 
 	.sidebar-menu>.menu-items:last-of-type {
-		margin-bottom: -28px;
+		margin-bottom: -20px;
 	}
 
 	.sidebar-submenu .menu-items {
-		margin: 28px 0 0;
+		margin: 20px 0 0;
 	}
 
 	.sidebar-submenu .menu-items:first-of-type {
-		margin-top: 28px;
+		margin-top: 20px;
 	}
 
 	.sidebar-submenu .menu-items:last-of-type {
-		margin-bottom: 28px;
+		margin-bottom: 20px;
 	}
 
 	.tel-box {
@@ -630,14 +666,14 @@ export default {
 	}
 
 	.text_base_1_bold {
-		font-size: 14px;
+		font-size: 16px;
 		line-height: 150%;
 		font-weight: 600;
 		font-family: inter;
 	}
 
 	.text_base_1 {
-		font-size: 14px;
+		font-size: 16px;
 		line-height: 150%;
 	}
 
@@ -678,6 +714,11 @@ export default {
 		font-weight: 600;
 		line-height: 140%;
 	}
+
+	.vertical-dropdown-desktop {
+		max-width: 100vw;
+		padding: 0 20px;
+	}
 }
 
 .burger {
@@ -691,4 +732,10 @@ export default {
 
 .menu-list li a {
 	transition: ease all .15s;
-}</style>
+}
+</style>
+<style>
+.flex-row.flex.addr a:hover {
+	color: #1D39C9;
+}
+</style>

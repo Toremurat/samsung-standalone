@@ -26,13 +26,13 @@
 						Добро пожаловать в фирменный магазин Samsung!
 					</h2>
 					<p class="text_base1 mrb-5">
-						В магазине вы найдете мобильные устройства, ТВ и аудио технику, бытовую технику, дисплеи и многое другое. Все
-						это в одном месте, где вас ждет превосходное обслуживание и экспертное сопровождение.
+						Первый фирменный магазин Samsung в Казахстане - это место, где инновации и высокие технологии
+						встречаются с гостеприимством и качественным обслуживанием.
 					</p>
 					<p class="text_base1 mrb-5">
-						Фирменный магазин Samsung - это именно то место, где вы можете первыми познакомиться с инновационными
-						продуктами и революционными технологиями. Вас ждут советы и профессиональные консультации квалифицированных
-						специалистов.
+						Здесь вы найдете флагманские смартфоны, телевизоры, аудио и бытовую технику. Квалифицированные
+						специалисты всегда готовы предоставить профессиональную консультацию и продемонстрировать
+						возможности устройств.
 					</p>
 				</div>
 				<div class="contact-box">
@@ -92,9 +92,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import url(@/static/styles/main.css);
-
+<style scoped lang="scss">
 #contactsSlider {
 	margin: 0 !important;
 }
@@ -213,10 +211,30 @@ export default {
 		border-radius: 24px !important;
 	}
 
+	#app>div>.container.mrb-15 {
+		margin-bottom: 20px !important;
+	}
+
+	h3.heading {
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 600;
+		line-height: 130%;
+	}
+	.container.footer.mrt-35{
+		margin-top:80px;
+	}
 }
+
+// html #app>div>.container.footer.mrt-35 {
+// 	padding: 0 20px !important;
+// }
 </style>
 <style>
-	#app > div > .container.footer.mrt-35{
-		padding: 0 20px!important;
+@media (max-width: 900px) {
+	#contactsSlider img.mobile-only {
+		border-radius: 20px 20px 0 0!important;
+		overflow: hidden;
 	}
+}
 </style>

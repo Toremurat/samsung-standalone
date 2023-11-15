@@ -62,7 +62,13 @@ export default {
 	},
 
 	mounted() {
-		new Glide('.glide').mount()
+		const glide = new Glide('.glide', {
+			type: 'slider', // Установите тип на "slider"
+			startAt: 0, // Установите начальный слайд на первый
+			rewind: false,
+		});
+
+		glide.mount();
 	},
 }
 </script>

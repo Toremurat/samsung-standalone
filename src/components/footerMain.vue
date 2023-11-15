@@ -9,12 +9,12 @@
             <div class="col-r">
                 <ul class="footer-menu pdl-10 mrl-0">
                     <li class="text_base1_bold black_100 mrb-6">
-                        <router-link to="" :class="'black_100'">
+                        <router-link to="/promo" :class="'black_100'">
                             Акции
                         </router-link>
                     </li>
                     <li class="text_base1_bold black_100 mrb-6">
-                        <router-link to="" :class="'black_100'">
+                        <router-link to="/contacts" :class="'black_100'">
                             Контакты
                         </router-link>
                     </li>
@@ -24,23 +24,50 @@
                     </li>
                     <div class="footer-collasible" :class="{ collapsed: isCollapsed }">
                         <ul class="footer-submenu pdl-0">
-                            <li class="text-base2 black_100 mrt-6">
-                                Оплата
+                            <li class="text_base1 black_100 mrt-0">
+                                <router-link to="/payment">
+                                    Оплата
+                                </router-link>
                             </li>
-                            <li class="text-base2 black_100 mrt-6">
-                                Доставка
+                            <li class="text_base1 black_100 mrt-6">
+                                <router-link to="/delivery">
+                                    Доставка
+                                </router-link>
                             </li>
-                            <li class="text-base2 black_100 mrt-6">
-                                Возврат и обмен
+                            <li class="text_base1 black_100 mrt-6">
+                                <router-link to="/return-and-exchange">
+                                    Возврат и обмен
+                                </router-link>
                             </li>
-                            <li class="text-base2 black_100 mrt-6">
-                                Оплата
+                            <li class="text_base1 black_100 mrt-6">
+                                <router-link to="/payment">
+                                    Оплата
+                                </router-link>
                             </li>
-                            <li class="text-base2 black_100 mrt-6">
-                                Сервис
+                            <li class="text_base1 black_100 mrt-6">
+                                <router-link to="/public-policy">
+                                    Сервис
+                                </router-link>
                             </li>
-                            <li class="text-base2 black_100 mrt-6">
-                                Публичная оферта
+                            <li class="text_base1 black_100 mrt-6">
+                                <router-link to="/guarantee">
+                                    Гарантия низкой цены
+                                </router-link>
+                            </li>
+                            <li class="text_base1 black_100 mrt-6">
+                                <router-link to="/trade-in">
+                                    Trade-in
+                                </router-link>
+                            </li>
+                            <li class="text_base1 black_100 mrt-6">
+                                <router-link to="/smart-bonus">
+                                    Smart Bonus
+                                </router-link>
+                            </li>
+                            <li class="text_base1 black_100 mrt-6">
+                                <router-link to="">
+                                    Публичная оферта
+                                </router-link>
                             </li>
                         </ul>
                     </div>
@@ -82,14 +109,14 @@
             <div class="col-r">
                 <div class="footer-subscribe pdl-20">
                     <div class="inst ">
-                        <a href="https://www.instagram.com/samsungkz/">
+                        <a href="https://www.instagram.com/firmalyq.duken/">
                             <img src="@/static/icons/inst.svg" alt="" class="footer-inst mrr-3">
                             <p class="blue_80_hover text_base1_bold mrb-0 mrt-0 desktop-only">
                                 Подписывайтесь<br>на наш Instagram
                             </p>
                         </a>
                     </div>
-                    <a href="https://www.instagram.com/samsungkz/" class="mobile-only">
+                    <a href="https://www.instagram.com/firmalyq.duken/" class="mobile-only">
                         <p class="text_base2_bold mrt-4 mrb-8">Подписывайтесь на наш Instagram</p>
                         <p class="text_base2 mrt-4 mrb-8">Чтобы следить за новинками и акциями</p>
                     </a>
@@ -135,7 +162,7 @@
                     </p>
                     <div class="addr-box">
                         <div class="addr-link">
-                            <p class="text_base_2 black_50  mrb-1">Проложить маршрут</p>
+                            <p class="text_base_2 black_50  mrb-2">Проложить маршрут</p>
                             <a
                                 href="https://2gis.kz/almaty/directions/points/%7C76.955573%2C43.233917%3B70000001076849171?floor=1&m=76.955831%2C43.233979%2F19.77">
                                 <img src="@/static/icons/2gis.svg" alt="">
@@ -152,11 +179,11 @@
             <div class="col-r insta">
                 <div class="footer-subscribe">
                     <div class="inst ">
-                        <a href="https://www.instagram.com/samsungkz/">
+                        <a href="https://www.instagram.com/firmalyq.duken/">
                             <img src="@/static/icons/inst.svg" alt="" class="footer-inst mrr-3">
                             <div class="text">
                                 <p class="blue_80_hover text_base1_bold mrb-0 mrt-0 desktop-only">
-                                    Подписывайтесь<br class="notCertain">на наш Instagram
+                                    Подписывайтесь <br class="notCertain">на наш Instagram
                                 </p>
                                 <p class="text_base2 black_100 certain">Чтобы следить за новинками и акциями</p>
                             </div>
@@ -189,7 +216,12 @@ export default {
 
 };
 </script>
-
+<style>
+.infoPage .list-dotted li+li,
+.infoPage .numbered-list li+li {
+    line-height: 1.4 !important;
+}
+</style>
 <style lang="scss" scoped>
 footer.desktop-only {
     .footer-img {
@@ -231,7 +263,7 @@ footer.desktop-only {
 
     .footer-contacts p {
         flex-basis: 100%;
-        margin-bottom: 0 !important;
+        margin-bottom: 4px !important;
     }
 
     .footer-contacts {
@@ -554,6 +586,14 @@ hr {
 }
 
 @media (max-width: 900px) {
+    .text_base2.black_100.mrt-0 {
+        margin-top: -16px !important;
+    }
+
+    .footer-submenu.pdl-0 li a {
+        color: #000;
+    }
+
     .footer-wrap {
         flex-flow: column !important;
     }
@@ -664,7 +704,7 @@ hr {
     }
 
     .footer-contacts p.text_base_2.black_50.mrb-1 {
-        margin-bottom: -4px;
+        margin-bottom: 4px;
     }
 
     .copyright {
@@ -729,4 +769,5 @@ hr {
 
 .copyright p {
     font-weight: 400 !important;
-}</style>
+}
+</style>

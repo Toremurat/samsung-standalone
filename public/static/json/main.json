@@ -1,7 +1,8 @@
 [
     {
-        "status": 1,
-        "link": "smart-bonus",
+        "home_status": 1,
+"status": 1,
+        "link": "promo/smart-bonus",
         "home_image": "/static/image/promo/smart-bonus/banner.webp",
         "promo_image": "/static/image/promo/smart-bonus/promo-banner.webp",
         "date_start": "",
@@ -32,12 +33,14 @@
             "<ol class=\"numbered-list titled\"><li><h4>Совершайте покупки</h4><p>Получайте бонусы за покупки. Чем выше стоимость товара, тем больше бонусов. Ищите товары с повышенными бонусами.</p></li><li><h4>Копите Smart бонусы</h4><p>Предъявите бонусную карту на кассе или укажите ее номер при оформлении заказа и мы начислим вам бонусы которые активируются через 16 дней и будут активны в течении 180 дней.</p></li><li><h4>Используйте бонусы</h4><p>Используйте бонусы при оплате. Накопленные бонусы – это Ваша скидка до 99% при совершении следующей покупки.</p></li></ol>",
             "<div class=\"spacer\"></div>",
             "<h3>Участники клуба</h3>",
-            "<ul class=\"unstyled-list titled\"><li><h4>Фирменный магазин Samsung</h4><p>Единственный в Казахстане фирменный магазин Samsung</p></li><li><h4>Фирменный магазин Sony Centre</h4><p>Магазины электроники Sony в городах Алматы, Астана и Шымкент</p><a target=\"_blank\" href=\"sonycenter.kz\">sonycenter.kz</a></li><li><h4>Фирменный магазин Bosch</h4><p>Магазины бытовой и кухонной техники Bosch в городах Алматы, Астана и Шымкент</p><a target=\"_blank\" href=\"boschcenter.kz\">boschcenter.kz</a></li><li><h4>Фирменный магазин Benetton</h4><p>Магазины женской, мужской и детской одежды в городе Алматы</p><a target=\"_blank\" href=\"ucb.kz\">ucb.kz</a></li><li><h4>Гипермаркет электроники Evrika</h4><p>Мультибрендовые магазины во всех городах Казахстана</p><a target=\"_blank\" href=\"evrika.com\">evrika.com</a></li></ul>"
+            "<ul class=\"unstyled-list titled\"><li><h4>Фирменный магазин Samsung</h4><p>Единственный в Казахстане фирменный магазин Samsung</p></li><li><h4>Фирменный магазин Sony Centre</h4><p>Магазины электроники Sony в городах Алматы, Астана и Шымкент</p><a target=\"_blank\" href=\"sonycenter.kz\">sonycenter.kz</a></li><li><h4>Фирменный магазин Bosch</h4><p>Магазины бытовой и кухонной техники Bosch в городах Алматы, Астана и Шымкент</p><a target=\"_blank\" href=\"boschcenter.kz\">boschcenter.kz</a></li><li><h4>Фирменный магазин Benetton</h4><p>Магазины женской, мужской и детской одежды в городе Алматы</p><a target=\"_blank\" href=\"ucb.kz\">ucb.kz</a></li><li><h4>Гипермаркет электроники Evrika</h4><p>Мультибрендовые магазины во всех городах Казахстана</p><a target=\"_blank\" href=\"evrika.com\">evrika.com</a></li></ul>",
+            ""
         ]
     },
     {
-        "status": 1,
-        "link": "trade-in",
+        "home_status": 1,
+"status": 1,
+        "link": "promo/trade-in",
         "home_image": "/static/image/promo/trade-in/banner.webp",
         "promo_image": "/static/image/promo/trade-in/promo-banner.webp",
         "date_start": "2023-10-25",
@@ -72,8 +75,10 @@
         ]
     },
     {
-        "status": 1,
-        "link": "kaspi-zhuma-0-0-24",
+        "home_status": 0,
+"status": 0,
+
+        "link": "promo/kaspi-zhuma-0-0-24",
         "home_image": "/static/image/promo/kaspi-juma/banner.webp",
         "promo_image": "/static/image/promo/kaspi-juma/promo-banner.webp",
         "date_start": "2023-11-03",
@@ -84,10 +89,10 @@
         "size": 12,
         "name": "Kaspi Жума 0 0 24",
         "description": [
-            "<p>Kaspi Жұма всенародный праздник выгодных покупок в рассрочку от Kaspi.kz</p>"
+            "<p>Kaspi Жұма всенародный праздник <br>выгодных покупок в рассрочку от Kaspi.kz</p>"
         ],
         "content": [
-            "<div class=\"heading\"><h2>Что такое Kaspi Жұма</h2></div>",
+            "<div class=\"heading\"><h2>Что такое Kaspi<br> Жұма</h2></div>",
             "<div class=\"warning blue\" style=\"margin-bottom: 16px\">Kaspi Жұма – это всенародный праздник выгодных покупок в рассрочку от Kaspi.kz.</div>",
             "<div class=\"warning red\">Рассрочка действует только через Kaspi QR</div>",
             "<div class=\"half-spacer\"></div>",
@@ -102,8 +107,9 @@
         ]
     },
     {
+        "home_status": 1,
         "status": 1,
-        "link": "halyk-bonus-5",
+        "link": "promo/halyk-bonus-5",
         "home_image": "/static/image/promo/5-bonus-halykQR/banner.webp",
         "promo_image": "/static/image/promo/5-bonus-halykQR/promo-banner.webp",
         "date_start": "2023-09-01",
@@ -111,31 +117,45 @@
         "sort": 2,
         "group": 2,
         "home_sort": 2,
+        "carousel": [
+            "/static/image/promo-slider/imgs-1.webp",
+            "/static/image/promo-slider/imgs-2.webp",
+            "/static/image/promo-slider/imgs-4.webp",
+            "/static/image/promo-slider/imgs-4.webp",
+            "/static/image/promo-slider/imgs-2.webp",
+            "/static/image/promo-slider/imgs-3.webp"
+        ],
+        "slider_status": 1,
+        "button": 0,
         "size": 6,
         "name": "5% Halyk бонусов",
         "description": [
-            "<p>Оплачивай с помощью Halyk QR и получай до 5% бонусов!</p>"
+            "<p>Оплачивай с помощью Halyk QR<br> и получай до 5% бонусов!</p>"
         ],
         "content": [
             "<div class=\"heading\"><h2>Как получить бонусы?</h2></div>",
-            "<p>Достаточно воспользоваться Halyk QR при оплате через POS-терминалы Halyk.</p>",
+            "<p><b>Достаточно воспользоваться Halyk QR при оплате через POS-терминалы Halyk.</b></p>",
+            "<div id=\"getSlider2\" data-slider-id=\"getSlider2\"></div>",
             "<div class=\"half-spacer\"></div>",
             "<div class=\"warning blue\" style=\"margin-bottom: 16px\">Бонусы начисляются только за оплату через Halyk QR</div>",
             "<div class=\"warning red\">Бонусы не начисляются при оплате картой или Apple Pay</div>",
             "<div class=\"half-spacer\"></div>",
+            "<div id=\"getSlider1\" data-slider-id=\"getSlider1\"></div>",
             "<h4>Как оплачивать покупки через Halyk QR:</h4>",
             "<ol class=\"numbered-list\"><li>Откройте приложение Halyk;</li><li>Выберите функцию QR;</li><li>Отсканируйте QR-код в POS-терминале Halyk;</li><li>Подтвердите платеж.</li></ol>",
             "<div class=\"spacer\"></div>",
+            "<div id=\"getSlider3\" data-slider-id=\"getSlider3\"></div>",
             "<h3>Условия акции</h3>",
             "<ol class=\"numbered-list\"><li>Срок действия акции: с 1 сентября по 31 декабря 2023 года;</li><li>Бонусы начисляются только за оплату через Halyk QR;</li><li>Отсканируйте QR-код в POS-терминале Halyk</li><li>Бонусы за оплату бонусами не начисляются;</li><li>При частичном или полном возврате суммы за покупку ранее начисленные бонусы списываются в полном размере.</li></ol>"
         ]
     },
     {
-        "status": 1,
-        "link": "halyk-rassrochka-0-0-24",
+        "home_status": 1,
+"status": 1,
+        "link": "promo/halyk-rassrochka-0-0-24",
         "home_image": "/static/image/promo/halyk-rassrochka/banner.webp",
         "promo_image": "/static/image/promo/halyk-rassrochka/promo-banner.webp",
-        "date_start": "2023-10-01",
+        "date_start": "2023-11-09",
         "date_end": "2023-10-31",
         "sort": 3,
         "group": 2,

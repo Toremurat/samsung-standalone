@@ -1,251 +1,3 @@
-
-<template>
-    <div v-if="postData" class="promo-wrapper container pdt-8">
-        <div class="backlink" v-if="this.postData.button !== 0">
-            <router-link to="/promo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.8787 18.1012L5.77734 11.9998L11.8787 5.89844" stroke="#2B47DA" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                        d="M18.2226 13.0664C18.7749 13.0664 19.2226 12.6187 19.2226 12.0664C19.2226 11.5141 18.7749 11.0664 18.2226 11.0664V13.0664ZM5.98602 13.0664H18.2226V11.0664H5.98602V13.0664Z"
-                        fill="#2B47DA" />
-                </svg>
-                Смотреть все акции
-            </router-link>
-        </div>
-        <div class="promo-header">
-            <div class="image-block">
-                <img :src="this.postData.image" alt="this.postData.name" class="desktop-only">
-                <img :src="this.postData.image_m" alt="this.postData.name" class="mobile-only">
-            </div>
-            <div class="promo-description">
-                <h1 class="heading pdt-10 pdb-5 mrb-0 mrt-0">{{ this.postData.name }}</h1>
-                <div class="date" v-if="this.postData.actual">
-                    <p class="promo-dates text_base1_bold blue_80" v-if="this.postData.actual < 0">
-                        <span class="clock"></span>Акция начнется {{ this.postData.date_start }}
-                    </p>
-                    <p class="promo-dates text_base1_bold blue_80" v-else-if="this.postData.old < 0">
-                        <span class="clock"></span>Действует до {{ this.postData.date_end }}
-                    </p>
-                    <p class="promo-dates ended text_base1_bold blue_80" v-else>
-                        <span class="clock"></span>Акция закончилась
-                    </p>
-                </div>
-                <div class="filler" v-else></div>
-            </div>
-        </div>
-        <div id="promo-content">
-            <div class="description-item" v-for="contentData in this.postData.content" :key="contentData[0]"
-                v-html="contentData">
-            </div>
-        </div>
-    </div>
-
-    <div class="slider container" v-if="this.slidesArr.length > 0">
-        <carousel :items-to-show="4" :wrap-around="false" :breakpoints="breakpoints">
-            <slide v-for="(carousel, index) in slidesArr" :key="index">
-                <img :src="carousel.img" alt="carousel.alt">
-            </slide>
-            <template #addons>
-                <Navigation>
-                    <template #next>
-                        <div class="prev nav-slide"></div>
-                    </template>
-                    <template #prev>
-                        <div class="next nav-slide"></div>
-                    </template>
-                </Navigation>
-                <Pagination></Pagination>
-            </template>
-        </carousel>
-    </div>
-
-    <div class="container mrt-35">
-        <careServiceWidget />
-    </div>
-</template>
-
-<script>
-import axios from 'axios'
-import careServiceWidget from '@/components/careServiceWidget.vue';
-import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
-export default {
-    name: 'promoPage',
-    components: {
-        careServiceWidget,
-        Carousel,
-        Slide,
-        Navigation,
-        Pagination
-
-    },
-    data() {
-        return {
-            postData: [],
-            errorData: [],
-            slidesArr: [],
-            carouselStatus: 0,
-            wrapAround: true,
-            breakpoints: {
-                320: {
-                    itemsToShow: 1,
-                    snapAlign: 'start',
-                },
-                600: {
-                    itemsToShow: 2,
-                    snapAlign: 'start',
-                },
-                750: {
-                    itemsToShow: 3,
-                    snapAlign: 'start',
-                },
-                1024: {
-                    itemsToShow: 4,
-                    snapAlign: 'start',
-                },
-                // 1600: {
-                // 	itemsToShow: 5.5,
-                // 	snapAlign: 'start',
-                // },
-                mousedrag: true,
-                touchDrag: true,
-            },
-        };
-    },
-    methods: {
-        async getPromo() {
-            const linkParam = this.$route.params.link;
-            function whatDay(num) {
-                if (num == 1 || (num > 20 && num % 10 == 1))
-                    return "день";
-                if (num < 5 || (num > 20 && num % 10 < 5 && num % 10 > 0))
-                    return "дня";
-                return "дней";
-            }
-            axios.get('/static/json/main.json')
-                .then(response => {
-                    // const cleanLinkParam = response.data.find(item =>item.link);
-                    const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
-                    if (matchingData) {
-                        let date_end = new Date(matchingData.date_end);
-                        let date_start = new Date(matchingData.date_start);
-                        let today = Date.now();
-                        let result = date_end - today;
-                        if (result < 0)
-                            result = 0;
-                        let num = Math.ceil(result / (1000 * 3600 * 24));
-                        if (num == 0)
-                            num = 1;
-                        let remainDay = num + ' ' + whatDay(num);
-                        if (date_start > today || today > date_end)
-                            remainDay = '';
-                        let check = Date.now() - new Date(matchingData.date_start);
-                        let old_check = Date.now() - new Date(matchingData.date_end);
-                        this.postData = {
-                            "status": matchingData.status,
-                            "button": matchingData.button,
-                            "link": matchingData.link,
-                            "content": matchingData.content,
-                            "desc": stripHtmlTags(matchingData.description),
-                            "name": matchingData.name,
-                            "image": matchingData.promo_image,
-                            "image_m": matchingData.home_image,
-                            "date_start": date_start.toShortFormat(),
-                            "date_end": date_end.toShortFormat(),
-                            "remain": remainDay,
-                            "text": matchingData.text,
-                            "actual": check,
-                            "old": old_check,
-                            "slide_status": matchingData.slider_status
-                        };
-                        this.updateMetaTags();
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-        
-        async getcarousel() {
-            try {
-                const linkParam = this.$route.params.link;
-                const response = await axios.get('/static/json/main.json');
-                const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
-                if (matchingData) {
-                    const carouselImages = matchingData.carousel || [];
-                    this.slidesArr = carouselImages.map(img => ({ img }));
-                } else {
-                    this.slidesArr = [];
-                }
-            } catch (error) {
-                this.promoData = {
-                    message: 'Карусели на данный момент нет'
-                };
-                console.error(error);
-                this.errorData.push(error);
-            }
-        },
-
-        updateMetaTags() {
-            document.title = this.postData.name + ' в фирменном магазине Samsung';
-            let descriptionTag = document.querySelector("meta[name='description']");
-            if (!descriptionTag) {
-                descriptionTag = document.createElement("meta");
-                descriptionTag.setAttribute("name", "description");
-                document.head.appendChild(descriptionTag);
-            }
-            descriptionTag.setAttribute("content", this.postData.desc);
-            let ogDescriptionTag = document.querySelector("meta[property='og:description']");
-            if (!ogDescriptionTag) {
-                ogDescriptionTag = document.createElement("meta");
-                ogDescriptionTag.setAttribute("property", "og:description");
-                document.head.appendChild(ogDescriptionTag);
-            }
-            ogDescriptionTag.setAttribute("content", this.postData.ogDescription);
-        },
-    },
-
-    created() {
-        this.getPromo();
-        this.getcarousel();
-        if (this.slidesArr.length === 0) {
-            console.warn('Массив carousel пуст после получения данных');
-        }
-    },
-
-    computed: {
-        remainInt() {
-            // Преобразуйте this.postData.remain в целое число с помощью parseInt
-            return parseInt(this.postData.remain);
-        },
-
-        isMobile() {
-            return window.innerWidth < 768;
-        },
-    },
-
-}
-Date.prototype.toShortFormat = function () {
-    const monthNames = ['января', 'февраля', 'марта', 'апреля',
-        'мая', 'июня', 'июля', 'августа',
-        'сентября', 'октября', 'ноября', 'декабря'];
-
-    const day = this.getDate();
-    const monthIndex = this.getMonth();
-    const monthName = monthNames[monthIndex];
-
-    return `${day} ${monthName}`;
-}
-function stripHtmlTags(html) {
-    var tmp = document.createElement("div");
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText;
-}
-
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import url(@/static/styles/main.css);
 
@@ -267,8 +19,6 @@ function stripHtmlTags(html) {
         position: relative;
         left: -54px;
     }
-
-
 }
 
 .carousel__viewport {
@@ -306,8 +56,6 @@ function stripHtmlTags(html) {
 .carousel__next--disabled .nav-slide {
     content: url(@/static/icons/disabledArrow.svg) !important
 }
-
-
 
 .carousel__pagination-button {
     background: #d9d9d9;
@@ -428,17 +176,6 @@ function stripHtmlTags(html) {
         width: 28px;
     }
 }
-
-// .container.mgt-35 .care-widget {
-//     margin-top: 111px;
-//     border-radius: 24px;
-//     overflow: hidden;
-
-//     @media (min-width:900px) {
-//         margin-top: 100px;
-//     }
-
-// }
 
 #promo-content {
     display: flex;
@@ -575,8 +312,6 @@ h4.header {
     h1.heading {
         margin-bottom: 16px !important;
     }
-
-
 }
 
 #app #promo-content a {
@@ -612,7 +347,6 @@ h4.header {
             }
         }
     }
-
 
     & h2,
     h3,
@@ -940,58 +674,56 @@ h4.header {
         width: 100%;
         border-collapse: collapse;
         table-layout: fixed;
-    }
 
-    & tr {
-        &:first-of-type {
-            @media (max-width: 900px) {
-                border-left: 1px solid transparent;
+        & tr {
+            &:first-of-type {
+                @media (max-width: 900px) {
+                    border-left: 1px solid transparent;
+                }
             }
-        }
-
-        &:not(:first-of-type) {
-            border-top: 1px solid #d3d3d3;
-        }
-
-        & td,
-        & th {
-            padding: 10px;
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 120%;
-            border: 1px solid #e0e0e0;
 
             &:not(:first-of-type) {
-                border-left: 1px solid #d3d3d3;
+                border-top: 1px solid #d3d3d3;
             }
 
-            &.blue {
-                background: #E5E8FA;
-            }
+            & td,
+            & th {
+                padding: 10px;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 120%;
+                border: 1px solid #e0e0e0;
 
-            &.red {
-                background: #FFEDED;
-            }
+                &:not(:first-of-type) {
+                    border-left: 1px solid #d3d3d3;
+                }
 
-            &.gray {
-                background: #EDEDED;
-            }
+                &.blue {
+                    background: #E5E8FA;
+                }
 
-            &.green {
-                background: rgb(202, 241, 207);
-            }
+                &.red {
+                    background: #FFEDED;
+                }
 
-            &.text-center {
-                text-align: center;
-            }
+                &.gray {
+                    background: #EDEDED;
+                }
 
-            &.bold {
-                font-weight: 600;
+                &.green {
+                    background: rgb(202, 241, 207);
+                }
+
+                &.text-center {
+                    text-align: center;
+                }
+
+                &.bold {
+                    font-weight: 600;
+                }
             }
         }
-    }
 
-    & table {
         @media (max-width: 900px) {
             max-width: calc(100vw - 40px);
             overflow: scroll;
@@ -1008,12 +740,7 @@ h4.header {
                 min-width: 200vw;
                 display: table;
             }
-
         }
-    }
-
-    .date {
-        margin-top: 16px;
     }
 }
 
@@ -1033,6 +760,9 @@ strong {
         margin: 0 0 8px !important;
     }
 
+    .date {
+        margin-top: 16px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -1044,5 +774,4 @@ strong {
         margin-inline: 0 !important;
         margin-top: 80px !important;
     }
-}
-</style>
+}</style>

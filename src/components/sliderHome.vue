@@ -4,9 +4,9 @@
 	<div class="slider-section mrb-35 ">
 		<carousel :items-to-show="1" :wrap-around="false">
 			<slide v-for="(slider, index) in slidesArr" :key="index">
-				<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only" v-if="!isMobile"
+				<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only"
 					:route="slider.link" @click="toRoute">
-				<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only" v-else
+				<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only"
 					:route="slider.link" @click="toRoute">
 			</slide>
 			<template #addons>
@@ -42,7 +42,7 @@ export default {
 			errorData: [],
 			data: [],
 			slidesStatus: 0,
-			wrapAround: false,
+			wrapAround: true,
 			mousedrag: true,
 			touchDrag: true,
 		}
@@ -63,8 +63,8 @@ export default {
 						});
 					});
 
-					this.slidesArr.sort((a, b) => a.sort - b.sort);
 					this.slidesArr = this.slidesArr.filter(slider => slider.status !== this.slidesStatus);
+					this.slidesArr.sort((a, b) => a.sort - b.sort);
 				})
 
 				.catch((error) => {
@@ -80,7 +80,7 @@ export default {
 			if (route == '') {
 				route = '/';
 			} else {
-				route = '/promo/' + route;
+				route = '/' + route;
 			}
 			this.$router.push(route);
 		}
@@ -236,4 +236,29 @@ img {
 
 .carousel__pagination-button.carousel__pagination-button--active {
 	background: #2B47DA;
+}
+
+.carousel__pagination-button {
+	background: #d9d9d9 !important;
+	width: 10px !important;
+	height: 10px !important;
+	box-shadow: none !important;
+	border: none !important;
+	padding: 0 !important;
+	border-radius: 50% !important;
+	transition: all .1s ease-in-out !important;
+	line-height: 0 !important;
+	margin: 0 .25em !important;
+}
+
+.carousel__pagination-button:after {
+	content: none !important;
+}
+
+.carousel__pagination-button.carousel__pagination-button--active {
+	background: #2b47da !important;
+}
+
+.vs__open-indicator {
+	transform: scale(0.7);
 }</style>

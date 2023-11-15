@@ -1,6 +1,6 @@
 <template>
-    <div class="care-service_wrapper container mrb-35 ">
-        <h1 class="heading">Служба заботы</h1>
+    <div class="care-service_wrapper container mrb-35  black_100">
+        <h1 class="heading" id="top">Служба заботы</h1>
         <div v-if="!successPage" class="content-block">
             <div class="care-description mrb-10">
                 <h4 class="mrb-5 header">Служба заботы фирменного магазина Samsung всегда поможет решить вопросы, возникшие
@@ -45,7 +45,7 @@
                     лучше.</p>
             </div>
         </div>
-        <div v-if="!successPage" class="content-image">
+        <div v-if="!successPage" class="content-image" @load="scrollToTop();">
         </div>
     </div>
 </template>
@@ -56,7 +56,9 @@ export default {
     name: 'CareService',
     components: {
     },
-    directives: { mask },
+    directives: {
+        mask,
+    },
     data() {
         return {
             data: {
@@ -99,6 +101,7 @@ export default {
             this.formValide = true;
         },
         sendMessage() {
+
             for (let item in this.data) {
                 let element = document.querySelector('#' + item);
                 if (!this.validation(element)) this.formValide = false;
@@ -116,18 +119,37 @@ export default {
                         console.error(error);
                     });
             }
+
         },
         showSuccessPage() {
             this.successPage = true;
             setTimeout(() => {
+                this.scrollToTop();
+            }, 50);
+            setTimeout(() => {
                 this.$router.push("/");
-            }, 10000);
-        }
-    }
+            }, 20000);
+        },
+        scrollToTop() {
+            window.scrollTo(0, 0);
+            console.log("Scrolling to top...");
+        },
+    },
+
 }
 </script>
 <style scoped lang="scss">
-@import url(@/static/styles/main.css);
+.care-form-field#message {
+    min-height: 150px;
+}
+
+.content-block.success {
+    margin-bottom: 100px;
+
+    @media(min-width: 1080px) {
+        margin-bottom: 20vh;
+    }
+}
 
 .care-service_wrapper {
     margin-top: 110px;
@@ -167,8 +189,8 @@ export default {
 
 .care-form_submit:hover {
     transition: ease all .3s;
-    background: var(--blue_20_hover, #E5E8FA);
-    color: var(--blue_80, #2B47DA);
+    background: #1D39C9;
+    color: white;
 }
 
 label {
@@ -185,7 +207,7 @@ label {
 .care-form-field {
     padding: 20px 28px;
     border-radius: 12px;
-    border: 2px solid #c9c9c9;
+    border: 1px solid #c9c9c9;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -194,7 +216,7 @@ label {
 }
 
 .care-form-field.is-invalid {
-    border: 2px solid #FB6060;
+    border: 1px solid #FB6060;
     transition: all .15s ease;
 }
 
@@ -305,6 +327,41 @@ h1 {
         font-style: normal;
         font-weight: 400;
     }
+
+    h1#top {
+        margin: 16px 0 0px !important;
+    }
+
+    .form-row {
+        gap: 28px !important;
+    }
+
+    .care-form-field {
+        padding: 16px 24px;
+        font-size: 16px;
+    }
+
+    .care-form_submit {
+        padding: 16px 20px;
+    }
+}
+
+@media (max-width:720px) and (min-width:490px) {
+    .content-image {
+        background-size: 70% !important;
+        background-position: 50% 100% !important;
+        background-repeat: no-repeat !important;
+        background-color: #eaeeff !important;
+    }
+}
+
+@media (max-width:900px) and (min-width:720px) {
+    .content-image {
+        background-size: 50% !important;
+        background-position: 50% 100% !important;
+        background-repeat: no-repeat !important;
+        background-color: #eaeeff !important;
+    }
 }
 
 label {
@@ -323,7 +380,7 @@ label {
 
 @media (max-width: 560px) {
     #app>div>.container {
-        padding: 20px 0 !important;
+        padding: 0 !important;
         max-width: calc(100% - 40px) !important;
     }
 }</style>

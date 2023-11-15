@@ -9,20 +9,25 @@
 				<div v-for="(promoItem, index) in group" :key="index"
 					:class="'promo-row index' + index + 1 + ' col-sm-' + promoItem.size">
 					<div class="promo-item">
-						<div class="image-box rounded-6">
-							<img :src="promoItem.promo_image" alt="image">
-						</div>
+						<router-link :to="`/${promoItem.link}`">
+							<div class="image-box rounded-6">
+								<img :src="promoItem.promo_image" alt="image">
+							</div>
+						</router-link>
 						<div class="info-box">
-							<div class="link-wrapper pdt-5 pdb-5">
-								<router-link class="promo-link blue_80 blue_20_bg" :to="`/promo/${promoItem.link}`">Узнать
-									подробнее</router-link>
+							<div class="link-wrapper pdt-0 pdb-0">
+								<router-link class="promo-link blue_80 blue_20_bg"
+									:to="`/${promoItem.link}`">Подробнее</router-link>
 							</div>
 							<div class="dates" v-if="!isNaN(promoItem.remain)">
 								<span class="date text_base2_bold" v-if="promoItem.startIn >= 0">
 									{{ promoItem.startIn }} {{ getDaysText(promoItem.startIn) }} до начала
 								</span>
-								<span class="date text_base2_bold" v-else>
+								<span class="date text_base2_bold" v-else-if="promoItem.remain >= 0">
 									Осталось {{ promoItem.remain }} {{ getDaysText(promoItem.remain) }}
+								</span>
+								<span class="date text_base2_bold" v-else-if="promoItem.remain <= 0">
+									Закончилась
 								</span>
 								<div class="duration mrb-0 pdt-1 black_50 text_base2">
 									до {{ promoItem.date_end }}
@@ -36,7 +41,6 @@
 	</div>
 	<div class="null-message">{{ promosList.message }}</div>
 </template>
-  
 <script>
 import axios from 'axios';
 
@@ -144,10 +148,12 @@ export default {
 			// Группируем акции по полю 'group'
 			const groups = {};
 			for (const promo of this.promosList) {
-				if (!groups[promo.group]) {
-					groups[promo.group] = [];
+				if (promo.status !== 0) { // Фильтрация по статусу
+					if (!groups[promo.group]) {
+						groups[promo.group] = [];
+					}
+					groups[promo.group].push(promo);
 				}
-				groups[promo.group].push(promo);
 			}
 			// Преобразуем объект в массив
 			return Object.values(groups);
@@ -157,8 +163,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url(@/static/styles/main.css);
-
 .promo-item {
 	width: 100%;
 }
@@ -202,6 +206,7 @@ export default {
 	@media (max-width: 900px) {
 		max-width: 100%;
 		flex-basis: 100%;
+		// flex-basis: calc(50% - 10px);
 	}
 }
 
@@ -233,7 +238,7 @@ export default {
 }
 
 .promo-row {
-	border: 1px solid #eaedff;
+	border: 1px solid #ededed;
 	border-radius: 24px;
 }
 
@@ -245,15 +250,32 @@ export default {
 	#homePromo .heading.pdt-0.mrb-0 {
 		padding-top: 40px;
 	}
+
+	.link-wrapper.pdt-5.pdb-5 {
+		padding: 0;
+	}
+
+	.link-wrapper.pdt-5.pdb-5 a {
+		display: block;
+	}
 }
 
-@media (min-width: 780px) and (max-width: 1200px) {
+@media (min-width: 900px) and (max-width: 1200px) {
 
 	.promo-row.col-sm-12,
 	.promo-row.col-sm-6,
 	.promo-row.col-sm-4 {
 		max-width: 50%;
 		flex-basis: calc(50% - 20px);
+	}
+}
+@media (min-width: 780px) and (max-width: 900px) {
+
+	.promo-row.col-sm-12,
+	.promo-row.col-sm-6,
+	.promo-row.col-sm-4 {
+		max-width: 50%;
+		flex-basis: calc(50% - 10px);
 	}
 }
 
@@ -275,5 +297,11 @@ export default {
 	}
 
 
+}
+</style>
+<style>
+#promoList .promo-row .link-wrapper a {
+	display: block !Important;
+	font-weight: 600;
 }
 </style>

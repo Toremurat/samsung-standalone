@@ -4,9 +4,11 @@
 		<h2 class="heading mrb-0">Новинки уже в продаже</h2>
 	</div>
 	<div class="carousel-section">
-		<carousel :items-to-show="4" :wrap-around="true" :breakpoints="breakpoints">
+		<carousel :items-to-show="4" :wrap-around="false" :breakpoints="breakpoints">
 			<slide v-for="(carousel, index) in itemsArr" :key="index">
-				<img :src="'/static/image/carousel/' + carousel.img" alt="carousel.alt">
+				<img :src="'/static/image/carousel/' + carousel.img" alt="carousel.alt" @click="toRoute"
+					:route="carousel.link" v-if="carousel.link">
+				<img :src="'/static/image/carousel/' + carousel.img" v-else alt="carousel.alt">
 			</slide>
 			<template #addons>
 				<Navigation>
@@ -55,7 +57,7 @@ export default {
 					itemsToShow: 3,
 					snapAlign: 'start',
 				},
-				// 1024 and up
+				// 1024 and up 
 				1024: {
 					itemsToShow: 4,
 					snapAlign: 'start',
@@ -66,7 +68,6 @@ export default {
 				// },
 				mousedrag: true,
 				touchDrag: true,
-
 			},
 		}
 	},
@@ -98,6 +99,15 @@ export default {
 					this.errorData.push(error)
 				});
 		},
+		toRoute(e) {
+			let route = e.target.getAttribute('route');
+			if (route == '') {
+				route = '#';
+			} else {
+				route = '/' + route;
+			}
+			this.$router.push(route);
+		}
 
 
 	},
@@ -108,13 +118,17 @@ export default {
 	},
 	created() {
 		this.getcarousel();
-
 	},
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.carousel a {
+	width: 100%;
+	height: 100%;
+}
+
 .carousel img {
 	max-width: 320px;
 	width: calc(100% - 24px);
@@ -175,39 +189,6 @@ export default {
 
 
 
-.glide__arrows {
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	justify-content: space-between;
-	width: 1600px;
-	left: -54px;
-	position: absolute;
-	top: calc(50% - 26px);
-}
-
-.glide__arrow.glide__arrow--left .wrap {
-	content: url(@/static/icons/arrow.svg);
-	transform: rotate(180deg)
-		/*! background: url(@/static/icons/arrow.svg); */
-}
-
-.glide__arrow.glide__arrow--right .wrap {
-	content: url(@/static/icons/arrow.svg);
-}
-
-.glide__arrow.glide__arrow--disabled .wrap {
-	content: url(@/static/icons/disabledArrow.svg)
-}
-
-.glide__arrow:hover:not(.glide__arrow--disabled) .wrap {
-	content: url(@/static/icons/arrow-hover.svg)
-}
-
-.glide img {
-	max-width: 100%;
-}
-
 .carousel__pagination-button {
 	background: #d9d9d9;
 	width: 10px;
@@ -249,12 +230,17 @@ export default {
 
 @media (max-width: 900px) {
 	.carousel-section {
-		margin: 0 0 0px -10px;
+		margin: 0 !important;
+		width: 100% !important;
 	}
 
+	// .carousel img{
+	// 	max-width: 100%!important;
+	// 	width: 100%!important;
+	// }
 
 	.title.mrt-35.mrb-8 {
-		margin-top: -40px;
+		margin-top: -20px;
 	}
 
 	.carousel-wrapper .title.mrt-35.mrb-8 {
@@ -262,10 +248,7 @@ export default {
 		padding: 0 0 0 20px;
 	}
 
-	.carousel-section {
-		width: calc(100% - 20px);
-		margin: 0 20px 0 10px;
-	}
+	.carousel-section {}
 }
 
 @media (max-width: 700px) {
@@ -274,6 +257,9 @@ export default {
 		width: calc(100% - 20px);
 	}
 
+	.carousel__pagination {
+		top: -5px !important;
+	}
 }
 
 .carousel img {
@@ -286,11 +272,16 @@ export default {
 	margin: 0 0 0 -10px;
 }
 
-@media (max-width: 1360px) {
+/* @media (max-width: 1360px) {
 
 	.carousel__prev,
 	.carousel__next {
 		display: none !important;
 	}
+} */
+#app .carousel__pagination-item button {
+	width: 8px !important;
+	height: 8px !important;
+	margin: 0 4.5px !important;
 }
 </style>

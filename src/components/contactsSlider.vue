@@ -62,7 +62,12 @@ export default {
     },
 
     mounted() {
-        new Glide('.glide').mount()
+        const glide = new Glide('.glide', {
+            type: 'slider', // Установите тип на "slider"
+            startAt: 0, // Установите начальный слайд на первый
+            rewind: false,
+        });
+        glide.mount();
     },
 }
 </script>
@@ -159,8 +164,8 @@ export default {
 
 .glide__bullet {
     background: #d9d9d9;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     box-shadow: none;
     border: none;
     padding: 0;

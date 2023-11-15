@@ -736,6 +736,7 @@ h2.heading {
 @media (max-width: 900px) {
   h2.heading {
     font-size: 28px;
+    font-weight: 600;
   }
 }
 

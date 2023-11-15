@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" id="promoList">
         <PromoListBlock></PromoListBlock>
     </div>
     <div class="container footer">
@@ -19,21 +19,36 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.container.footer .care-widget {
-    margin-top: 111px;
-    border-radius: 24px;
-    overflow: hidden;
+// .container.footer .care-widget {
+//     margin-top: 140px;
+//     border-radius: 24px;
+//     overflow: hidden;
 
-    @media (min-width:900px) {
-        margin-top: 100px;
+//     @media (max-width:900px) {
+//         margin-top: 80px!important;
+//         margin-bottom: 60px!important;
+//     }
+
+
+// }
+
+@media (max-width: 900px) {
+    #app > div > .container {
+        padding: 20px 0!important;
+        max-width: calc(100% - 40px)!important;
     }
-
-
+    #app > div > .footer {
+        padding: 0px 0!important;
+        max-width: calc(100% - 40px)!important;
+    }
 }
-
 @media (max-width: 560px) {
     #app > div > .container {
         padding: 20px 0!important;
+        max-width: calc(100% - 40px)!important;
+    }
+    #app > div > .footer {
+        padding: 0px 0!important;
         max-width: calc(100% - 40px)!important;
     }
 }

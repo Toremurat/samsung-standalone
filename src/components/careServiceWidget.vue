@@ -6,7 +6,7 @@
                 обслуживании</p>
         </div>
         <div class="care-link">
-            <router-link to="/care-service" class="">Связаться</router-link>
+            <router-link :to="'/care-service/'" class="">Связаться</router-link>
         </div>
     </div>
 </template>
@@ -29,16 +29,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .care-widget {
-    margin-top: 0;
+    margin-top: 140px;
     margin-bottom: 60px;
 
     @media (max-width: 1366px) {
-        margin-top: 0;
-        margin-bottom: 38px;
+        margin-top: 140px;
+        margin-bottom: 60px;
     }
 
     @media (max-width: 900px) {
-        margin-top: 0;
+        margin-top: 80px;
         margin-bottom: 28px;
     }
 }
@@ -69,7 +69,7 @@ export default {
         content: url("data:image/svg+xml,%3Csvg width='133' height='145' viewBox='0 0 133 145' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M33.0171 38.1597C26.9319 33.7105 27.1308 26.4166 30.2466 22.4156C33.286 18.5126 36.9842 17.7175 39.6089 18.4248C39.835 15.7158 41.8418 12.5121 46.5266 10.9846C51.6622 9.31014 58.2912 11.6916 60.408 18.9273C63.2168 28.2557 57.5468 40.9409 56.1213 41.942C54.6958 42.943 40.9835 43.9987 33.0171 38.1597Z' fill='%2391A0EF' fill-opacity='0.5'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M78.102 54.5422C75.7628 44.3401 82.6042 36.8677 89.512 35.5028C96.2504 34.1713 100.854 36.6999 102.965 39.8289C105.665 37.192 110.684 35.6553 116.989 38.3127C123.901 41.2258 128.691 49.7527 124.332 59.2699C118.796 71.6123 101.312 79.7668 98.9056 79.5209C96.4995 79.2749 81.1513 67.9133 78.102 54.5422Z' fill='%2391A0EF' fill-opacity='0.5'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.0323 104.016C9.30929 92.379 14.334 79.8287 22.3164 74.8729C30.1031 70.0385 37.0412 71.0288 41.1497 73.942C43.2806 69.3783 48.8238 65.0971 57.9467 65.4472C67.9474 65.8311 77.9421 74.2229 76.9798 88.1576C75.8779 106.174 57.8853 124.586 54.7653 125.411C51.6454 126.237 27.1337 119.276 17.0323 104.016Z' fill='%2391A0EF' fill-opacity='0.5'/%3E%3C/svg%3E%0A");
         right: 24px;
         top: 0px;
-        z-index: 1;
+        z-index: 0;
     }
 
     .flex.flow-row.align-center.care-widget {
@@ -98,6 +98,7 @@ export default {
 .care-link {
     z-index: 2;
 }
+
 .care-link a {
     color: #FFF;
     padding: 16px 24px;
@@ -114,12 +115,18 @@ export default {
     }
 }
 
-@media (min-width: 900px) and (max-width: 1150px){
+.care-link a:hover {
+    background: #1D39C9;
+}
+
+@media (min-width: 900px) and (max-width: 1150px) {
+
     .flex.flow-row.align-center.care-widget:after,
-    .flex.flow-row.align-center.care-widget:before{
-        content: none!important
+    .flex.flow-row.align-center.care-widget:before {
+        content: none !important
     }
 }
+
 @media (max-width: 900px) {
     .care-text {
         max-width: 70%;
@@ -145,6 +152,7 @@ export default {
         object-fit: cover;
         top: 16px;
     }
+
     .flex.flow-row.align-center.care-widget:before {
         content: none;
     }

@@ -10,19 +10,21 @@
         <div v-for="(promoItem, index) in promoFiltered" :key="index" class="promo-row col-sm-12 flex-row align-center"
           :style="'order:' + promoItem.sort" :class="'col-sm-' + promoItem.size + ' index-' + (index + 1)">
           <div class="image-box rounded-6" :class="{ 'isOdd': index % 2 === 0, 'isEven': index % 2 !== 0 }">
-            <img :src="promoItem.home_image" alt="image" :style="{ 'max-height': maxWidth }">
+            <router-link :to="`/${promoItem.link}`">
+              <img :src="promoItem.home_image" alt="image" :style="{ 'max-height': maxWidth }">
+            </router-link>
           </div>
           <div class="info-box " :class="{ 'pdl-5': index % 2 === 0, 'pdr-5': index % 2 !== 0 }">
-            <div class="duration blue_80 mrb-5 text_base1_bold" v-if="!isNaN(promoItem.remain)">
-              до {{ promoItem.date_end }}
+            <div class="dates  mrb-5" v-if="!isNaN(promoItem.remain)">
+              <div class="duration blue_80 text_base1_bold" v-if="promoItem.startIn <= 0">
+                до {{ promoItem.date_end }}
+              </div>
+              <div class="remaining" v-else-if="promoItem.startIn >= 0">
+                <span class="date text_base1_bold blue_80" v-if="!isNaN(promoItem.remain)">
+                  {{ promoItem.startIn }} {{ getDaysText(promoItem.startIn) }} до начала
+                </span>
+              </div>
             </div>
-            <!-- <span class="date" v-if="promoItem.startIn >= 0">
-            {{ promoItem.startIn }} {{ getDaysText(promoItem.startIn) }} до начала
-          </span>
-          <span class="date" v-else>
-            Осталось {{ promoItem.remain }} {{ getDaysText(promoItem.remain) }}
-          </span> -->
-
             <div class="description">
               <h3 class="promoItem-title mrb-5">{{ promoItem.name }}</h3>
               <div class="description-wrap" v-for="promoDesc in promoItem.description" :key="promoDesc[0]">
@@ -30,7 +32,7 @@
               </div>
             </div>
             <div class="link-wrapper pdt-5 pdb-5 mrt-8">
-              <router-link class="promo-link blue_80 blue_20_bg" :to="`/promo/${promoItem.link}`">Узнать
+              <router-link class="promo-link blue_80 blue_20_bg text_base2_bold" :to="`/${promoItem.link}`">Узнать
                 подробнее</router-link>
             </div>
           </div>
@@ -60,7 +62,7 @@ export default {
   name: 'promosList',
   props: {
   },
-  
+
   data() {
     return {
       promosList: [],
@@ -85,7 +87,7 @@ export default {
             let toStart = Math.floor((startDate - currentDate) / (1000 * 60 * 60 * 24));
 
             return {
-              status: element.status,
+              status: element.home_status,
               group: element.group,
               name: element.name,
               link: element.link,
@@ -146,7 +148,7 @@ export default {
   beforeMount() {
 
   },
-  mounted(){
+  mounted() {
     window.addEventListener('resize', this.updateMaxHeight);
   },
   beforeUnmount() {
@@ -294,17 +296,49 @@ export default {
   .description .mrt-5.mrb-0.text_base1 {
     margin-top: 12px;
   }
+
+
+
+}
+
+.dates.mrb-5 {
+  width: 100% !important;
+  flex-basis: 100%;
+}
+
+.link-wrapper.pdt-5.pdb-5.mrt-8 {
+  flex-basis: 100%;
 }
 </style>
 <style>
 .promo-link:hover {
   color: #1D39C9;
-  background: #E5E8FA!important;
+  background: #E5E8FA !important;
   transition: all ease .3s;
 }
 
 .promo-link {
   transition: all ease .3s;
+}
+
+.infoPage .verticalDiv {
+  width: 1px!important;
+  height: 22px!important;
+}
+.infoPage .addr-link {
+  display: flex!important;
+  gap: 5px 20px!important;
+  flex-flow: row wrap!important;
+  align-items: center;
+}
+.infoPage .addr-link>p {
+  flex-basis: 100%!important;
+}
+
+@media (max-width: 900px) {
+  #contactsHero .addr-link {
+    gap: 5px 15px !important;
+  }
 }
 </style>
 

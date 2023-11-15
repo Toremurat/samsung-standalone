@@ -1,47 +1,38 @@
 
 <template>
-    <div v-if="postData" class="promo-wrapper container pdt-8">
-        <div class="backlink" v-if="this.postData.button !== 0">
-            <router-link to="/promo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.8787 18.1012L5.77734 11.9998L11.8787 5.89844" stroke="#2B47DA" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <path
-                        d="M18.2226 13.0664C18.7749 13.0664 19.2226 12.6187 19.2226 12.0664C19.2226 11.5141 18.7749 11.0664 18.2226 11.0664V13.0664ZM5.98602 13.0664H18.2226V11.0664H5.98602V13.0664Z"
-                        fill="#2B47DA" />
-                </svg>
-                Смотреть все акции
-            </router-link>
-        </div>
-        <div class="promo-header">
+    <div v-if="prodData" class="prod-wrapper container pdt-8">
+        <div class="prod-header">
             <div class="image-block">
-                <img :src="this.postData.image" alt="this.postData.name" class="desktop-only">
-                <img :src="this.postData.image_m" alt="this.postData.name" class="mobile-only">
+                <img :src="this.prodData.image" :alt="this.prodData.name" class="desktop-only">
+                <img :src="this.prodData.image_m" :alt="this.prodData.name" class="mobile-only">
             </div>
-            <div class="promo-description">
-                <h1 class="heading pdt-10 pdb-5 mrb-0 mrt-0">{{ this.postData.name }}</h1>
-                <div class="date" v-if="this.postData.actual">
-                    <p class="promo-dates text_base1_bold blue_80" v-if="this.postData.actual < 0">
-                        <span class="clock"></span>Акция начнется {{ this.postData.date_start }}
-                    </p>
-                    <p class="promo-dates text_base1_bold blue_80" v-else-if="this.postData.old < 0">
-                        <span class="clock"></span>Действует до {{ this.postData.date_end }}
-                    </p>
-                    <p class="promo-dates ended text_base1_bold blue_80" v-else>
-                        <span class="clock"></span>Акция закончилась
-                    </p>
+            <div class="prod-description pdt-10 pdb-0">
+                <h1 class="heading  mrb-0 mrt-0 pdt-0 pdb-0" style="margin:0!important; padding-top:0!important">{{
+                    this.prodData.name }}</h1>
+                <div class="bank-btns">
+                    <div class="kaspi" v-if="this.prodData.kaspi">
+                        <a :href="this.prodData.kaspi" target="_blank" class="kaspi-link">
+                            <img src="@/static/icons/kaspi.svg" alt="" class="desktop-only">
+                            <img src="@/static/icons/kaspi-m.svg" alt="" class="mobile-only">
+                        </a>
+                    </div>
+                    <div class="halyk" v-if="this.prodData.halyk">
+                        <a :href="this.prodData.halyk" target="_blank" class="halyk-link">
+                            <img src="@/static/icons/halyk.svg" alt="" class="desktop-only">
+                            <img src="@/static/icons/halyk-m.svg" alt="" class="mobile-only">
+                        </a>
+                    </div>
                 </div>
-                <div class="filler" v-else></div>
             </div>
         </div>
-        <div id="promo-content">
-            <div class="description-item" v-for="contentData in this.postData.content" :key="contentData[0]"
+        <div id="prod-content">
+            <div class="description-item" v-for="contentData in this.prodData.content" :key="contentData[0]"
                 v-html="contentData">
             </div>
         </div>
     </div>
 
-    <div class="slider container" v-if="this.slidesArr.length > 0">
+    <div class="slider container" v-if="this.prodData.slide_status !== 0">
         <carousel :items-to-show="4" :wrap-around="false" :breakpoints="breakpoints">
             <slide v-for="(carousel, index) in slidesArr" :key="index">
                 <img :src="carousel.img" alt="carousel.alt">
@@ -70,8 +61,9 @@ import axios from 'axios'
 import careServiceWidget from '@/components/careServiceWidget.vue';
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
+
 export default {
-    name: 'promoPage',
+    name: 'productPage',
     components: {
         careServiceWidget,
         Carousel,
@@ -82,7 +74,7 @@ export default {
     },
     data() {
         return {
-            postData: [],
+            prodData: [],
             errorData: [],
             slidesArr: [],
             carouselStatus: 0,
@@ -92,6 +84,7 @@ export default {
                     itemsToShow: 1,
                     snapAlign: 'start',
                 },
+                // 700px and up
                 600: {
                     itemsToShow: 2,
                     snapAlign: 'start',
@@ -100,6 +93,7 @@ export default {
                     itemsToShow: 3,
                     snapAlign: 'start',
                 },
+                // 1024 and up
                 1024: {
                     itemsToShow: 4,
                     snapAlign: 'start',
@@ -114,64 +108,48 @@ export default {
         };
     },
     methods: {
-        async getPromo() {
-            const linkParam = this.$route.params.link;
-            function whatDay(num) {
-                if (num == 1 || (num > 20 && num % 10 == 1))
-                    return "день";
-                if (num < 5 || (num > 20 && num % 10 < 5 && num % 10 > 0))
-                    return "дня";
-                return "дней";
+        addClass() {
+            const contactsEl = document.querySelector('#app');
+            if (contactsEl) {
+                contactsEl.classList.add('atProd');
             }
-            axios.get('/static/json/main.json')
+        },
+        async getprod() {
+            // Получите значение параметра "link" из текущего маршрута
+            const linkParam = this.$route.params.link;
+            // Функция для определения склонения слова "день"
+            axios.get('/static/json/product.json')
                 .then(response => {
+                    // Фильтруйте данные по совпадению link
                     // const cleanLinkParam = response.data.find(item =>item.link);
-                    const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
+                    const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("product/") + 8) === linkParam);
                     if (matchingData) {
-                        let date_end = new Date(matchingData.date_end);
-                        let date_start = new Date(matchingData.date_start);
-                        let today = Date.now();
-                        let result = date_end - today;
-                        if (result < 0)
-                            result = 0;
-                        let num = Math.ceil(result / (1000 * 3600 * 24));
-                        if (num == 0)
-                            num = 1;
-                        let remainDay = num + ' ' + whatDay(num);
-                        if (date_start > today || today > date_end)
-                            remainDay = '';
-                        let check = Date.now() - new Date(matchingData.date_start);
-                        let old_check = Date.now() - new Date(matchingData.date_end);
-                        this.postData = {
+                        this.prodData = {
                             "status": matchingData.status,
-                            "button": matchingData.button,
                             "link": matchingData.link,
                             "content": matchingData.content,
                             "desc": stripHtmlTags(matchingData.description),
                             "name": matchingData.name,
-                            "image": matchingData.promo_image,
-                            "image_m": matchingData.home_image,
-                            "date_start": date_start.toShortFormat(),
-                            "date_end": date_end.toShortFormat(),
-                            "remain": remainDay,
-                            "text": matchingData.text,
-                            "actual": check,
-                            "old": old_check,
+                            "kaspi": matchingData.kaspi,
+                            "halyk": matchingData.halyk,
+                            "image": matchingData.desktop_image,
+                            "image_m": matchingData.mobile_image,
                             "slide_status": matchingData.slider_status
                         };
                         this.updateMetaTags();
                     }
+
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
-        
         async getcarousel() {
             try {
                 const linkParam = this.$route.params.link;
-                const response = await axios.get('/static/json/main.json');
-                const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
+                const response = await axios.get('/static/json/product.json');
+                const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("product/") + 8) === linkParam);
+
                 if (matchingData) {
                     const carouselImages = matchingData.carousel || [];
                     this.slidesArr = carouselImages.map(img => ({ img }));
@@ -179,7 +157,7 @@ export default {
                     this.slidesArr = [];
                 }
             } catch (error) {
-                this.promoData = {
+                this.prodData = {
                     message: 'Карусели на данный момент нет'
                 };
                 console.error(error);
@@ -188,58 +166,50 @@ export default {
         },
 
         updateMetaTags() {
-            document.title = this.postData.name + ' в фирменном магазине Samsung';
+            // Обновите мета-тег title
+            document.title = this.prodData.name + ' в фирменном магазине Samsung';
+
+            // Обновите мета-тег description
             let descriptionTag = document.querySelector("meta[name='description']");
             if (!descriptionTag) {
                 descriptionTag = document.createElement("meta");
                 descriptionTag.setAttribute("name", "description");
                 document.head.appendChild(descriptionTag);
             }
-            descriptionTag.setAttribute("content", this.postData.desc);
+            descriptionTag.setAttribute("content", this.prodData.desc);
+
+            // Обновите мета-тег og:description
             let ogDescriptionTag = document.querySelector("meta[property='og:description']");
             if (!ogDescriptionTag) {
                 ogDescriptionTag = document.createElement("meta");
                 ogDescriptionTag.setAttribute("property", "og:description");
                 document.head.appendChild(ogDescriptionTag);
             }
-            ogDescriptionTag.setAttribute("content", this.postData.ogDescription);
+            ogDescriptionTag.setAttribute("content", this.prodData.ogDescription);
         },
-    },
 
+
+    },
     created() {
-        this.getPromo();
+        this.getprod();
         this.getcarousel();
-        if (this.slidesArr.length === 0) {
-            console.warn('Массив carousel пуст после получения данных');
-        }
     },
-
+    mounted() {
+        this.addClass()
+    },
     computed: {
-        remainInt() {
-            // Преобразуйте this.postData.remain в целое число с помощью parseInt
-            return parseInt(this.postData.remain);
-        },
-
         isMobile() {
             return window.innerWidth < 768;
         },
     },
 
 }
-Date.prototype.toShortFormat = function () {
-    const monthNames = ['января', 'февраля', 'марта', 'апреля',
-        'мая', 'июня', 'июля', 'августа',
-        'сентября', 'октября', 'ноября', 'декабря'];
-
-    const day = this.getDate();
-    const monthIndex = this.getMonth();
-    const monthName = monthNames[monthIndex];
-
-    return `${day} ${monthName}`;
-}
 function stripHtmlTags(html) {
+    // Создайте временный div-элемент
     var tmp = document.createElement("div");
     tmp.innerHTML = html;
+
+    // Получите текстовое содержимое без HTML-тегов
     return tmp.textContent || tmp.innerText;
 }
 
@@ -248,6 +218,42 @@ function stripHtmlTags(html) {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import url(@/static/styles/main.css);
+
+@media (max-width: 900px) {
+    #app>div>.prod-wrapper.container {
+        padding: 0 20px !important;
+        width: 100% !important;
+        margin: 0;
+        max-width: 100% !important;
+    }
+}
+
+.prod-description {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bank-btns {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.kaspi a {
+    background: #f14635;
+}
+
+.bank-btns a {
+    padding: 16px 24px;
+    border-radius: 12px;
+}
+
+.halyk a {
+    background: #008669;
+}
 
 .carousel img {
     max-width: 320px;
@@ -384,51 +390,6 @@ function stripHtmlTags(html) {
     border-radius: 24px;
 }
 
-.backlink {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    color: #2B47DA;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: ease all .15s;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.backlink a {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    color: #2B47DA;
-}
-
-.backlink:hover {
-    filter: brightness(.7);
-    transition: ease all .15s;
-}
-
-.promo-dates {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.clock {
-    background: url(@/static/icons/clock.svg);
-    height: 32px;
-    width: 32px;
-    display: inline-block;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    @media (max-width: 900px) {
-        height: 28px;
-        width: 28px;
-    }
-}
-
 // .container.mgt-35 .care-widget {
 //     margin-top: 111px;
 //     border-radius: 24px;
@@ -440,7 +401,7 @@ function stripHtmlTags(html) {
 
 // }
 
-#promo-content {
+#prod-content {
     display: flex;
     flex-flow: column;
 
@@ -506,7 +467,7 @@ h4.header {
     border-radius: 24px;
 }
 
-#app>div>.promo-wrapper.container.mgb-35.pdt-10,
+#app>div>.prod-wrapper.container.mgb-35.pdt-10,
 #app>div>.container.mgt-35 {
     @media (min-width: 1600px) {
         max-width: 1600px;
@@ -551,10 +512,12 @@ h4.header {
     display: none;
 }
 
+.bank-btns a {
+    display: flex !important;
+
+}
+
 @media (max-width: 900px) {
-    .promo-dates.ended.text_base1_bold.blue_80.mrb-20 {
-        margin-bottom: 60px;
-    }
 
     .image-block .mobile-only {
         display: block;
@@ -579,12 +542,12 @@ h4.header {
 
 }
 
-#app #promo-content a {
+#app #prod-content a {
     color: rgb(13, 110, 253);
 }
 </style>
 <style lang="scss">
-#promo-content {
+#prod-content {
     & .gallery {
         gap: 40px;
         display: flex;
@@ -812,45 +775,6 @@ h4.header {
         }
     }
 
-    & ol.numbered-list {
-        list-style: none;
-        counter-reset: custom-counter;
-        padding-left: 36px;
-
-        & li {
-            position: relative;
-
-            &:before {
-                counter-increment: custom-counter;
-                content: counter(custom-counter) ".";
-                color: #2B47DA;
-                margin-left: -20px;
-                position: absolute;
-                font-weight: 600;
-            }
-        }
-
-        & li+li {
-            margin-top: 24px !important;
-
-            @media (max-width: 900px) {
-                margin-top: 20px !important;
-            }
-        }
-
-        &.titled h4 {
-            font-size: 18px;
-            margin: 0;
-            line-height: 140%;
-            margin: 0 0 8px;
-        }
-
-        @media (max-width: 900px) {
-            margin: 4px 0 0;
-            font-size: 16px;
-        }
-    }
-
     ul:not(.carousel__track):not(.carousel__pagination) {
         list-style: none;
         padding-left: 36px;
@@ -930,10 +854,10 @@ h4.header {
         }
     }
 
-    margin: 60px 0 0px !important;
+    margin: 60px 0 0px;
 
     @media (max-width: 900px) {
-        margin: 40px 0 0 !important;
+        margin: 60px 0 0px !important;
     }
 
     & table {
@@ -1022,27 +946,176 @@ strong {
     font-weight: bolder;
 }
 
-.promo-header .date {
+.prod-header .date {
     margin: 16px 0 0 !important;
 }
 
 @media (max-width: 900px) {
-    #app #promo-content .titled h4 {
+    #app #prod-content .titled h4 {
         font-size: 18px !important;
         line-height: 140% !important;
         margin: 0 0 8px !important;
     }
 
+
+    .bank-btns {
+        position: fixed;
+        bottom: 0;
+        z-index: 3;
+        gap: 12px;
+        width: 100vw;
+        padding: 20px !important;
+        left: 0;
+        background: #fff;
+        border-top: 1px solid #ededed;
+    }
+
+    .bank-btns a {
+        padding: 16px 20px;
+        /*! width: calc(50% - 6px); */
+        display: inline-flex;
+        justify-self: center;
+        width: 100%;
+    }
+
+    .bank-btns div {
+        width: calc(50% - 6px);
+    }
+
+    .bank-btns div img {
+        position: relative;
+        margin: 0 auto;
+    }
+
+}
+
+.glide img {
+    height: 100%;
+}
+
+.glide__arrow {
+    appearance: none;
+    background: none;
+    border: none;
+
+}
+
+.glide__arrows {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% + 128px);
+    left: -64px;
+    position: absolute;
+    top: calc(50% - 26px);
+}
+
+.glide__arrow.glide__arrow--left .wrap {
+    content: url(@/static/icons/arrow.svg);
+    transform: rotate(180deg)
+        /*! background: url(@/static/icons/arrow.svg); */
+}
+
+.glide__arrow.glide__arrow--right .wrap {
+    content: url(@/static/icons/arrow.svg);
+}
+
+.glide__arrow.glide__arrow--disabled .wrap {
+    content: url(@/static/icons/disabledArrow.svg)
+}
+
+.glide__arrow:hover:not(.glide__arrow--disabled) .wrap {
+    content: url(@/static/icons/arrow-hover.svg)
+}
+
+.glide img {
+    max-width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.glide__track {
+    border-radius: 24px;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.glide-item {
+    text-align: center;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+    padding: 20px 0;
+}
+
+.glide__bullets {
+    top: 100%;
+    position: absolute;
+    z-index: 2;
+    bottom: 2em;
+    left: 50%;
+    display: inline-flex;
+    list-style: none;
+    transform: translateX(-50%);
+}
+
+.glide__bullet {
+    background: #d9d9d9;
+    width: 10px;
+    height: 10px;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    border-radius: 50%;
+    transition: all 100ms ease-in-out;
+    line-height: 0;
+    margin: 0 0.25em;
+}
+
+.glide__bullet.glide__bullet--active {
+    background: #2B47DA;
 }
 
 @media (max-width: 900px) {
+    .glide__arrows {
+        display: none !important;
+    }
 
-    #app>div>.promo-wrapper.container,
-    #app>div>.container.mrt-35 {
-        padding-inline: 20px !important;
-        max-width: 100% !important;
-        margin-inline: 0 !important;
-        margin-top: 80px !important;
+    .atProd footer.mobile-only {
+        margin-bottom: 120px;
+    }
+
+    .atProd .contacts {
+        bottom: 103px !important;
+        right: 20px;
+        z-index: 3 !important;
+    }
+
+    .glide-item {
+        padding-top: 0 !important;
+    }
+
+    .glide img.mobile-only {
+        border-radius: 0 !important;
+    }
+
+    .glide__track {
+        border-radius: 0;
+    }
+
+    #app.atProd>div>.container.mrt-35 {
+        padding: 0 20px !important;
+    }
+}
+</style>
+<style lang="scss">
+@media (max-width:900px) {
+    #app>div>.container.mgt-35 {
+        padding-left: 20px !important;
+        max-width: unset;
+        width: 100%;
+        padding-right: 20px !important;
     }
 }
 </style>
