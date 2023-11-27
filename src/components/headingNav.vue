@@ -54,9 +54,14 @@
 									Контакты
 								</router-link>
 							</li>
-							<li class="list-item text_base1_bold black_100">
+							<li class="list-item text_base1_bold black_100 pdb-6">
 								<router-link @click="closeDropdowns" to="/care-service" class="text_base1_bold black_100">
 									Служба заботы
+								</router-link>
+							</li>
+							<li class="list-item text_base1_bold black_100">
+								<router-link @click="closeDropdowns" to="/about-store" class="text_base1_bold black_100">
+									О магазине
 								</router-link>
 							</li>
 						</ul>
@@ -68,6 +73,7 @@
 									Информация покупателям
 								</p>
 							</li>
+
 							<li class="list-item text_base2 black_100 pdb-6">
 								<router-link @click="closeDropdowns" to="/payment" class=" black_100">
 									Оплата
@@ -125,6 +131,9 @@
 					</li>
 					<li class="menu-items text_base1_bold black_100">
 						<router-link @click="closeDropdowns" to="/care-service/">Служба заботы</router-link>
+					</li>
+					<li class="menu-items text_base1_bold black_100">
+						<router-link @click="closeDropdowns" to="/about-store/">О магазине</router-link>
 					</li>
 					<li class="menu-items text_base1_bold black_100 dropper" :class="{ toggle: isActive }"
 						@click="toggleCollapse();">

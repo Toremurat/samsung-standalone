@@ -18,13 +18,23 @@
                             Контакты
                         </router-link>
                     </li>
+                    <li class="text_base1_bold black_100 mrb-6">
+                        <router-link to="/care-service" :class="'black_100'">
+                            Служба заботы
+                        </router-link>
+                    </li>
+                    <li class="text_base1_bold black_100 mrb-6">
+                        <router-link to="/about-store" :class="'black_100'">
+                            О магазине
+                        </router-link>
+                    </li>
                     <li class="text_base1_bold black_100" id="footer-collapse" @click="toggleCollapse"
                         :class="{ active: isCollapsed, blue_80: isCollapsed }">
                         Информация покупателям
                     </li>
                     <div class="footer-collasible" :class="{ collapsed: isCollapsed }">
                         <ul class="footer-submenu pdl-0">
-                            <li class="text_base1 black_100 mrt-0">
+                            <li class="text_base1 black_100 mrt-6">
                                 <router-link to="/payment">
                                     Оплата
                                 </router-link>
@@ -37,11 +47,6 @@
                             <li class="text_base1 black_100 mrt-6">
                                 <router-link to="/return-and-exchange">
                                     Возврат и обмен
-                                </router-link>
-                            </li>
-                            <li class="text_base1 black_100 mrt-6">
-                                <router-link to="/payment">
-                                    Оплата
                                 </router-link>
                             </li>
                             <li class="text_base1 black_100 mrt-6">

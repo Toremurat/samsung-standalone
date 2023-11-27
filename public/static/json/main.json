@@ -1,173 +1,260 @@
 [
     {
-        "home_status": 1,
-"status": 1,
-        "link": "promo/smart-bonus",
-        "home_image": "/static/image/promo/smart-bonus/banner.webp",
-        "promo_image": "/static/image/promo/smart-bonus/promo-banner.webp",
-        "date_start": "",
-        "date_end": "",
-        "sort": 4,
-        "group": 3,
-        "home_sort": 12,
-        "size": 6,
-        "name": "Smart Bonus",
-        "description": [
-            "<p>Получайте 5% бонусов за каждую покупку (1% при покупке в кредит) и оплачивайте бонусами до 99% от стоимости товаров.</p>",
-            "<p>1 бонус = 1 тенге</p>"
-        ],
-        "content": [
-            "<div class=\"heading\"><h2>Мы делаем Ваши покупки ещё выгодней!</h2></div>",
-            "<div class=\"warning blue\">Копите бонусы и оплачивайте до 99% от стоимости товаров</div>",
-            "<div class=\"half-spacer\"></div>",
-            "<h4>Как работает бонусная карта</h4>",
-            "<ol class=\"numbered-list\"><li>Получайте 5% бонусов за каждую покупку (1% при покупке в кредит);</li><li>Оплачивайте до 99% от стоимости товаров.</li></ol>",
-            "<div class=\"half-spacer\"></div>",
-            "<p>1 бонус = 1 тенге</p>",
-            "<div class=\"mini-spacer\"></div>",
-            "<p>Бонусы действительны 180 дней со дня совершения покупки</p>",
-            "<div class=\"half-spacer\"></div>",
-            "<a class=\"btn\" href=\"https://evrika.com/bonuses\">Проверить баланс карты</a>",
-            "<div class=\"spacer\"></div>",
-            "<h3>Как использовать бонусную карту</h3>",
-            "<ol class=\"numbered-list titled\"><li><h4>Совершайте покупки</h4><p>Получайте бонусы за покупки. Чем выше стоимость товара, тем больше бонусов. Ищите товары с повышенными бонусами.</p></li><li><h4>Копите Smart бонусы</h4><p>Предъявите бонусную карту на кассе или укажите ее номер при оформлении заказа и мы начислим вам бонусы которые активируются через 16 дней и будут активны в течении 180 дней.</p></li><li><h4>Используйте бонусы</h4><p>Используйте бонусы при оплате. Накопленные бонусы – это Ваша скидка до 99% при совершении следующей покупки.</p></li></ol>",
-            "<div class=\"spacer\"></div>",
-            "<h3>Участники клуба</h3>",
-            "<ul class=\"unstyled-list titled\"><li><h4>Фирменный магазин Samsung</h4><p>Единственный в Казахстане фирменный магазин Samsung</p></li><li><h4>Фирменный магазин Sony Centre</h4><p>Магазины электроники Sony в городах Алматы, Астана и Шымкент</p><a target=\"_blank\" href=\"sonycenter.kz\">sonycenter.kz</a></li><li><h4>Фирменный магазин Bosch</h4><p>Магазины бытовой и кухонной техники Bosch в городах Алматы, Астана и Шымкент</p><a target=\"_blank\" href=\"boschcenter.kz\">boschcenter.kz</a></li><li><h4>Фирменный магазин Benetton</h4><p>Магазины женской, мужской и детской одежды в городе Алматы</p><a target=\"_blank\" href=\"ucb.kz\">ucb.kz</a></li><li><h4>Гипермаркет электроники Evrika</h4><p>Мультибрендовые магазины во всех городах Казахстана</p><a target=\"_blank\" href=\"evrika.com\">evrika.com</a></li></ul>",
-            ""
-        ]
-    },
-    {
-        "home_status": 1,
-"status": 1,
-        "link": "promo/trade-in",
-        "home_image": "/static/image/promo/trade-in/banner.webp",
-        "promo_image": "/static/image/promo/trade-in/promo-banner.webp",
-        "date_start": "2023-10-25",
-        "date_end": "2023-12-25",
-        "sort": 14,
-        "group": 3,
-        "home_sort": 14,
-        "size": 6,
-        "name": "Trade-in",
-        "description": [
-            "<p>Смените свое устройство на новое и получите скидку!</p>"
-        ],
-        "content": [
-            "<div class=\"heading\"><h2>Какую технику мы принимаем в Trade-in:</h2></div>",
-            "<strong>Смартфоны</strong>",
-            "<p>Samsung, Apple, Huawei, Honor, Oppo, Vivo, Xiaomi</p>",
-            "<div class=\"mini-spacer\"></div>",
-            "<strong>Планшеты</strong>",
-            "<p>Samsung, Apple</p>",
-            "<div class=\"mini-spacer\"></div>",
-            "<strong>Смарт-часы</strong>",
-            "<p>Samsung, Apple</p>",
-            "<div class=\"spacer\"></div>",
-            "<h3>Почему Trade-in это выгодно:</h3>",
-            "<h4>Удобно</h4>",
-            "<ol class=\"numbered-list\"><li>Вам не придется тратить времени на фото, размещение объявлений, подготовку описаний, сотни звонков и встреч, чтобы любители поглазеть потрогали ваш телефон;</li><li> Продав старый вы останетесь без связи. А купить новый и потом продавать старый может не каждый;</li></ol>",
-            "<div class=\"half-spacer\"></div>",
-            "<h4>Безопасно</h4>",
-            "<ol class=\"numbered-list\"><li>Вам не придется рисковать личными данными. Даже после сброса мошенники могут попытаться восстановить вашу личную информацию. В нашем Trade-in все устройства проходят полную очистку на специальном программном обеспечении отвечающим всем стандартам безопасности GDPR, Common Criteria EAL3+, ADISA, CESG, NATO OTAN, а также National Cyber Security Centre (NCSC);</li><li><ul class=\"unstyled-list\"><li>Покупка за поддельные денежные купюры;</li><li>У вас готовы купить без торга, но нужно отправить курьерской службой. Показывают, скрин, что деньги отправлены, но банковский перевод занимает до 3 дней. Вы отправляете свое устройство, платите за доставку, а деньги так и не поступают;</li><li>Грабеж во время личной встречи;</li><li>Подмена во время осмотра:<ul class=\"unstyled-list\"><li>Вы принесли устройство в коробке, показали, устройство не понравилось, вы попрощались, а коробка уже без устройства;</li><li>Вы принесли устройство без коробки, показали, его включили посмотрели, выключили и отдали вам, после встречи оказалось, что вам отдали не ваше устройство а внешне такое же только не рабочее;</li></ul></li></ul></li></ol>",
-            "<div class=\"spacer\"></div>",
-            "<div class=\"warning blue\" style=\"margin-bottom: 16px\">Воспользуйтесь услугой Trade-in в фирменном магазине Samsung. Это выгодно и безопасно.</div>"
-        ]
-    },
-    {
-        "home_status": 0,
-"status": 0,
-
-        "link": "promo/kaspi-zhuma-0-0-24",
-        "home_image": "/static/image/promo/kaspi-juma/banner.webp",
-        "promo_image": "/static/image/promo/kaspi-juma/promo-banner.webp",
-        "date_start": "2023-11-03",
-        "date_end": "2023-11-05",
-        "sort": 1,
+        "status": 0,
+        "button": 1,
+        "link": "promo/black-friday",
+        "home_image": "/static/image/promo/black-friday/banner.webp",
+        "promo_image": "/static/image/promo/black-friday/promo-banner.webp",
         "group": 1,
-        "home_sort": 1,
+        "sort": 0,
+        "home_sort": 0,
+        "home_status": 0,
         "size": 12,
-        "name": "Kaspi Жума 0 0 24",
+        "name": "Black Friday",
         "description": [
-            "<p>Kaspi Жұма всенародный праздник <br>выгодных покупок в рассрочку от Kaspi.kz</p>"
+            "<p>Скидки до -50% Black Friday в фирменном магазине Samsung</p>"
         ],
         "content": [
-            "<div class=\"heading\"><h2>Что такое Kaspi<br> Жұма</h2></div>",
-            "<div class=\"warning blue\" style=\"margin-bottom: 16px\">Kaspi Жұма – это всенародный праздник выгодных покупок в рассрочку от Kaspi.kz.</div>",
-            "<div class=\"warning red\">Рассрочка действует только через Kaspi QR</div>",
-            "<div class=\"half-spacer\"></div>",
-            "<h4>Как это работает</h4>",
-            "<ol class=\"numbered-list\"><li>Первоначальный взнос 0₸;</li><li>Переплата 0%;</li><li>Срок рассрочки 3, 6, 12 и 24 месяца.</li></ol>",
-            "<div class=\"spacer\"></div>",
-            "<h3>Условия акции</h3>",
-            "<ol class=\"numbered-list\"><li>Срок действия акции: c 3 по 5 ноября 2023 года;</li><li>Количество товаров в одном заказе не ограничено.</li></ol>",
-            "<div class=\"half-spacer\"></div>",
-            "<h3>Минимальная сумма заказа </h3>",
-            "<p>На 3 месяца – от 10 000 тенге;</p><div class=\"small-spacer\"></div><p>На 6 месяцев – от 20 000 тенге;</p><div class=\"small-spacer\"></div><p>На 12 месяцев – от 45 000 тенге;</p><div class=\"small-spacer\"></div><p>На 24 месяцев – от 80 000 тенге.</p>"
-        ]
+            
+        ],
+        "htmlFile": "/static/htmls/BlackFriday.html"
     },
     {
-        "home_status": 1,
-        "status": 1,
-        "link": "promo/halyk-bonus-5",
-        "home_image": "/static/image/promo/5-bonus-halykQR/banner.webp",
-        "promo_image": "/static/image/promo/5-bonus-halykQR/promo-banner.webp",
-        "date_start": "2023-09-01",
-        "date_end": "2023-12-31",
-        "sort": 2,
-        "group": 2,
-        "home_sort": 2,
-        "carousel": [
-            "/static/image/promo-slider/imgs-1.webp",
-            "/static/image/promo-slider/imgs-2.webp",
-            "/static/image/promo-slider/imgs-4.webp",
-            "/static/image/promo-slider/imgs-4.webp",
-            "/static/image/promo-slider/imgs-2.webp",
-            "/static/image/promo-slider/imgs-3.webp"
+        "status": 0,
+        "link": "promo/bespoke",
+        "home_image": "/static/image/promo/bespoke/banner.webp",
+        "promo_image": "/static/image/promo/bespoke/promo-banner.webp",
+        "group": 0,
+        "sort": 0,
+        "home_sort": 0,
+        "home_status": 0,
+        "size": 0,
+        "button": 0,
+        "name": "Коллекция Bespoke",
+        "description": [
+            "<p>Мой стиль жизни - моя индивидуальность</p>"
+        ],
+        "content": [
+            "<h4>Совершенные решения для создания стильного пространства</h4>",
+            "<p>Мы ушли от стандартной бытовой техники и создали особенную линейку Bespoke для тех, кто ценит уникальность во всём. Она учитывает ваши пожелания по цветовой гамме и формату техники, как если бы вам понадобился индивидуальный пошив костюма.</p>",
+            "<div class=\"half-spacer\"></div>",
+            "<iframe style=\"width: 100%; aspect-ratio: 16/9\" src=\"https://www.youtube.com/embed/dpK66HpbEa0?si=PePL9Zmo10lncrZa\" title=\"YouTube video player\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\"></iframe>",
+            "<div class=\"spacer\"></div>",
+            "<h4>Совершенные решения для создания стильного пространства</h4>",
+            "<div class=\"half-spacer\"></div>",
+            "<div class=\"gallery\"><div class=\"col-sm-3\"><img src=\"/static/image/promo/bespoke/image/01.webp\"></div><div class=\"col-sm-3\"><img src=\"/static/image/promo/bespoke/image/02.webp\"></div><div class=\"col-sm-3\"><img src=\"/static/image/promo/bespoke/image/03.webp\"></div><div class=\"col-sm-3\"><img src=\"/static/image/promo/bespoke/image/04.webp\"></div><div class=\"col-sm-3\"><img src=\"/static/image/promo/bespoke/image/05.webp\"></div><div class=\"col-sm-3\"><img src=\"/static/image/promo/bespoke/image/06.webp\"></div><div class=\"col-sm-3\"><img src=\"/static/image/promo/bespoke/image/07.webp\"></div><div class=\"col-sm-3\"><img src=\"/static/image/promo/bespoke/image/08.webp\"></div></div>",
+            "<div class=\"spacer\"></div>",
+            "<h4>Вдохновляйтесь</h4>",
+            "<p>Оцените то, как коллекция Bespoke смотрится в разных интерьерах</p>",
+            "<div class=\"half-spacer\"></div>"
         ],
         "slider_status": 1,
-        "button": 0,
+        "carousel": [
+            "/static/image/promo/bespoke/slider/01.webp",
+            "/static/image/promo/bespoke/slider/02.webp",
+            "/static/image/promo/bespoke/slider/03.webp",
+            "/static/image/promo/bespoke/slider/04.webp",
+            "/static/image/promo/bespoke/slider/05.webp",
+            "/static/image/promo/bespoke/slider/06.webp"
+        ]
+    },
+    {
+        "status": 0,
+        "link": "promo/kaspi",
+        "home_image": "/static/image/promo/kaspi/banner.webp",
+        "promo_image": "/static/image/promo/kaspi/promo-banner.webp",
+        "date_start": "2023-11-20",
+        "date_end": "2023-12-03",
+        "group": 2,
+        "sort": 1,
+        "home_sort": 1,
+        "home_status": 0,
+        "size": 6,
+        "name": "Рассрочка Kaspi 0-0-12",
+        "description": [
+            "<p>Выгодная рассрочка от Kaspi. Совершайте покупки сейчас, а платите потом</p>"
+        ],
+        "content": [
+            "<h3>Совершайте покупки сейчас, а платите потом.</h3>",
+            "<h4>Как это работает</h4>",
+            "<ol class=\"numbered-list\"><li>Первоначальный взнос 0₸;</li><li>Переплата 0%;</li><li>Срок рассрочки 3, 6 и 12 месяцев.</li></ol>",
+            "<div class=\"spacer\"></div>",
+            "<h3>Условия акции</h3>",
+            "<ol class=\"numbered-list\"><li>Срок действия акции: c 20 ноября по 3 декабря 2023 года;</li><li>Количество товаров в одном заказе не ограничено.</li></ol>",
+            "<div class=\"half-spacer\"></div>",
+            "<h4>Минимальная сумма заказа</h4>",
+            "<ul class=\"unstyled-list\"><li>На 3 месяца – от 10 000 тенге;</li><li>На 6 месяцев – от 20 000 тенге;</li><li>На 12 месяцев – от 45 000 тенге.</li></ul>"
+        ]
+    },
+    {
+        "status": 1,
+        "link": "promo/halyk-bonus",
+        "home_image": "/static/image/promo/halyk-bonus/banner.webp",
+        "promo_image": "/static/image/promo/halyk-bonus/promo-banner.webp",
+        "date_start": "2023-09-01",
+        "date_end": "2023-12-31",
+        "group": 1,
+        "sort": 2,
+        "home_sort": 2,
+        "home_status": 1,
         "size": 6,
         "name": "5% Halyk бонусов",
         "description": [
-            "<p>Оплачивай с помощью Halyk QR<br> и получай до 5% бонусов!</p>"
+            "<p>Оплачивай с помощью Halyk QR и получай до 5% бонусов.</p>"
         ],
         "content": [
             "<div class=\"heading\"><h2>Как получить бонусы?</h2></div>",
-            "<p><b>Достаточно воспользоваться Halyk QR при оплате через POS-терминалы Halyk.</b></p>",
-            "<div id=\"getSlider2\" data-slider-id=\"getSlider2\"></div>",
+            "<p>Достаточно воспользоваться Halyk QR при оплате через POS-терминалы Halyk.</p>",
             "<div class=\"half-spacer\"></div>",
             "<div class=\"warning blue\" style=\"margin-bottom: 16px\">Бонусы начисляются только за оплату через Halyk QR</div>",
             "<div class=\"warning red\">Бонусы не начисляются при оплате картой или Apple Pay</div>",
             "<div class=\"half-spacer\"></div>",
-            "<div id=\"getSlider1\" data-slider-id=\"getSlider1\"></div>",
             "<h4>Как оплачивать покупки через Halyk QR:</h4>",
             "<ol class=\"numbered-list\"><li>Откройте приложение Halyk;</li><li>Выберите функцию QR;</li><li>Отсканируйте QR-код в POS-терминале Halyk;</li><li>Подтвердите платеж.</li></ol>",
             "<div class=\"spacer\"></div>",
-            "<div id=\"getSlider3\" data-slider-id=\"getSlider3\"></div>",
             "<h3>Условия акции</h3>",
-            "<ol class=\"numbered-list\"><li>Срок действия акции: с 1 сентября по 31 декабря 2023 года;</li><li>Бонусы начисляются только за оплату через Halyk QR;</li><li>Отсканируйте QR-код в POS-терминале Halyk</li><li>Бонусы за оплату бонусами не начисляются;</li><li>При частичном или полном возврате суммы за покупку ранее начисленные бонусы списываются в полном размере.</li></ol>"
+            "<ol class=\"numbered-list\"><li>Срок действия акции: с 1 сентября по 31 декабря 2023 года;</li><li>Бонусы начисляются только за оплату через Halyk QR;</li><li>Бонусы за оплату бонусами не начисляются;</li><li>При частичном или полном возврате суммы за покупку ранее начисленные бонусы списываются в полном размере.</li></ol>"
         ]
     },
     {
-        "home_status": 1,
-"status": 1,
-        "link": "promo/halyk-rassrochka-0-0-24",
-        "home_image": "/static/image/promo/halyk-rassrochka/banner.webp",
-        "promo_image": "/static/image/promo/halyk-rassrochka/promo-banner.webp",
-        "date_start": "2023-11-09",
-        "date_end": "2023-10-31",
-        "sort": 3,
+        "status": 1,
+        "link": "promo/halyk",
+        "home_image": "/static/image/promo/halyk/banner.webp",
+        "promo_image": "/static/image/promo/halyk/promo-banner.webp",
+        "date_start": "2023-11-01",
+        "date_end": "2023-11-30",
         "group": 2,
-        "home_sort": 2,
+        "sort": 3,
+        "home_sort": 3,
+        "home_status": 1,
         "size": 6,
-        "name": "Рассрочка в Halyk Bank",
+        "name": "Рассрочка Halyk 0-0-12",
         "description": [
-            "<p>Рассрочка в Halyk Bank покупай в приложении Halyk bank в рассрочку!</p>"
+            "<p>Выгодная рассрочка от Halyk. Совершайте покупки сейчас, а платите потом.</p>"
         ],
         "content": [
+            "<h3>Совершайте покупки сейчас, а платите потом</h3>",
+            "<h4>Как это работает</h4>",
+            "<ol class=\"numbered-list\"><li>Первоначальный взнос 0₸;</li><li>Переплата 0%;</li><li>Срок рассрочки 3, 6 и 12 месяцев.</li></ol>",
+            "<div class=\"spacer\"></div>",
             "<h3>Условия акции</h3>",
-            "<ol class=\"numbered-list\"><li>Срок действия акции: с 1 по 31 октября 2023 года;</li><li>Минимальная сумма заказа - от 4 000 тенге;</li><li>Максимальная сумма займа: в рассрочку - 2 000 000 тенге, в кредит - 6 000 000 тенге;</li><li>Максимальный срок: в рассрочку - до 24 месяца, в кредит - до 60 месяцев;</li><li>Количество товаров в одном заказе не ограничено.</li></ol>"
+            "<ol class=\"numbered-list\"><li>Срок действия акции: с 1 по 30 ноября 2023 года;</li><li>Минимальная сумма заказа - от 4 000 тенге;</li><li>Максимальная сумма займа: в рассрочку - 2 000 000 тенге, в кредит - 6 000 000 тенге;</li><li>Максимальный срок: в рассрочку - до 24 месяца, в кредит - до 60 месяцев;</li><li>Количество товаров в одном заказе не ограничено.</li></ol>"
         ]
+    },
+    {
+        "status": 1,
+        "link": "promo/install",
+        "home_image": "/static/image/promo/install/banner.webp",
+        "promo_image": "/static/image/promo/install/promo-banner.webp",
+        "date_start": "2023-07-01",
+        "date_end": "2023-12-31",
+        "group": 1,
+        "sort": 4,
+        "home_sort": 4,
+        "home_status": 1,
+        "size": 6,
+        "name": "Бесплатная установка",
+        "description": [
+            "<p>При покупке крупной бытовой техники вы получаете сертификат на бесплатную установку.</p>"
+        ],
+        "content": [
+            "<h3>При покупке крупной бытовой техники вы получаете сертификат на бесплатную установку</h3>",
+            "<div class=\"warning green\">Сертификат действует 90 дней со дня выдачи</div>",
+            "<div class=\"half-spacer\"></div>",
+            "<h4>Список техники</h4>",
+            "<ul class=\"unstyled-list\"><li>Варочные панели;</li><li>Духовые шкафы;</li><li>Встраиваемые микроволновые печи;</li><li>Встраиваемые холодильники;</li><li>Посудомоечные машины;</li><li>Встраиваемые посудомоечные машины;</li><li>Стиральные машины;</li><li>Сушильные машины.</li></ul>",
+            "<div class=\"half-spacer\"></div>",
+            "<h4>Что входит в бесплатную установку</h4>",
+            "<ol class=\"numbered-list\"><li>Подключение техники с использованием деталей из комплекта, на готовое мест;</li><li>Подключение к водоснабжению с использованием деталей из комплекта (стиральные и посудомоечные машины);</li><li>Подключение к канализации (стиральные и посудомоечные машины);</li><li>Подключение к газовому опуску (газовые варочные панели);</li><li>Подключение техники к точке электропитания (подводится заранее);</li><li>Проверка работы техники.</li></ol>",
+            "<div class=\"spacer\"></div>",
+            "<h3>Условия акции</h3>",
+            "<ol class=\"numbered-list\"><li>Срок действия акции: до 31 декабря 2023 года;</li><li>Сертификат дает право на бесплатную установку одной единицы бытовой техники Samsung;</li><li>Установка бытовой техники производится на заранее подготовленное место;</li><li>Комплектующие материалы, не вошедшие в заводскую комплектацию приобретаются покупателем дополнительно;</li><li>Бесплатная установка сушильных машин осуществляется только при покупке соединительного элемента (полки).</li></ol>"
+        ]
+    },
+    {
+        "status": 1,
+        "link": "promo/storage",
+        "home_image": "/static/image/promo/storage/banner.webp",
+        "promo_image": "/static/image/promo/storage/promo-banner.webp",
+        "date_start": "2023-10-01",
+        "date_end": "2023-12-31",
+        "sort": 4,
+        "group": 1,
+        "home_sort": 4,
+        "home_status": 1,
+        "size": 6,
+        "name": "Бесплатное хранение",
+        "description": [
+            "<p>Покупайте сейчас по выгодным ценам и оставляйся на бесплатное хранение у нас на складе.</p>"
+        ],
+        "content": [
+            "<h3>Временное хранение техники</h3>",
+            "<div class=\"warning blue\"><p><strong>Эксклюзивное предложение фирменного магазина</strong><br>Предоставляем возможность приобрести товар с выгодой сейчас, а забрать через месяц (или позже). Ваш товар будет в безопасности храниться у нас на складе бесплатно в течении месяца. </p></div>",
+            "<div class=\"half-spacer\"></div>",
+            "<h4>Как это работает</h4>",
+            "<ol class=\"numbered-list\"><li>Вы хотите выгодно приобрести технику, но у вас нет места для её размещения из-за ремонта;</li><li>Мы будем хранить вашу технику на нашем складе столько, сколько вам потребуется;</li><li>Вы заберете вашу технику, когда у вас появится возможность.</li></ol>",
+            "<div class=\"spacer\"></div>",
+            "<h3>Условия бесплатного хранения</h3>",
+            "<ul class=\"unstyled-list\"><li>Предложение действует при покупке любой продукции, в том числе крупной бытовой техники;</li><li>Первый месяц хранения <span style=\"color: #00AE26\"><strong>бесплатно</strong></span>;</li><li>Дальнейшее хранение - 10 000 тенге в месяц за одну единицу техники.</li></ul>"
+        ]
+    },
+    {
+        "status": 1,
+        "home_status": 0,
+        "link": "delivery",
+        "promo_image": "/static/image/promo/delivery/promo-banner.webp",
+        "sort": 1,
+        "group": 3,
+        "size": 6
+    },
+    {
+        "status": 1,
+        "home_status": 0,
+        "link": "guarantee",
+        "promo_image": "/static/image/promo/guarantee/promo-banner.webp",
+        "sort": 2,
+        "group": 3,
+        "size": 6
+    },
+    {
+        "status": 1,
+        "home_status": 0,
+        "link": "smart-bonus",
+        "promo_image": "/static/image/promo/smart-bonus/promo-banner.webp",
+        "sort": 3,
+        "group": 3,
+        "size": 6
+    },
+    {
+        "status": 1,
+        "home_status": 0,
+        "link": "trade-in",
+        "promo_image": "/static/image/promo/trade-in/promo-banner.webp",
+        "sort": 4,
+        "group": 3,
+        "size": 6
+    },
+    {
+        "status": 0,
+        "link": "promo/test",
+        "home_image": "/static/image/promo/kaspi/banner.webp",
+        "promo_image": "/static/image/promo/kaspi/promo-banner.webp",
+        "date_start": "2022-11-20",
+        "date_end": "2024-12-03",
+        "group": 1,
+        "sort": 0,
+        "home_sort": 0,
+        "home_status": 1,
+        "size": 6,
+        "name": "Рассрочка TEST",
+        "description": [
+            "<p>TEST Выгодная рассрочка от Kaspi. Совершайте покупки сейчас, а платите потом</p>"
+        ],
+        "content": [
+            "<h3>Совершайте TEST сейчас, а TEST потом.</h3>",
+            "<h4>Как это TEST</h4>",
+            "<ul class=\"unstyled-list\"><li>На 3 месяца – от 10 000 тенге;</li><li>На 6 месяцев – от 20 000 тенге;</li><li>На 12 месяцев – от 45 000 тенге.</li></ul>"
+        ],
+        "htmlFile": "/static/htmls/data.html"
     }
 ]

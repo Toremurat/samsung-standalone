@@ -1,7 +1,7 @@
 
 <template>
     <div v-if="postData" class="promo-wrapper container pdt-8">
-        <div class="backlink" v-if="this.postData.button !== 0">
+        <div class="backlink" v-if="postData.button !== 0">
             <router-link to="/promo">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.8787 18.1012L5.77734 11.9998L11.8787 5.89844" stroke="#2B47DA" stroke-width="2"
@@ -15,17 +15,17 @@
         </div>
         <div class="promo-header">
             <div class="image-block">
-                <img :src="this.postData.image" alt="this.postData.name" class="desktop-only">
-                <img :src="this.postData.image_m" alt="this.postData.name" class="mobile-only">
+                <img :src="postData.image" alt="postData.name" class="desktop-only">
+                <img :src="postData.image_m" alt="postData.name" class="mobile-only">
             </div>
             <div class="promo-description">
-                <h1 class="heading pdt-10 pdb-5 mrb-0 mrt-0">{{ this.postData.name }}</h1>
-                <div class="date" v-if="this.postData.actual">
-                    <p class="promo-dates text_base1_bold blue_80" v-if="this.postData.actual < 0">
-                        <span class="clock"></span>Акция начнется {{ this.postData.date_start }}
+                <h1 class="heading pdt-10 pdb-5 mrb-0 mrt-0">{{ postData.name }}</h1>
+                <div class="date" v-if="postData.actual">
+                    <p class="promo-dates text_base1_bold blue_80" v-if="postData.actual < 0">
+                        <span class="clock"></span>Акция начнется {{ postData.date_start }}
                     </p>
-                    <p class="promo-dates text_base1_bold blue_80" v-else-if="this.postData.old < 0">
-                        <span class="clock"></span>Действует до {{ this.postData.date_end }}
+                    <p class="promo-dates text_base1_bold blue_80" v-else-if="postData.old < 0">
+                        <span class="clock"></span>Действует до {{ postData.date_end }}
                     </p>
                     <p class="promo-dates ended text_base1_bold blue_80" v-else>
                         <span class="clock"></span>Акция закончилась
@@ -35,13 +35,14 @@
             </div>
         </div>
         <div id="promo-content">
-            <div class="description-item" v-for="contentData in this.postData.content" :key="contentData[0]"
+            <div class="description-item" v-for="contentData in postData.content" :key="contentData[0]"
                 v-html="contentData">
             </div>
+            <div id="htmlData" v-show="htmlData != ''" v-html="htmlData"></div>
         </div>
     </div>
 
-    <div class="slider container" v-if="this.slidesArr.length > 0">
+    <div class="slider container" v-if="slidesArr.length > 0">
         <carousel :items-to-show="4" :wrap-around="false" :breakpoints="breakpoints">
             <slide v-for="(carousel, index) in slidesArr" :key="index">
                 <img :src="carousel.img" alt="carousel.alt">
@@ -85,6 +86,7 @@ export default {
             postData: [],
             errorData: [],
             slidesArr: [],
+            htmlData: '',
             carouselStatus: 0,
             wrapAround: true,
             breakpoints: {
@@ -115,7 +117,6 @@ export default {
     },
     methods: {
         async getPromo() {
-            const linkParam = this.$route.params.link;
             function whatDay(num) {
                 if (num == 1 || (num > 20 && num % 10 == 1))
                     return "день";
@@ -123,11 +124,13 @@ export default {
                     return "дня";
                 return "дней";
             }
+            const linkParam = this.$route.params.link;
             axios.get('/static/json/main.json')
                 .then(response => {
-                    // const cleanLinkParam = response.data.find(item =>item.link);
                     const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
                     if (matchingData) {
+                        this.fetchHtmlContent(matchingData);
+
                         let date_end = new Date(matchingData.date_end);
                         let date_start = new Date(matchingData.date_start);
                         let today = Date.now();
@@ -166,7 +169,7 @@ export default {
                     console.log(error);
                 });
         },
-        
+
         async getcarousel() {
             try {
                 const linkParam = this.$route.params.link;
@@ -184,6 +187,17 @@ export default {
                 };
                 console.error(error);
                 this.errorData.push(error);
+            }
+        },
+
+        async fetchHtmlContent(matchingData) {
+            try {
+                if (matchingData && matchingData.htmlFile) {
+                    const responseHtml = await axios.get(matchingData.htmlFile);
+                    this.htmlData = responseHtml.data;
+                }
+            } catch (error) {
+                console.error('Ошибка обработки HTML файла:', error);
             }
         },
 
@@ -209,9 +223,7 @@ export default {
     created() {
         this.getPromo();
         this.getcarousel();
-        if (this.slidesArr.length === 0) {
-            console.warn('Массив carousel пуст после получения данных');
-        }
+        this.fetchHtmlContent(this.matchingData);
     },
 
     computed: {
@@ -1015,6 +1027,192 @@ h4.header {
     .date {
         margin-top: 16px;
     }
+
+    & .prod-wrap {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 40px;
+
+        @media (max-width:900px) {
+            & .product:nth-of-type(2n-1):not(:first-of-type):before {
+                position: absolute;
+                width: calc(100vw - 40px);
+                background: #EDEDED;
+                display: block;
+                content: '';
+                height: 1px;
+                left: 0;
+                margin: 20px 0;
+                top: -40px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            gap: 40px 16px;
+        }
+
+        & h3 {
+            margin: 0 0 -28px;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 130%;
+            flex-basis: 100%;
+
+            @media (max-width: 900px) {
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 130%;
+                margin: 0 0 -20px;
+            }
+        }
+
+        & .product {
+            flex-basis: calc(25% - 30px);
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: min-content min-content auto auto;
+            grid-gap: 0;
+
+            @media (max-width:900px) {
+                flex-basis: calc(50% - 8px);
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                max-width: calc(50% - 8px);
+            }
+
+            & .photo img {
+                max-width: 100%;
+                border-radius: 20px;
+                overflow: hidden;
+            }
+
+            & .photo {
+                position: relative;
+            }
+        }
+
+
+
+        & span {
+            position: absolute;
+            left: 16px;
+            bottom: 16px;
+            border-radius: 20px;
+            background: #2B47DA;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 150%;
+            color: #fff;
+            padding: 3px 8px;
+
+            @media (max-width: 900px) {
+                bottom: 16px;
+            }
+        }
+
+        & .price {
+            display: flex;
+            flex-flow: row wrap;
+            gap: 0 20px;
+            align-items: center;
+            padding: 0 16px;
+            margin: 12px 0 8px;
+
+            @media (max-width: 900px) {
+                flex-flow: column;
+                gap: 0;
+                padding: 0;
+                align-items: flex-start;
+            }
+
+            & p {
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 140%;
+                white-space: nowrap;
+            }
+
+            & strike {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 100%;
+                color: #282828;
+                white-space: nowrap;
+                margin: auto 0;
+            }
+
+            & small {
+                font-size: 80%;
+            }
+        }
+
+        & .product>p {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 140%;
+            color: #7B7B7B;
+            padding: 0 16px;
+            margin-bottom: 16px !important;
+
+            @media (max-width: 900px) {
+                padding: 0;
+                font-size: 14px;
+            }
+
+        }
+
+        & a {
+            display: inline-flex;
+            border-radius: 12px;
+            background: #F14635;
+            padding: 12px 21px;
+            position: relative;
+            left: 16px;
+            align-self: end;
+            justify-self: start;
+
+            @media (max-width:900px) {
+                width: 100%;
+                justify-items: center;
+                align-items: center;
+                left: 0;
+                display: inline-flex;
+                margin-top: auto;
+
+                & img {
+                    align-self: center;
+                    margin: 0 auto;
+                }
+            }
+
+            @media (max-width:370px) {
+                padding: 8px 14px;
+
+                & img {
+                    max-width: 100%;
+                    width: 100%;
+                }
+            }
+
+        }
+    }
+
+}
+
+#promo-content .prod-wrap .product>p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }
 
 b,
@@ -1043,6 +1241,118 @@ strong {
         max-width: 100% !important;
         margin-inline: 0 !important;
         margin-top: 80px !important;
+    }
+}
+
+#promo-content .BFcards {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 40px;
+}
+
+#promo-content .BFcards img {
+    max-height: 228px;
+    margin-bottom: 20px;
+}
+
+#promo-content .BFcards div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background: #2A2A2A;
+    border-radius: 24px;
+    flex-basis: calc(33% - 30px);
+    padding: 40px 40px;
+    gap: 0;
+    text-align: center;
+}
+
+#promo-content .BFcards div .headingBF {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+#promo-content .BFcards p {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+    color: #C9C9C9;
+    text-align: center;
+}
+
+#promo-content .prod-wrap .price strike {
+    text-decoration: none;
+    position: relative;
+}
+
+#promo-content .prod-wrap .price strike:after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 1px;
+    background: #282828;
+    left: 0;
+    top: 50%;
+}
+
+@media (max-width: 900px) {
+    #promo-content .BFcards div {
+        flex-basis: 100%;
+    }
+
+    #promo-content .BFcards {
+        flex-flow: column;
+    }
+
+    #promo-content .BFcards p {
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+    }
+
+    #promo-content .BFcards img {
+        min-height: 60px;
+        max-height: unset;
+        width: 72px;
+        margin: 0;
+    }
+
+    #promo-content .BFcards div .headingBF {
+        flex-basis: calc(100% - 84px);
+        margin: 4px 0 6px;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 130%;
+    }
+
+    #promo-content .BFcards p {
+        flex-basis: calc(100% - 84px);
+        text-align: left;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+    }
+
+    #promo-content .BFcards div {
+        flex-flow: row wrap;
+        gap: 0 12px;
+        justify-content: flex-end;
+        align-items: start;
+        text-align: left;
+        padding: 32px;
+    }
+
+    #promo-content .BFcards p br {
+        display: none;
+    }
+
+    #promo-content .BFcards {
+        gap: 20px;
     }
 }
 </style>

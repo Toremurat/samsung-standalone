@@ -61,7 +61,7 @@
               Бонусной картой
             </p>
             <p class="text_base2 black_75 mrb-0 mrt-0">
-              Зарабатывайте бонусные балы и оплачивайте ими до 99%. <router-link to="/promo/smart-bonus"
+              Зарабатывайте бонусные балы и оплачивайте ими до 99%. <router-link to="/smart-bonus"
                 :class="`inline-link`">Подробнее</router-link>
             </p>
           </div>
@@ -140,7 +140,12 @@ export default {
 }
 </style>
 <style scoped lang="scss">
-
+.inline-link{
+  color:#2B47DA ;
+  &:hover{
+    color: #1D39C9;
+  }
+}
 .icon-box {
   flex-basis: calc(50% - 32px);
   border-radius: 24px;

@@ -76,7 +76,7 @@ export default {
 <style scoped lang="scss">
 @import '@glidejs/glide/dist/css/glide.core.min.css';
 
-#contactsSlider {
+#contactsSlider:not(.glide) {
     margin-top: 140px;
     margin-bottom: 140px;
 

@@ -14,6 +14,8 @@ import garantiePage from "@/views/garantie.vue";
 import tradeIn from "@/views/trade-in.vue";
 import smartBonus from "@/views/smartBonus.vue";
 import ProductInfo from "@/views/productInfo.vue";
+import ourStore from "@/views/ourStore.vue"
+import NotFound from "@/views/NotFound.vue";
 
 const routes = [
   {
@@ -216,7 +218,7 @@ const routes = [
     path: "/smart-bonus",
     name: "smartBonus",
     meta: {
-      title: "Гарантия низкой цены в фирменном магазине Samsung",
+      title: "Smart Bonus низкой цены в фирменном магазине Samsung",
       ogUrl: "https://smbrand.kz",
       ogImage: "/static/image/ogLogo.webp",
       ogDescription:
@@ -244,8 +246,24 @@ const routes = [
     },
     component: ofertaPage,
   },
+  {
+    path: "/about-store",
+    name: "О магазине",
+    meta: {
+      title: "Добро пожаловать в первый фирменный магазин Samsung",
+      ogUrl: "https://smbrand.kz",
+      ogImage: "/static/image/ogLogo.webp",
+      ogDescription:
+        "Добро пожаловать в первый магазин Samsung в Казахстане. Вся линейка техники Samsung в одном магазине, где вас ждет превосходное обслуживание и экспертное сопровождение.",
+      description:
+        "Добро пожаловать в первый магазин Samsung в Казахстане. Вся линейка техники Samsung в одном магазине, где вас ждет превосходное обслуживание и экспертное сопровождение.",
+      keywords:
+        "Samsung, Samsung Dostyk Plaza, Фирменный магазин Samsung, Samsung Казахстан, Galaxy, Bespoke, Fold, Flip",
+    },
+    component: ourStore,
+  },
   // eslint-disable-next-line
-  // { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ];
 
 const router = createRouter({

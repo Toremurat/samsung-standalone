@@ -60,15 +60,31 @@ export default {
 		return {
 		}
 	},
+	methods: {
+		initGlide() {
+			this.glide = new Glide('.glide', {
+				type: 'slider',
+				startAt: 0,
+				rewind: false,
+			});
 
+			this.glide.mount();
+		},
+		updateGlide() {
+			if (this.glide) {
+				this.glide.update();
+			}
+		},
+	},
 	mounted() {
-		const glide = new Glide('.glide', {
-			type: 'slider', // Установите тип на "slider"
-			startAt: 0, // Установите начальный слайд на первый
-			rewind: false,
-		});
-
-		glide.mount();
+		this.initGlide();
+		window.addEventListener('resize', this.updateGlide);
+	},
+	updated() {
+		this.updateGlide();
+	},
+	beforeUnmount() {
+		window.removeEventListener('resize', this.updateGlide);
 	},
 }
 </script>
@@ -77,7 +93,7 @@ export default {
 <style scoped lang="scss">
 @import '@glidejs/glide/dist/css/glide.core.min.css';
 
-#contactsSlider {
+#contactsSlider:not(.glide) {
 	margin-top: 140px;
 	margin-bottom: 140px;
 

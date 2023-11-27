@@ -35,6 +35,10 @@ var _smartBonus = _interopRequireDefault(require("@/views/smartBonus.vue"));
 
 var _productInfo = _interopRequireDefault(require("@/views/productInfo.vue"));
 
+var _ourStore = _interopRequireDefault(require("@/views/ourStore.vue"));
+
+var _NotFound = _interopRequireDefault(require("@/views/NotFound.vue"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // eslint-disable-next-line
@@ -190,7 +194,7 @@ var routes = [{
   path: "/smart-bonus",
   name: "smartBonus",
   meta: {
-    title: "Гарантия низкой цены в фирменном магазине Samsung",
+    title: "Smart Bonus низкой цены в фирменном магазине Samsung",
     ogUrl: "https://smbrand.kz",
     ogImage: "/static/image/ogLogo.webp",
     ogDescription: "Добро пожаловать в первый магазин Samsung в Казахстане. Вся линейка техники Samsung в одном магазине, где вас ждет превосходное обслуживание и экспертное сопровождение.",
@@ -210,9 +214,24 @@ var routes = [{
     keywords: "Samsung, Samsung Dostyk Plaza, Фирменный магазин Samsung, Samsung Казахстан, Galaxy, Bespoke, Fold, Flip"
   },
   component: _oferta["default"]
-} // eslint-disable-next-line
-// { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
-];
+}, {
+  path: "/about-store",
+  name: "О магазине",
+  meta: {
+    title: "Добро пожаловать в первый фирменный магазин Samsung",
+    ogUrl: "https://smbrand.kz",
+    ogImage: "/static/image/ogLogo.webp",
+    ogDescription: "Добро пожаловать в первый магазин Samsung в Казахстане. Вся линейка техники Samsung в одном магазине, где вас ждет превосходное обслуживание и экспертное сопровождение.",
+    description: "Добро пожаловать в первый магазин Samsung в Казахстане. Вся линейка техники Samsung в одном магазине, где вас ждет превосходное обслуживание и экспертное сопровождение.",
+    keywords: "Samsung, Samsung Dostyk Plaza, Фирменный магазин Samsung, Samsung Казахстан, Galaxy, Bespoke, Fold, Flip"
+  },
+  component: _ourStore["default"]
+}, // eslint-disable-next-line
+{
+  path: '/:pathMatch(.*)*',
+  name: 'NotFound',
+  component: _NotFound["default"]
+}];
 var router = (0, _vueRouter.createRouter)({
   history: (0, _vueRouter.createWebHistory)(),
   routes: routes,
