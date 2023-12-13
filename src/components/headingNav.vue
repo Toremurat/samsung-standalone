@@ -73,7 +73,6 @@
 									Информация покупателям
 								</p>
 							</li>
-
 							<li class="list-item text_base2 black_100 pdb-6">
 								<router-link @click="closeDropdowns" to="/payment" class=" black_100">
 									Оплата
@@ -94,7 +93,6 @@
 									Сервис
 								</router-link>
 							</li>
-
 							<li class="list-item text_base2 black_100 pdb-6">
                                 <router-link to="/guarantee" @click="closeDropdowns" class=" black_100">
                                     Гарантия низкой цены
@@ -110,7 +108,6 @@
                                     Smart Bonus
                                 </router-link>
                             </li>
-
 							<li class="list-item text_base2 black_100">
 								<router-link @click="closeDropdowns" to="/public-policy" class=" black_100">
 									Публичная оферта
@@ -161,7 +158,6 @@
 									Сервис
 								</router-link>
 							</li>
-
 							<li class="menu-items text_base_2 black_100">
                                 <router-link @click="closeDropdowns" to="/guarantee">
                                     Гарантия низкой цены
@@ -177,7 +173,6 @@
                                     Smart Bonus
                                 </router-link>
                             </li>
-
 							<li class="menu-items text_base_2 black_100">
 								<router-link @click="closeDropdowns" to="/public-policy">
 									Публичная оферта
@@ -228,40 +223,32 @@ export default {
 	props: {},
 	data() {
 		return {
-			isMobileDropdownActive: false, // Флаг для состояния мобильного dropdown-списка
-			isDesktopDropdownActive: false, // Флаг для состояния десктопного dropdown-списка
+			isMobileDropdownActive: false,
+			isDesktopDropdownActive: false,
 			isActive: false,
 		};
 	},
 	methods: {
 		globalClick(event) {
-			// Получаем элемент .header-sticky
 			const headerSticky = this.$el.querySelector('.header-sticky');
-			// Получаем элемент .vertical-dropdown-desktop
 			const dropdown = this.$el.querySelector('.vertical-dropdown-desktop');
-
-			// Проверяем, что клик не произошел внутри .header-sticky или .vertical-dropdown-desktop
 			if (!headerSticky.contains(event.target) && !dropdown.contains(event.target)) {
 				this.isDesktopDropdownActive = false;
 			}
 		},
 		toggleState() {
-			// Получаем ширину экрана
 			const windowWidth = window.innerWidth;
-
-			// Если ширина экрана меньше 600px, открываем мобильный dropdown
 			if (windowWidth < 600) {
 				this.isMobileDropdownActive = !this.isMobileDropdownActive;
-				this.isDesktopDropdownActive = false; // Закрываем десктопный dropdown
+				this.isDesktopDropdownActive = false;
 			} else {
-				// В противном случае (десктоп), открываем десктопный dropdown
 				this.isDesktopDropdownActive = !this.isDesktopDropdownActive;
-				this.isMobileDropdownActive = false; // Закрываем мобильный dropdown
+				this.isMobileDropdownActive = false;
 			}
 		},
 		closeDropdowns() {
-			this.isMobileDropdownActive = false; // Закрываем мобильное меню
-			this.isDesktopDropdownActive = false; // Закрываем десктопное меню
+			this.isMobileDropdownActive = false;
+			this.isDesktopDropdownActive = false;
 		},
 		toggleCollapse() {
 			const collapse = document.querySelector(".mobile-collapse");
@@ -282,12 +269,10 @@ export default {
 		},
 	},
 	created() {
-		// Добавляем обработчик события клика к объекту window
 		window.addEventListener('click', this.globalClick);
 	},
 
 	unmounted() {
-		// Удаляем обработчик события клика при уничтожении компонента
 		window.removeEventListener('click', this.globalClick);
 	},
 };
@@ -298,7 +283,6 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-// Стили для мобильного dropdown
 .tel-box {
 	z-index: 2;
 	position: relative;
@@ -319,7 +303,7 @@ export default {
 	transition: max-height 0.3s ease;
 
 	&.active {
-		max-height: 500px; // Установите желаемую максимальную высоту
+		max-height: 500px;
 		opacity: 1;
 	}
 }
@@ -476,9 +460,7 @@ export default {
 .mobile-collapse {
 	opacity: 0;
 	background-color: #fff;
-	// border: 1px solid #ededed;
 	padding: 0;
-	// display: none;
 }
 
 .mobile-collapse.active {
@@ -497,7 +479,7 @@ export default {
 	height: 2px;
 	width: 100%;
 	background: #2B47DA;
-	transition: transform 0.3s; // Добавляем транзицию для плавного изменения transform
+	transition: transform 0.3s;
 }
 
 .burger.morph .icon .top-line {
@@ -506,7 +488,7 @@ export default {
 
 .burger.morph .icon .middle-line {
 	transform: translateY(-6px);
-	opacity: 1; // По умолчанию, средний линии должен быть видимым
+	opacity: 1;
 }
 
 .burger.morph .icon .bottom-line {

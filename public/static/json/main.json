@@ -1,5 +1,49 @@
 [
     {
+        "status": 1,
+        "button": 1,
+        "link": "promo/independance-day",
+        "home_image": "/static/image/promo/independance-day/banner-mobile.webp",
+        "promo_image": "/static/image/promo/independance-day/banner.webp",
+        "group": 1,
+        "sort": 0,
+        "date_start": "2023-12-12",
+        "date_end": "2023-12-18",
+        "home_sort": 0,
+        "home_status": 1,
+        "size": 12,
+        "name": "Дарим скидки на день независимости",
+        "description": [
+            "<p>Дарим скидки на день независимости в фирменном магазине Samsung</p>"
+        ],
+        "content": [
+            
+        ],
+        "htmlFile": "/static/htmls/independance.html"
+    },
+    {
+        "status": 0,
+        "button": 1,
+        "link": "promo/kaspi-0-0-24",
+        "home_image": "/static/image/promo/kaspi-0-0-24/banner-mobile.webp",
+        "promo_image": "/static/image/promo/kaspi-0-0-24/banner.webp",
+        "group": 1,
+        "sort": 0,
+        "date_start": "2023-12-12",
+        "date_end": "2023-12-18",
+        "home_sort": 0,
+        "home_status": 0,
+        "size": 12,
+        "name": "Большая рассрочка на 24 месяца",
+        "description": [
+            "<p>Большая рассрочка на 24 месяца в фирменном магазине Samsung</p>"
+        ],
+        "content": [
+            
+        ],
+        "htmlFile": "/static/htmls/kaspi-0-0-24.html"
+    },
+    {
         "status": 0,
         "button": 1,
         "link": "promo/black-friday",

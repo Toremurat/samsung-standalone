@@ -1,5 +1,5 @@
 
-<template>
+<template >
     <div v-if="postData" class="promo-wrapper container pdt-8">
         <div class="backlink" v-if="postData.button !== 0">
             <router-link to="/promo">
@@ -164,6 +164,11 @@ export default {
                         };
                         this.updateMetaTags();
                     }
+                    else{
+                        this.postData = {
+                            
+                        };
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -228,7 +233,7 @@ export default {
 
     computed: {
         remainInt() {
-            // Преобразуйте this.postData.remain в целое число с помощью parseInt
+            // this.postData.remain в parseInt
             return parseInt(this.postData.remain);
         },
 

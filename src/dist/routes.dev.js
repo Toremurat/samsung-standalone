@@ -39,6 +39,8 @@ var _ourStore = _interopRequireDefault(require("@/views/ourStore.vue"));
 
 var _NotFound = _interopRequireDefault(require("@/views/NotFound.vue"));
 
+var _axios = _interopRequireDefault(require("axios"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // eslint-disable-next-line
@@ -91,6 +93,49 @@ var routes = [{
       description: "Добро пожаловать в первый магазин Samsung в Казахстане. Вся линейка техники Samsung в одном магазине, где вас ждет превосходное обслуживание и экспертное сопровождение.",
       keywords: "Samsung, Samsung Dostyk Plaza, Фирменный магазин Samsung, Samsung Казахстан, Galaxy, Bespoke, Fold, Flip"
     };
+  },
+  beforeEnter: function beforeEnter(to, from, next) {
+    var linkParam, response, matchingData;
+    return regeneratorRuntime.async(function beforeEnter$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            linkParam = to.params.link;
+            _context.prev = 1;
+            _context.next = 4;
+            return regeneratorRuntime.awrap(_axios["default"].get("/static/json/main.json"));
+
+          case 4:
+            response = _context.sent;
+            matchingData = response.data.find(function (item) {
+              return item.link.substring(item.link.indexOf("promo/") + 6) === linkParam;
+            });
+
+            if (matchingData) {
+              next();
+            } else {
+              next({
+                name: "NotFound"
+              });
+            }
+
+            _context.next = 13;
+            break;
+
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](1);
+            console.error(_context.t0);
+            next({
+              name: "NotFound"
+            });
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, null, [[1, 9]]);
   }
 }, {
   path: "/product/:link",
@@ -228,8 +273,8 @@ var routes = [{
   component: _ourStore["default"]
 }, // eslint-disable-next-line
 {
-  path: '/:pathMatch(.*)*',
-  name: 'NotFound',
+  path: "/:pathMatch(.*)*",
+  name: "NotFound",
   component: _NotFound["default"]
 }];
 var router = (0, _vueRouter.createRouter)({

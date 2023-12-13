@@ -40,13 +40,13 @@
   </div>
   <div class="store-links container">
     <a target="_blank" href="https://kaspi.kz/shop/search/?q=%3AallMerchants%3A30032741">
-      <img src="@/static/image/kaspi-desktop.webp" alt="" class="img-responsive desktop-only">
-      <img src="@/static/image/kaspi-mobile-banner.webp" alt="" class="img-responsive mobile-only">
+      
+      <img src="@/static/image/kaspi-mobile-banner.webp" alt="" class="img-responsive ">
     </a>
-    <!-- <a style="cursor: default;">
-      <img src="@/static/image/halyk-banner.webp" alt="" class="img-responsive desktop-only">
-      <img src="@/static/image/halyk-mobile-banner.webp" alt="" class="img-responsive mobile-only">
-    </a> -->
+    <a href="https://halykmarket.kz/brand/samsung?f=merchantName%3A%D0%A4%D0%B8%D1%80%D0%BC%D0%B0%D0%BB%D1%8B%D2%9B%20%D0%B4%D2%AF%D0%BA%D0%B5%D0%BD" target="_blank">
+      
+      <img src="@/static/image/halyk-mobile-banner.webp" alt="" class="img-responsive ">
+    </a>
   </div>
   <div class="container footer mrt-35">
     <careServiceWidget />
@@ -327,7 +327,9 @@ export default {
 
   }
 }
-
+.store-links.container > a {
+  flex-basis: calc(50% - 20px);
+}
 @media (max-width: 900px) {
   .closeMe.smol {
     display: none;

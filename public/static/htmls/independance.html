@@ -1,0 +1,184 @@
+<div class="promo-cards">
+	<div class="row gap-60">
+		<div class="flex-50">
+			<div class="img order-0">
+				<img
+					src="/static/image/promo/independance-day/card-1.webp"
+					alt="" />
+			</div>
+		</div>
+		<div class="flex-50">
+			<div class="text">
+				<h3 class="header">
+					Поздравляем вас с Днём независимости!
+				</h3>
+				<p class="text_base1">
+					Желаем чтобы каждый момент был наполнен комфортом и уверенностью во всём.
+				</p>
+			</div>
+		</div>
+		<div class="flex-50 xl-order-end">
+			<div class="img order-0">
+				<img
+					src="/static/image/promo/independance-day/card-2.webp"
+					alt="" />
+			</div>
+		</div>
+		<div class="flex-50">
+			<div class="text">
+				<h3 class="header">Праздничные скидки специально ко Дню независимости</h3>
+				<p class="text_base1">
+					Празднуйте с выгодой! Успейте купить технику Samsung со скидками до -30%.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="spacer"></div>
+<h3>Товары со скидками</h3>
+<div class="warning blue" style="margin-bottom: 40px">
+	Покупайте товары со скидками в фирменном магазине Samsung на Kaspi.kz
+</div>
+<p>Скоро будут...</p>
+<!-- <div class="prod-wrap hidden">
+	<h3>Смартфоны</h3>
+	<div class="product">
+		<div class="photo">
+			<img
+				src="/static/image/promo/product-images/SM-A055FZKDSKZ.webp" /><span
+				>-5%</span
+			>
+		</div>
+		<div class="price">
+			<p>61 990<small>₸</small></p>
+			<strike>64 990<small>₸</small></strike>
+		</div>
+		<p>Samsung Galaxy A05 4гб/64гб черный</p>
+		<a
+			href="https://kaspi.kz/shop/p/samsung-galaxy-a05-4-gb-64-gb-chernyi-114692909/"
+			target="_blank"
+			><img src="/static/icons/kaspi-m.svg"
+		/></a>
+	</div>
+	<div class="product">
+		<div class="photo">
+			<img
+				src="/static/image/promo/product-images/SM-A057FZKVSKZ.webp" /><span
+				>-5%</span
+			>
+		</div>
+		<div class="price">
+			<p>75 990<small>₸</small></p>
+			<strike>79 990<small>₸</small></strike>
+		</div>
+		<p>Samsung Galaxy A05s 4гб/128гб черный</p>
+		<a
+			href="https://kaspi.kz/shop/p/samsung-galaxy-a05s-4-gb-128-gb-chernyi-114692942/"
+			target="_blank"
+			><img src="/static/icons/kaspi-m.svg"
+		/></a>
+	</div>
+	<div class="product">
+		<div class="photo">
+			<img
+				src="/static/image/promo/product-images/SM-A346EZKASKZ.webp" /><span
+				>-26%%</span
+			>
+		</div>
+		<div class="price">
+			<p>139 990<small>₸</small></p>
+			<strike>189 990<small>₸</small></strike>
+		</div>
+		<p>Samsung Galaxy A34 5G 6гб/128гб черный</p>
+		<a
+			href="https://kaspi.kz/shop/p/samsung-galaxy-a34-5g-6-gb-128-gb-chernyi-109880731/"
+			target="_blank"
+			><img src="/static/icons/kaspi-m.svg"
+		/></a>
+	</div>
+</div> -->
+<style>
+	.row.gap-60 {
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		gap: 60px;
+	}
+	.xl-order-end {
+		order: 99;
+	}
+	.flex-50 {
+		flex-basis: calc(50% - 30px);
+	}
+	.big-spacer {
+		padding: 70px 0;
+	}
+	.flex-50 img {
+		width: 100%;
+	}
+	.micro-spacer {
+		padding: 20px 0;
+	}
+	#promo-content
+		ul.list-disc:not(.carousel__track):not(.carousel__pagination)
+		> li::before {
+		content: "";
+		margin-left: -15px;
+		position: absolute;
+		font-weight: 600;
+		height: 6px;
+		width: 6px;
+		display: block;
+		background: #000;
+		border-radius: 50%;
+		top: 10px;
+	}
+	.list-disc {
+		padding: 0 0 0 20px !important;
+	}
+	li .blue {
+		color: #2b47da;
+	}
+	.flex-50.promo-box {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: flex-start;
+		gap: 24px;
+		padding: 38px;
+		border-radius: 24px;
+		border: 1px solid #ededed;
+	}
+	.flex-50.promo-box img {
+		width: 80px;
+	}
+	.flex-50.promo-box h4.header {
+		margin: 0 !important;
+	}
+	.flex-50.promo-box p {
+		margin: 12px 0 !important;
+	}
+	@media (max-width: 560px) {
+		.flex-50 {
+			flex-basis: 100%;
+		}
+		.row.gap-60 {
+			gap: 24px;
+		}
+		.flex-50.xl-order-end {
+			order: unset;
+		}
+		.flex-50:nth-of-type(2) {
+			margin-block: 0 36px;
+		}
+		.big-spacer {
+			padding: 30px 0;
+		}
+		.promo-cards ~ .promo-cards .flex-50:nth-of-type(2) {
+			margin: 0;
+		}
+		div.hidden {
+			display: none !important;
+		}
+	}
+</style>
