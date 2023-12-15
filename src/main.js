@@ -12,12 +12,12 @@ import "./static/styles/main.scss";
 const app = createApp(App);
 app.use(vueAxios, axios);
 app.use(router);
-app.mount("#app");
 axios
 	.get("/version")
 	.then((response) => {
 		const version = '?v=' + response.data.v;
 		app.config.globalProperties.$v = version;
+		app.mount('#app');
 	})
 	.catch((error) => {
 		console.error("Ошибка при получении Версии:", error);
