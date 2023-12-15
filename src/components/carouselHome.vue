@@ -73,7 +73,7 @@ export default {
 	},
 	methods: {
 		async getcarousel() {
-			await axios.get('../static/json/carousel.json')
+			await axios.get('../static/json/carousel.json'+ this.$v)
 				.then(response => {
 					this.itemsArr = [];
 					response.data.forEach(element => {

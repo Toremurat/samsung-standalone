@@ -118,7 +118,7 @@ export default {
             // Получите значение параметра "link" из текущего маршрута
             const linkParam = this.$route.params.link;
             // Функция для определения склонения слова "день"
-            axios.get('/static/json/product.json')
+            axios.get('/static/json/product.json'+ this.$v)
                 .then(response => {
                     // Фильтруйте данные по совпадению link
                     // const cleanLinkParam = response.data.find(item =>item.link);
@@ -147,7 +147,7 @@ export default {
         async getcarousel() {
             try {
                 const linkParam = this.$route.params.link;
-                const response = await axios.get('/static/json/product.json');
+                const response = await axios.get('/static/json/product.json'+ this.$v);
                 const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("product/") + 8) === linkParam);
 
                 if (matchingData) {

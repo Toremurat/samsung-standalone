@@ -1,5 +1,6 @@
 
 <template >
+    
     <div v-if="postData" class="promo-wrapper container pdt-8">
         <div class="backlink" v-if="postData.button !== 0">
             <router-link to="/promo">
@@ -125,7 +126,7 @@ export default {
                 return "дней";
             }
             const linkParam = this.$route.params.link;
-            axios.get('/static/json/main.json')
+            axios.get('/static/json/main.json' + this.$v)
                 .then(response => {
                     const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
                     if (matchingData) {
@@ -178,7 +179,7 @@ export default {
         async getcarousel() {
             try {
                 const linkParam = this.$route.params.link;
-                const response = await axios.get('/static/json/main.json');
+                const response = await axios.get('/static/json/main.json'+ this.$v);
                 const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
                 if (matchingData) {
                     const carouselImages = matchingData.carousel || [];
@@ -198,7 +199,7 @@ export default {
         async fetchHtmlContent(matchingData) {
             try {
                 if (matchingData && matchingData.htmlFile) {
-                    const responseHtml = await axios.get(matchingData.htmlFile);
+                    const responseHtml = await axios.get(matchingData.htmlFile + this.$v);
                     this.htmlData = responseHtml.data;
                 }
             } catch (error) {

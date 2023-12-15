@@ -23,4 +23,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var app = (0, _vue.createApp)(_App["default"]);
 app.use(_vueAxios["default"], _axios["default"]);
 app.use(_routes["default"]);
-app.mount('#app');
+app.mount("#app");
+
+_axios["default"].get("/version").then(function (response) {
+  var version = '?v=' + response.data.v;
+  app.config.globalProperties.$v = version;
+})["catch"](function (error) {
+  console.error("Ошибка при получении Версии:", error);
+});
