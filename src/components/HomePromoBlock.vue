@@ -27,8 +27,8 @@
             </div>
             <div class="description">
               <h3 class="promoItem-title mrb-5">{{ promoItem.name }}</h3>
-              <div class="description-wrap" v-for="promoDesc in promoItem.description" :key="promoDesc[0]">
-                <p v-html="promoDesc" :class="'mrt-5 mrb-0 text_base1'"></p>
+              <div class="description-wrap" >
+                <p v-html="promoItem.description" :class="'mrt-5 mrb-0 text_base1'"></p>
               </div>
             </div>
             <div class="link-wrapper pdt-5 pdb-5 mrt-8">
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     async getPromos() {
-      await axios.get('../static/json/main.json'+ this.$v)
+      await axios.get('/api/main/')
         .then(response => {
           let currentDate = new Date(); // Текущая дата
 

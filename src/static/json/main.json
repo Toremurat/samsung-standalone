@@ -1,67 +1,67 @@
-[
-    {
-        "status": 1,
-        "button": 1,
-        "link": "promo/independance-day",
-        "home_image": "/static/image/promo/independance-day/banner-mobile.webp",
-        "promo_image": "/static/image/promo/independance-day/banner.webp",
-        "group": 1,
-        "sort": 0,
-        "date_start": "2023-12-12",
-        "date_end": "2023-12-18",
-        "home_sort": 0,
-        "home_status": 1,
-        "size": 12,
-        "name": "Дарим скидки на день независимости",
-        "description": [
-            "<p>Дарим скидки на день независимости в фирменном магазине Samsung</p>"
-        ],
-        "content": [
-            
-        ],
-        "htmlFile": "/static/htmls/independance.html"
-    },
+[{
+    "status": 1,
+    "button": 1,
+    "link": "promo/new-year-sale",
+    "home_image": "/static/image/promo/new-year-sale/banner-mobile.webp",
+    "promo_image": "/static/image/promo/new-year-sale/banner.webp",
+    "group": 1,
+    "sort": 1,
+    "date_start": "2023-12-19",
+    "date_end": "2023-12-31",
+    "home_sort": 1,
+    "home_status": 1,
+    "size": 12,
+    "name": "Новогодние скидки до -30%",
+    "description": [
+        "<p>Успейте купить технику Samsung, c самыми большими скидками в этом году.</p>"
+    ],
+    "content": [
+
+    ],
+    "htmlFile": "/static/htmls/new-year-sale.html"
+},{
+    "status": 0,
+    "button": 1,
+    "link": "promo/independance-day",
+    "home_image": "/static/image/promo/independance-day/banner-mobile.webp",
+    "promo_image": "/static/image/promo/independance-day/banner.webp",
+    "group": 1,
+    "sort": 1,
+    "date_start": "2023-12-16",
+    "date_end": "2023-12-18",
+    "home_sort": 1,
+    "home_status": 0,
+    "size": 12,
+    "name": "Дарим скидки на День независимости",
+    "description": [
+        "<p>Поздравляем вас с Днём независимости и в честь праздника дарим вам скидки до -30%</p>"
+    ],
+    "content": [
+
+    ],
+    "htmlFile": "/static/htmls/independance-no-link2.html"
+},
     {
         "status": 0,
         "button": 1,
         "link": "promo/kaspi-0-0-24",
         "home_image": "/static/image/promo/kaspi-0-0-24/banner-mobile.webp",
         "promo_image": "/static/image/promo/kaspi-0-0-24/banner.webp",
-        "group": 1,
-        "sort": 0,
-        "date_start": "2023-12-12",
+        "group": 2,
+        "sort": 2,
+        "date_start": "2023-12-15",
         "date_end": "2023-12-18",
-        "home_sort": 0,
+        "home_sort": 2,
         "home_status": 0,
-        "size": 12,
-        "name": "Большая рассрочка на 24 месяца",
+        "size": 6,
+        "name": "Большая рассрочка от Kaspi на 24 месяца",
         "description": [
-            "<p>Большая рассрочка на 24 месяца в фирменном магазине Samsung</p>"
+            "<p>Выгодная рассрочка от Kaspi на 24 месяца. Совершайте покупки сейчас, а платите потом</p>"
         ],
         "content": [
-            
+
         ],
-        "htmlFile": "/static/htmls/kaspi-0-0-24.html"
-    },
-    {
-        "status": 0,
-        "button": 1,
-        "link": "promo/black-friday",
-        "home_image": "/static/image/promo/black-friday/banner.webp",
-        "promo_image": "/static/image/promo/black-friday/promo-banner.webp",
-        "group": 1,
-        "sort": 0,
-        "home_sort": 0,
-        "home_status": 0,
-        "size": 12,
-        "name": "Black Friday",
-        "description": [
-            "<p>Скидки до -50% Black Friday в фирменном магазине Samsung</p>"
-        ],
-        "content": [
-            
-        ],
-        "htmlFile": "/static/htmls/BlackFriday.html"
+        "htmlFile": "/static/htmls/kaspi-0-0-24-no-link.html"
     },
     {
         "status": 0,
@@ -103,20 +103,20 @@
         ]
     },
     {
-        "status": 0,
+        "status": 1,
         "link": "promo/kaspi",
         "home_image": "/static/image/promo/kaspi/banner.webp",
         "promo_image": "/static/image/promo/kaspi/promo-banner.webp",
-        "date_start": "2023-11-20",
-        "date_end": "2023-12-03",
+        "date_start": "2023-12-04",
+        "date_end": "2023-12-31",
         "group": 2,
         "sort": 1,
         "home_sort": 1,
-        "home_status": 0,
+        "home_status": 1,
         "size": 6,
         "name": "Рассрочка Kaspi 0-0-12",
         "description": [
-            "<p>Выгодная рассрочка от Kaspi. Совершайте покупки сейчас, а платите потом</p>"
+            "<p>Выгодная рассрочка от Kaspi на 12 месяцев. Совершайте покупки сейчас, а платите потом</p>"
         ],
         "content": [
             "<h3>Совершайте покупки сейчас, а платите потом.</h3>",
@@ -124,7 +124,7 @@
             "<ol class=\"numbered-list\"><li>Первоначальный взнос 0₸;</li><li>Переплата 0%;</li><li>Срок рассрочки 3, 6 и 12 месяцев.</li></ol>",
             "<div class=\"spacer\"></div>",
             "<h3>Условия акции</h3>",
-            "<ol class=\"numbered-list\"><li>Срок действия акции: c 20 ноября по 3 декабря 2023 года;</li><li>Количество товаров в одном заказе не ограничено.</li></ol>",
+            "<ol class=\"numbered-list\"><li>Срок действия акции: c 4 по 31 декабря 2023 года;</li><li>Количество товаров в одном заказе не ограничено.</li></ol>",
             "<div class=\"half-spacer\"></div>",
             "<h4>Минимальная сумма заказа</h4>",
             "<ul class=\"unstyled-list\"><li>На 3 месяца – от 10 000 тенге;</li><li>На 6 месяцев – от 20 000 тенге;</li><li>На 12 месяцев – от 45 000 тенге.</li></ul>"
@@ -165,8 +165,8 @@
         "link": "promo/halyk",
         "home_image": "/static/image/promo/halyk/banner.webp",
         "promo_image": "/static/image/promo/halyk/promo-banner.webp",
-        "date_start": "2023-11-01",
-        "date_end": "2023-11-30",
+        "date_start": "2023-12-01",
+        "date_end": "2023-12-31",
         "group": 2,
         "sort": 3,
         "home_sort": 3,
@@ -182,7 +182,7 @@
             "<ol class=\"numbered-list\"><li>Первоначальный взнос 0₸;</li><li>Переплата 0%;</li><li>Срок рассрочки 3, 6 и 12 месяцев.</li></ol>",
             "<div class=\"spacer\"></div>",
             "<h3>Условия акции</h3>",
-            "<ol class=\"numbered-list\"><li>Срок действия акции: с 1 по 30 ноября 2023 года;</li><li>Минимальная сумма заказа - от 4 000 тенге;</li><li>Максимальная сумма займа: в рассрочку - 2 000 000 тенге, в кредит - 6 000 000 тенге;</li><li>Максимальный срок: в рассрочку - до 24 месяца, в кредит - до 60 месяцев;</li><li>Количество товаров в одном заказе не ограничено.</li></ol>"
+            "<ol class=\"numbered-list\"><li>Срок действия акции: с 1 по 31 декабря 2023 года;</li><li>Минимальная сумма заказа - от 4 000 тенге;</li><li>Максимальная сумма займа: в рассрочку - 2 000 000 тенге, в кредит - 6 000 000 тенге;</li><li>Максимальный срок: в рассрочку - до 24 месяца, в кредит - до 60 месяцев;</li><li>Количество товаров в одном заказе не ограничено.</li></ol>"
         ]
     },
     {
@@ -277,28 +277,5 @@
         "sort": 4,
         "group": 3,
         "size": 6
-    },
-    {
-        "status": 0,
-        "link": "promo/test",
-        "home_image": "/static/image/promo/kaspi/banner.webp",
-        "promo_image": "/static/image/promo/kaspi/promo-banner.webp",
-        "date_start": "2022-11-20",
-        "date_end": "2024-12-03",
-        "group": 1,
-        "sort": 0,
-        "home_sort": 0,
-        "home_status": 1,
-        "size": 6,
-        "name": "Рассрочка TEST",
-        "description": [
-            "<p>TEST Выгодная рассрочка от Kaspi. Совершайте покупки сейчас, а платите потом</p>"
-        ],
-        "content": [
-            "<h3>Совершайте TEST сейчас, а TEST потом.</h3>",
-            "<h4>Как это TEST</h4>",
-            "<ul class=\"unstyled-list\"><li>На 3 месяца – от 10 000 тенге;</li><li>На 6 месяцев – от 20 000 тенге;</li><li>На 12 месяцев – от 45 000 тенге.</li></ul>"
-        ],
-        "htmlFile": "/static/htmls/data.html"
     }
 ]

@@ -173,7 +173,7 @@ export default {
 				},
 				{
 					name: 'og:description',
-					content: this.$route.meta.ogDescription,
+					content: this.$route.meta.description,
 				},
 				// Другие метаданные
 			],

@@ -49,7 +49,7 @@ export default {
 	},
 	methods: {
 		async getSlides() {
-			await axios.get('../static/json/slider.json'+ this.$v)
+			await axios.get('/api/slider/')
 				.then(response => {
 					this.slidesArr = [];
 					response.data.forEach(element => {

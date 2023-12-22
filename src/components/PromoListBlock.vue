@@ -70,7 +70,7 @@ export default {
 	},
 	methods: {
 		async getPromos() {
-			await axios.get('../static/json/main.json'+ this.$v)
+			await axios.get('/api/main/')
 				.then(response => {
 					let currentDate = new Date(); // Текущая дата
 

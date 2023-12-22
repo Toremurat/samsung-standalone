@@ -9,7 +9,7 @@
             <div class="prod-description pdt-10 pdb-0">
                 <h1 class="heading  mrb-0 mrt-0 pdt-0 pdb-0" style="margin:0!important; padding-top:0!important">{{
                     this.prodData.name }}</h1>
-                <div class="bank-btns">
+                <!-- <div class="bank-btns">
                     <div class="kaspi" v-if="this.prodData.kaspi">
                         <a :href="this.prodData.kaspi" target="_blank" class="kaspi-link">
                             <img src="@/static/icons/kaspi.svg" alt="" class="desktop-only">
@@ -22,12 +22,11 @@
                             <img src="@/static/icons/halyk-m.svg" alt="" class="mobile-only">
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div id="prod-content">
-            <div class="description-item" v-for="contentData in this.prodData.content" :key="contentData[0]"
-                v-html="contentData">
+            <div class="description-item" v-html="prodData.content">
             </div>
         </div>
     </div>
@@ -115,13 +114,9 @@ export default {
             }
         },
         async getprod() {
-            // Получите значение параметра "link" из текущего маршрута
             const linkParam = this.$route.params.link;
-            // Функция для определения склонения слова "день"
-            axios.get('/static/json/product.json'+ this.$v)
+            axios.get('/api/product/')
                 .then(response => {
-                    // Фильтруйте данные по совпадению link
-                    // const cleanLinkParam = response.data.find(item =>item.link);
                     const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("product/") + 8) === linkParam);
                     if (matchingData) {
                         this.prodData = {
@@ -147,10 +142,10 @@ export default {
         async getcarousel() {
             try {
                 const linkParam = this.$route.params.link;
-                const response = await axios.get('/static/json/product.json'+ this.$v);
+                const response = await axios.get('/api/product/');
                 const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("product/") + 8) === linkParam);
 
-                if (matchingData) {
+                if (response) {
                     const carouselImages = matchingData.carousel || [];
                     this.slidesArr = carouselImages.map(img => ({ img }));
                 } else {
@@ -185,7 +180,7 @@ export default {
                 ogDescriptionTag.setAttribute("property", "og:description");
                 document.head.appendChild(ogDescriptionTag);
             }
-            ogDescriptionTag.setAttribute("content", this.prodData.ogDescription);
+            ogDescriptionTag.setAttribute("content", this.prodData.description);
         },
 
 
@@ -1083,11 +1078,13 @@ strong {
     }
 
     .atProd footer.mobile-only {
-        margin-bottom: 120px;
+        //margin-bottom: 120px;
+        margin-bottom: 0px;
     }
 
     .atProd .contacts {
-        bottom: 103px !important;
+        // bottom: 103px !important;
+        bottom: 20px !important;
         right: 20px;
         z-index: 3 !important;
     }

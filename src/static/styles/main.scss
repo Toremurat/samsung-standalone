@@ -111,9 +111,7 @@ $black_100: #000000;
     background-color: $blue_80_hover !important;
   }
 }
-h1,h2,h3,h4,h5,h6{
-  color: #000;
-}
+
 .desktop-only {
   display: block; // Отображается по умолчанию
 }
@@ -396,26 +394,4 @@ a.promo-link:last-of-type {
   transition: all .1s ease-in-out;
   line-height: 0;
   margin: 0 .25em;
-}
-
-.carousel__pagination-button {
-  background: #d9d9d9!important;
-  width: 10px!important;
-  height: 10px!important;
-  box-shadow: none!important;
-  border: none!important;
-  padding: 0!important;
-  border-radius: 50%!important;
-  transition: all .1s ease-in-out!important;
-  line-height: 0!important;
-  margin: 0 .25em!important;
-}
-.carousel__pagination-button:after {
-  content:none!important;
-}
-.carousel__pagination-button.carousel__pagination-button--active {
-  background: #2b47da!important;
-}
-.vs__open-indicator {
-  transform: scale(0.7);
 }

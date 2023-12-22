@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-  <div class="store-links container">
+  <!-- <div class="store-links container">
     <a target="_blank" href="https://kaspi.kz/shop/search/?q=%3AallMerchants%3A30032741">
       
       <img src="@/static/image/kaspi-mobile-banner.webp" alt="" class="img-responsive ">
@@ -47,7 +47,7 @@
       
       <img src="@/static/image/halyk-mobile-banner.webp" alt="" class="img-responsive ">
     </a>
-  </div>
+  </div> -->
   <div class="container footer mrt-35">
     <careServiceWidget />
   </div>
@@ -75,7 +75,7 @@ export default {
         },
         {
           name: 'og:description',
-          content: this.$route.meta.ogDescription,
+          content: this.$route.meta.description,
         },
         {
           name: 'description',
