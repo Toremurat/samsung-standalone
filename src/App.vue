@@ -5,6 +5,12 @@
     <router-view></router-view>
   </div>
   <div class="container bottom">
+
+    <div class="snow-container" ref="snowContainer">
+      <div v-for="flake in flakes" :key="flake.id" class="snow" :style="flake.style">
+        <img :src="flake.imgSrc" />
+      </div>
+    </div>
     <footerMain></footerMain>
   </div>
   <div class="contacts">
@@ -32,6 +38,7 @@
 <script>
 import headingNav from './components/headingNav.vue';
 import footerMain from './components/footerMain.vue';
+
 export default {
   metaInfo() {
     return {
@@ -57,42 +64,114 @@ export default {
           name: 'keywords',
           content: this.$route.meta.keywords,
         },
-
       ],
     };
   },
   name: 'MainApp',
   components: {
     headingNav,
-    footerMain
+    footerMain,
   },
-  // metaInfo: {
-  //   meta: [
-  //     { charset: 'utf-8' },
-  //     {
-  //       property: 'og:title',
-  //       content: 'Evrika',
-  //       template: chunk => `${chunk} - Официальный партнер Samsung в Казахстане`,
-  //       vmid: 'og:title'
-  //     },
-  //     {
-  //       property: 'og:image',
-  //       content: '/static/image/logo/logo.webp',
-  //       template: chunk => `${chunk}`,
-  //       vmid: 'og:image'
-  //     },
-  //     {
-  //       property: 'og:type',
-  //       content: 'Store',
-  //       template: chunk => `${chunk}`,
-  //       vmid: 'og:type'
-  //     },
-  //   ]
-  // }
+  methods: {
+    removeSnowflake(flake) {
+      flake.remove();
+    },
+    createAndAnimateSnowflakes() {
+  const snowContainer = this.$refs.snowContainer;
+
+  if (!snowContainer) {
+    // Элемент ещё не готов
+    return;
+  }
+
+  const numSnowflakes = Math.floor(Math.random() * 5) + 1;
+
+  if (snowContainer.getElementsByClassName("snow").length > 15) {
+    return;
+  }
+
+  for (let i = 0; i < numSnowflakes; i++) {
+    const snowflake = document.createElement("div");
+    const img = document.createElement("img");
+    snowflake.className = "snow";
+    snowflake.style.left = `${Math.random() * 100}vw`;
+    snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+    img.src = "data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' width='800' height='800' fill='%23fff' viewBox='0 0 297 297'%3E%3Cpath d='m275 213-21-12 21-14a8 8 0 0 0-8-12l-28 17-11-6 11-9a8 8 0 0 0-9-12l-16 13-25-15v-29l25-15 18 11a7 7 0 0 0 10-2c2-4 1-8-2-10l-11-7 10-6 28 17a7 7 0 0 0 10-3c2-3 1-8-2-10l-21-13 20-11a7 7 0 0 0-7-13l-21 12-1-26c-1-4-4-7-8-7-4 1-7 4-7 8l1 33-11 7-2-14a7 7 0 1 0-14 1l2 21-25 14-26-16V78l19-9c4-1 6-6 4-9-2-4-6-6-10-4l-13 5V48l29-15c4-2 6-6 4-10s-7-5-10-3l-23 11V8a7 7 0 1 0-15 0v23l-21-12c-4-2-8-1-10 3-2 3-1 8 3 10l28 16v12l-11-6c-4-2-8-1-10 3s-1 8 3 10l18 10v29l-25 14-24-13 2-21a7 7 0 1 0-14-1l-2 14-11-7 1-33a7 7 0 1 0-15-1l-1 26-21-12a7 7 0 1 0-7 13l20 11-21 13a8 8 0 0 0 8 13l28-17 10 6-11 7a7 7 0 1 0 8 12l18-11 24 14v31l-24 14-16-13a8 8 0 0 0-9 12l11 9-11 6-28-17a8 8 0 0 0-8 12l21 14-21 12a7 7 0 0 0 8 13l20-12v24c0 4 4 7 8 7s7-3 7-7v-32l10-7 1 13a8 8 0 0 0 15 0l-1-21 25-15 25 15v29l-18 10c-4 2-5 6-3 10 1 3 4 4 7 4l3-1 11-6v12l-28 16c-4 2-5 7-3 10 1 3 4 4 7 4l3-1 21-12v24a7 7 0 1 0 15 0v-24l23 11c3 2 8 1 10-3s0-8-4-10l-29-15v-13l13 5c4 2 8 0 10-4 2-3 0-8-4-9l-19-9v-27l27-15 25 14-1 21a8 8 0 0 0 15 0l1-13 10 7v32c0 4 3 7 7 7s8-3 8-7v-24l20 12a7 7 0 0 0 10-3c2-4 1-8-2-10z'/%3E%3C/svg%3E";
+    snowflake.appendChild(img);
+
+    setTimeout(() => {
+      this.removeSnowflake(snowflake);
+    }, 20000);
+
+    snowContainer.appendChild(snowflake);
+  }
 }
+  },
+  mounted() {
+    setInterval(this.createAndAnimateSnowflakes, 2000);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState !== "visible") {
+        const snowflakes = document.querySelectorAll(".snow");
+        snowflakes.forEach(this.removeSnowflake);
+      }
+    });
+  },
+};
 </script>
 
+
 <style lang="scss">
+@keyframes snowfall {
+  from {
+    transform: translate3d(var(--sw-tx, 0), var(--sw-ty, -10vh), 0) rotate(0deg);
+  }
+
+  34% {
+    transform: translate3d(var(--sw25-tx, 0), var(--sw25-ty, 20vh), 0) rotate(360deg);
+  }
+
+  67% {
+    transform: translate3d(var(--sw75-tx, 0), var(--sw75-ty, 60vh), 0) rotate(720deg);
+  }
+
+  to {
+    transform: translate3d(var(--sw100-tx, 0), var(--sw100-ty, 100vh), 0) rotate(1080deg);
+  }
+}
+
+.snow {
+  width: var(--sw-s, 20px);
+  height: var(--sw-s, 20px);
+  filter: blur(var(--sw-f, 0));
+  left: var(--sw-l, 0);
+  transform: translate3d(0, -10vh, 0) rotate(0deg);
+  animation: snowfall var(--sw-t, 10s) var(--sw-d, 0s) infinite linear;
+  opacity: var(--sw-o, 1);
+  position: absolute;
+  border-radius: 50%;
+}
+
+.snow img {
+  width: 100%;
+  height: 100%;
+}
+
+.snow-container {
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.snow img {
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.25));
+}
+
 .contacts {
   position: fixed;
   bottom: 32px;
