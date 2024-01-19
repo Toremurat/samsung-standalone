@@ -3,9 +3,7 @@
     <sliderHome></sliderHome>
   </div>
   <div class="container">
-
     <HomePromoBlock></HomePromoBlock>
-
   </div>
   <div class="container mobile-full  mrt-35 mrb-35">
     <div class="carousel-wrapper">
@@ -357,6 +355,7 @@ export default {
 }
 </style>
 <style>
+
 @media (max-width: 560px) {
   .xs-only {
     display: block !important;

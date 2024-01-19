@@ -10,8 +10,8 @@
         <div v-for="(promoItem, index) in promoFiltered" :key="index" class="promo-row col-sm-12 flex-row align-center"
           :style="'order:' + promoItem.sort" :class="'col-sm-' + promoItem.size + ' index-' + (index + 1)">
           <div class="image-box rounded-6" :class="{ 'isOdd': index % 2 === 0, 'isEven': index % 2 !== 0 }">
-            <router-link :to="`/${promoItem.link}`">
-              <img :src="promoItem.home_image" alt="image" :style="{ 'max-height': maxWidth }">
+            <router-link :to="'/' + promoItem.link">
+              <img :src="'/static/image/promo/' + promoItem.image" alt="image" :style="{ 'max-height': maxWidth }">
             </router-link>
           </div>
           <div class="info-box " :class="{ 'pdl-5': index % 2 === 0, 'pdr-5': index % 2 !== 0 }">
@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="link-wrapper pdt-5 pdb-5 mrt-8">
-              <router-link class="promo-link blue_80 blue_20_bg text_base2_bold" :to="`/${promoItem.link}`">Узнать
+              <router-link class="promo-link blue_80 blue_20_bg text_base2_bold" :to="'/' + promoItem.link">Узнать
                 подробнее</router-link>
             </div>
           </div>
@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     async getPromos() {
-      await axios.get('/api/main/')
+      await axios.get('/api/v2/promo/')
         .then(response => {
           let currentDate = new Date(); // Текущая дата
 
@@ -88,12 +88,10 @@ export default {
 
             return {
               status: element.home_status,
-              group: element.group,
               name: element.name,
               link: element.link,
               description: element.description,
-              home_image: element.home_image,
-              size: element.size,
+              image: element.image,
               sort: element.home_sort,
               date_start: startDate.toShortFormat(),
               date_end: endDate.toShortFormat(),
@@ -156,7 +154,7 @@ export default {
   },
   computed: {
     promoFiltered() {
-      return this.promosList.filter(promoItem => promoItem.status !== this.statusFilter);
+      return this.promosList.filter(promoItem => promoItem.status !== this.statusFilter && promoItem.remain > 0);
     },
   }
 }

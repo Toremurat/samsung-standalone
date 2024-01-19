@@ -15,8 +15,8 @@
         </div>
         <div class="promo-header">
             <div class="image-block">
-                <img :src="postData.promo_image" alt="postData.name" class="desktop-only">
-                <img :src="postData.home_image" alt="postData.name" class="mobile-only">
+                <img :src="'/static/image/promo/' + postData.slider_desktop" alt="postData.name" class="desktop-only">
+                <img :src="'/static/image/promo/' + postData.slider_mobile" alt="postData.name" class="mobile-only">
             </div>
             <div class="promo-description">
                 <h1 class="heading pdt-10 pdb-5 mrb-0 mrt-0">{{ postData.name }}</h1>
@@ -37,11 +37,11 @@
         <div id="promo-content">
             <div class="description-item" v-show="postData.content && postData.content !== ''" v-html="postData.content">
             </div>
-            <div id="htmlData" v-show="postData.htmlData && postData.htmlData !== ''" v-html="postData.htmlData"></div>
         </div>
+
     </div>
 
-    <div class="slider container" v-if="slidesArr.length > 0">
+    <div class="slider container pdt-8" v-if="slidesArr.length !== 0 ">
         <carousel :items-to-show="4" :wrap-around="true" :breakpoints="breakpoints">
             <slide v-for="(carousel, index) in slidesArr" :key="index">
                 <img :src="carousel" alt="carousel.alt">
@@ -61,145 +61,130 @@
         </carousel>
     </div>
 
+    <div class="container pdt-8">
+        <productPart></productPart>
+    </div>
     <div class="container mrt-35">
         <careServiceWidget />
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-import careServiceWidget from '@/components/careServiceWidget.vue';
-import 'vue3-carousel/dist/carousel.css';
-import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
+    import axios from 'axios';
+    import careServiceWidget from '@/components/careServiceWidget.vue';
+    import productPart from '@/components/productPart.vue';
+    import 'vue3-carousel/dist/carousel.css';
+    import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
 
-export default {
-    name: 'promoPage',
-    components: {
-        careServiceWidget,
-        Carousel,
-        Slide,
-        Navigation,
-        Pagination,
-    },
-    data() {
-        return {
-            postData: {},
-            slidesArr: [],
-            errorData: [],
-            carouselStatus: 0,
-            breakpoints: {
-                320: {
-                    itemsToShow: 1,
-                    snapAlign: 'start',
+    export default {
+        name: 'promoPage',
+        components: {
+            careServiceWidget,
+            productPart,
+            Carousel,
+            Slide,
+            Navigation,
+            Pagination,
+        },
+        data() {
+            return {
+                postData: {},
+                slidesArr: [],
+                errorData: [],
+                carouselStatus: 0,
+                breakpoints: {
+                    320: {
+                        itemsToShow: 1,
+                        snapAlign: 'start',
+                    },
+                    600: {
+                        itemsToShow: 2,
+                        snapAlign: 'start',
+                    },
+                    750: {
+                        itemsToShow: 3,
+                        snapAlign: 'start',
+                    },
+                    1024: {
+                        itemsToShow: 4,
+                        snapAlign: 'start',
+                    },
+                    mousedrag: true,
+                    touchDrag: true,
                 },
-                600: {
-                    itemsToShow: 2,
-                    snapAlign: 'start',
-                },
-                750: {
-                    itemsToShow: 3,
-                    snapAlign: 'start',
-                },
-                1024: {
-                    itemsToShow: 4,
-                    snapAlign: 'start',
-                },
-                mousedrag: true,
-                touchDrag: true,
+            };
+        },
+        methods: {
+            async fetchData() {
+                try {
+                    const linkParam = this.$route.params.link;
+                    const response = await axios.get('/api/v2/promo/' + linkParam + '/');
+
+                    if (response.data) {
+                        const matchingData = response.data[0];
+                        const today = Date.now();
+                        const check = today - new Date(matchingData.date_start);
+                        const old_check = today - new Date(matchingData.date_end);
+                        const remain = this.calcRemain(matchingData.date_end);
+
+
+                        this.postData = {
+                            ...matchingData,
+                            content: matchingData.promo_description[0].content,
+                            date_start: new Date(matchingData.date_start).toShortFormat(),
+                            date_end: new Date(matchingData.date_end).toShortFormat(),
+                            remain,
+                            actual: check,
+                            old: old_check,
+                        };
+                        
+                        this.slidesArr = matchingData.promo_description[0].carousel;
+                        this.updateMetaTags();
+                    } else {
+                        this.postData = {};
+                    }
+                } catch (error) {
+                    console.error(error);
+                    this.errorData.push(error);
+                }
             },
-        };
-    },
-    methods: {
-        async fetchData() {
-            try {
-                const linkParam = this.$route.params.link;
-                const response = await axios.get('/api/promo/' + linkParam + '/');
 
-                if (response.data) {
-                    const matchingData = response.data[0];
-                    const today = Date.now();
-                    const check = today - new Date(matchingData.date_start);
-                    const old_check = today - new Date(matchingData.date_end);
-                    const remain = this.calcRemain(matchingData.date_end);
+            calcRemain(endDate) {
+                const result = Math.ceil((new Date(endDate) - Date.now()) / (1000 * 3600 * 24));
+                return result > 0 ? `${result} ${result === 1 ? 'день' : 'дней'}` : '';
+            },
+            updateMetaTags() {
+                document.title = this.postData.name + ' в фирменном магазине Samsung';
 
-                    const htmlData = await this.fetchHtmlContent(matchingData.htmlFile);
+                const metaTags = [
+                    { name: "description", content: this.postData.description },
+                    { name: "og:description", content: this.postData.description }
+                ];
 
-                    this.postData = {
-                        ...matchingData,
-                        htmlData,
-                        date_start: new Date(matchingData.date_start).toShortFormat(),
-                        date_end: new Date(matchingData.date_end).toShortFormat(),
-                        remain,
-                        actual: check,
-                        old: old_check,
-                    };
-
-
-                    this.slidesArr = matchingData.carousel;
-                    console.log(this.slidesArr)
-                    this.updateMetaTags();
-                } else {
-                    this.postData = {};
-                }
-            } catch (error) {
-                console.error(error);
-                this.errorData.push(error);
+                metaTags.forEach(({ name, content }) => {
+                    let metaTag = document.querySelector(`meta[name='${name}']`) || document.createElement("meta");
+                    metaTag.setAttribute("name", name);
+                    metaTag.setAttribute("content", content);
+                    document.head.appendChild(metaTag);
+                });
             }
         },
-        async fetchHtmlContent(htmlFile) {
-            try {
-                if (htmlFile) {
-                    const response = await axios.get(htmlFile);
-                    return response.data;
-                }
-                return null;
-            } catch (error) {
-                console.error('Ошибка обработки HTML файла:', error);
-                return null;
-            }
+        created() {
+            this.fetchData();
         },
-
-        calcRemain(endDate) {
-            const result = Math.ceil((new Date(endDate) - Date.now()) / (1000 * 3600 * 24));
-            return result > 0 ? `${result} ${result === 1 ? 'день' : 'дней'}` : '';
+        computed: {
+            remainInt() {
+                return parseInt(this.postData.remain);
+            },
+            isMobile() {
+                return window.innerWidth < 768;
+            },
         },
-        updateMetaTags() {
-            document.title = this.postData.name + ' в фирменном магазине Samsung';
-
-            const metaTags = [
-                { name: "description", content: this.postData.description },
-                { name: "og:description", content: this.postData.description }
-            ];
-
-            metaTags.forEach(({ name, content }) => {
-                let metaTag = document.querySelector(`meta[name='${name}']`) || document.createElement("meta");
-                metaTag.setAttribute("name", name);
-                metaTag.setAttribute("content", content);
-                document.head.appendChild(metaTag);
-            });
-        }
-    },
-    created() {
-        this.fetchData();
-    },
-    computed: {
-        remainInt() {
-            return parseInt(this.postData.remain);
-        },
-        isMobile() {
-            return window.innerWidth < 768;
-        },
-    },
-};
+    };
 </script>
 
-
-
-
-
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-    <style scoped lang="scss">
+<style scoped lang="scss">
     @import url(@/static/styles/main.css);
 
     .carousel img {
@@ -329,7 +314,7 @@ export default {
         }
 
         .carousel__pagination {
-            top: -5px !important;
+            top: 10px !important;
         }
     }
 
@@ -535,8 +520,8 @@ export default {
     #app #promo-content a {
         color: rgb(13, 110, 253);
     }
-    </style>
-    <style lang="scss">
+</style>
+<style lang="scss">
     #promo-content {
         & .gallery {
             gap: 40px;
@@ -1241,6 +1226,15 @@ export default {
     }
 
     @media (max-width: 900px) {
+        .promo-header .image-block img.mobile-only{
+            max-height: 113.6vw;
+            object-fit: cover;
+            object-position: top;
+        }
+
+.promo-header h1.heading{
+    display:none;
+}
         #promo-content .BFcards div {
             flex-basis: 100%;
         }
@@ -1295,5 +1289,9 @@ export default {
         #promo-content .BFcards {
             gap: 20px;
         }
+        #app .promo-header .promo-description .date{
+  margin: 32px 0 0 !important;
+}
     }
-    </style>
+
+</style>

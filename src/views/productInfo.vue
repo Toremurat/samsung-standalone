@@ -377,7 +377,7 @@ function stripHtmlTags(html) {
     }
 
     .carousel__pagination {
-        top: -5px !important;
+        top: 10px !important;
     }
 }
 

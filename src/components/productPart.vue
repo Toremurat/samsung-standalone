@@ -9,11 +9,18 @@
                     <div v-for="product in filteredProducts(category)" :key="product.model" class="product">
                         <div class="photo">
                             <img :src="'/static/image/promo/product-images/' + getImage(product.image) + '.webp'">
-                            <span>-{{Math.round(((product.rrp - product.prp) / Math.abs(product.rrp)) * 100) || 0}}%</span>
+                            <span v-if="product.rrp != product.prp">-{{Math.round(((product.rrp - product.prp) / Math.abs(product.rrp)) * 100) || 0}}%</span>
                         </div>
-                        <div class="price">
+                        <div class="price" v-if="product.rrp == product.prp || !product.prp ">
+                            <p>{{ formatNumber(product.rrp) }}<small>₸</small></p>
+                        </div>
+                        <div class="price" v-else-if="product.rrp == product.prp || !product.rrp">
                             <p>{{ formatNumber(product.prp) }}<small>₸</small></p>
-                            <strike>{{formatNumber(product.rrp)}}<small>₸</small></strike>
+                        </div>
+
+                        <div class="price" v-else>
+                            <p>{{ formatNumber(product.prp) }}<small>₸</small></p>
+                            <strike>{{ formatNumber(product.rrp) }}<small>₸</small></strike>
                         </div>
                         <p>{{ product.name }} {{ product.model }}</p>
                         <a v-show="product.kaspi" :href="'https://kaspi.kz/shop/p/'+ product.kaspi"
