@@ -66,7 +66,7 @@
     </div>
 
 
-    <div class="container pdt-8">
+    <div class="container pdt-8" id="viewer">
         <div class="preorder-form form-group" v-if="!successPage">
             <h3 class="header"> Оформите предзаказ</h3>
             <div class="form-row d-flex flex-wrap">
@@ -78,7 +78,7 @@
                 
                 <div class="input-form flex-50">
                     <label class="mrb-0 black_50" for="phone">Ваш телефон *</label>
-                    <input v-mask="'+7 (###) ###-##-##'" type="text" class="care-form-field" id="phone"
+                    <input v-mask="'+7 (7##) ###-##-##'" type="text" class="care-form-field" id="phone"
                         placeholder="Ваш номер" @change="formValidation" @blur="formValidation" @focus="resetValidation"
                         :value="data.phone" />
                 </div>
@@ -106,14 +106,13 @@
                 </div>
             </div>
         </div>
-        <div class="content-block success" v-if="successPage">
+        <div class="content-block success" id="successMe" v-if="successPage">
             <div class="alert alert-success">
                 <h4 class="mrb-3 header green">Спасибо за предзаказ</h4>
                 <p class="text_base1">Наш специалист свяжется с вами в ближайшее время.</p>
             </div>
         </div>
     </div>
-
 
     <div class="container mrt-35">
         <careServiceWidget />
@@ -190,7 +189,7 @@ export default {
         async fetchData() {
             try {
                 const linkParam = this.$route.params.link;
-                const response = await axios.get('/api/v2/promo/' + linkParam + '/');
+                const response = await axios.get('http://localhost:5000/api/v2/promo/' + linkParam + '/');
 
                 if (response.data && response.data.length > 0) {
                     const matchingData = response.data[0];
@@ -272,11 +271,25 @@ export default {
                     .catch(error => {
                         console.error(error);
                     });
+            }else{
+                                    
+                setTimeout(() => {
+                        const viewerElement = document.querySelector('#viewer');
+                        if (viewerElement) {
+                            window.scrollTo({ top: viewerElement.offsetTop - 80, behavior: 'smooth' });
+                        }
+                    }, 100);
             }
 
         },
         showSuccessPage() {
             this.successPage = true;
+            setTimeout(() => {
+                const viewerElement = document.querySelector('#viewer');
+                if (viewerElement) {
+                    window.scrollTo({ top: viewerElement.offsetTop - 80, behavior: 'smooth' });
+                }
+            }, 100);
         },
         calcRemain(endDate) {
             const result = Math.ceil((new Date(endDate) - Date.now()) / (1000 * 3600 * 24));
@@ -670,7 +683,20 @@ h4.header {
     h1.heading {
         margin-bottom: 16px !important;
     }
-
+    .form-row.d-flex.flex-wrap {
+	display: flex;
+	flex-flow: column;
+	gap: 28px;
+}
+#app > div > .container#viewer {
+	padding: 0 10px !important;
+}
+input-form input {
+	border-radius: 12px;
+}
+.vs__open-indicator {
+	top: 30% !important;
+}
 
 }
 
@@ -1452,7 +1478,20 @@ strong {
         margin: 32px 0 0 !important;
     }
 }
-
+.content-block.success .alert {
+	background: #F3FFEA;
+	border-color: transparent;
+	border-radius: 24px;
+	padding: 24px;
+	color: #008F25;
+}
+.content-block.success .alert p {
+	font-family: Inter;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	color: #282828;
+}
 .vs__actions {
     position: absolute !important;
     top: 0 !important;
