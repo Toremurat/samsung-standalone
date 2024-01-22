@@ -20,7 +20,7 @@
                     </div>
                     <div class="form_placer mrb-8">
                         <label class="mrb-0 black_50" for="phone">Ваш телефон *</label>
-                        <input v-mask="'+7 (###) ###-##-##'" type="text" class="care-form-field" id="phone"
+                        <input v-mask="'+7 (7##) ###-##-##'" type="text" class="care-form-field" id="phone"
                             placeholder="Ваш номер" @change="formValidation" @blur="formValidation" @focus="resetValidation"
                             :value="data.phone" />
                     </div>

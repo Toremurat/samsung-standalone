@@ -200,7 +200,7 @@
         </div>
         <hr class="mrt-0 mrb-3">
         <div class="copyright">
-            <p class="text_base3 black_50 mrt-0 mrb-5">Copyright © 2023 ТОО Компания Эврика</p>
+            <p class="text_base3 black_50 mrt-0 mrb-5">Copyright &copy; {{ currentYear }} ТОО Компания Эврика</p>
         </div>
     </footer>
 </template>
@@ -211,6 +211,7 @@ export default {
     data() {
         return {
             isCollapsed: false,
+            currentYear: new Date().getFullYear(),
         };
     },
     methods: {
