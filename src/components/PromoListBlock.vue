@@ -1,5 +1,5 @@
 <template>
-	<div id="homePromo">
+	<div id="promoList">
 		<div class="title mrb-9">
 			<h1 class="heading pdt-0 mrb-0">Акции</h1>
 		</div>
@@ -9,15 +9,15 @@
 				<div v-for="(promoItem, index) in group" :key="index"
 					:class="'promo-row index' + index + 1 + ' col-sm-' + promoItem.size">
 					<div class="promo-item">
-						<router-link :to="`/${promoItem.link}`">
+						<router-link :to="'/' + promoItem.link">
 							<div class="image-box rounded-6">
-								<img :src="promoItem.promo_image" alt="image">
+								<img :src="'/static/image/promo/' +promoItem.image_desktop" alt="image" class="">
 							</div>
 						</router-link>
 						<div class="info-box">
 							<div class="link-wrapper pdt-0 pdb-0">
 								<router-link class="promo-link blue_80 blue_20_bg"
-									:to="`/${promoItem.link}`">Подробнее</router-link>
+									:to="'/' + promoItem.link">Подробнее</router-link>
 							</div>
 							<div class="dates" v-if="!isNaN(promoItem.remain)">
 								<span class="date text_base2_bold" v-if="promoItem.startIn >= 0">
@@ -70,7 +70,7 @@ export default {
 	},
 	methods: {
 		async getPromos() {
-			await axios.get('../static/json/main.json'+ this.$v)
+			await axios.get('/api/v2/promo/')
 				.then(response => {
 					let currentDate = new Date(); // Текущая дата
 
@@ -82,14 +82,15 @@ export default {
 						let toStart = Math.floor((startDate - currentDate) / (1000 * 60 * 60 * 24));
 
 						return {
-							status: element.status,
+							status: element.promo_status,
 							group: element.group,
 							name: element.name,
 							link: element.link,
 							description: element.description,
-							promo_image: element.promo_image,
+							image_desktop: element.slider_desktop,
+							image_mobile: element.slider_mobile,
 							size: element.size,
-							sort: element.sort,
+							sort: element.promo_sort,
 							date_start: startDate.toShortFormat(),
 							date_end: endDate.toShortFormat(),
 							remain: remaining,
@@ -247,7 +248,7 @@ export default {
 }
 
 @media (min-width: 900px) {
-	#homePromo .heading.pdt-0.mrb-0 {
+	#promoList .heading.pdt-0.mrb-0 {
 		padding-top: 40px;
 	}
 

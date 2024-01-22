@@ -1,6 +1,5 @@
 
 <template >
-    
     <div v-if="postData" class="promo-wrapper container pdt-8">
         <div class="backlink" v-if="postData.button !== 0">
             <router-link to="/promo">
@@ -16,8 +15,8 @@
         </div>
         <div class="promo-header">
             <div class="image-block">
-                <img :src="postData.image" alt="postData.name" class="desktop-only">
-                <img :src="postData.image_m" alt="postData.name" class="mobile-only">
+                <img :src="'/static/image/promo/' + postData.slider_desktop" alt="postData.name" class="desktop-only">
+                <img :src="'/static/image/promo/' + postData.slider_mobile" alt="postData.name" class="mobile-only">
             </div>
             <div class="promo-description">
                 <h1 class="heading pdt-10 pdb-5 mrb-0 mrt-0">{{ postData.name }}</h1>
@@ -36,18 +35,18 @@
             </div>
         </div>
         <div id="promo-content">
-            <div class="description-item" v-for="contentData in postData.content" :key="contentData[0]"
-                v-html="contentData">
+            <div class="description-item" v-show="postData.content && postData.content !== ''" v-html="postData.content">
             </div>
-            <div id="htmlData" v-show="htmlData != ''" v-html="htmlData"></div>
         </div>
+
     </div>
 
-    <div class="slider container" v-if="slidesArr.length > 0">
-        <carousel :items-to-show="4" :wrap-around="false" :breakpoints="breakpoints">
+    <div class="slider container pdt-8" v-if="slidesArr.length !== 0">
+        <carousel :items-to-show="4" :wrap-around="true" :breakpoints="breakpoints">
             <slide v-for="(carousel, index) in slidesArr" :key="index">
-                <img :src="carousel.img" alt="carousel.alt">
+                <img :src="carousel" alt="carousel.alt">
             </slide>
+
             <template #addons>
                 <Navigation>
                     <template #next>
@@ -62,34 +61,109 @@
         </carousel>
     </div>
 
+    <div class="container pdt-8">
+        <productPart></productPart>
+    </div>
+
+
+    <div class="container pdt-8">
+        <div class="preorder-form form-group" v-if="!successPage">
+            <h3 class="header"> Оформите предзаказ</h3>
+            <div class="form-row d-flex flex-wrap">
+                <div class="input-form flex-50">
+                    <label class="mrb-0 black_50" for="name">Ваше имя *</label>
+                    <input type="text" class="care-form-field" id="name" placeholder="Ваше имя" @change="formValidation"
+                        @blur="formValidation" @focus="resetValidation" :value="data.name">
+                </div>
+                
+                <div class="input-form flex-50">
+                    <label class="mrb-0 black_50" for="phone">Ваш телефон *</label>
+                    <input v-mask="'+7 (###) ###-##-##'" type="text" class="care-form-field" id="phone"
+                        placeholder="Ваш номер" @change="formValidation" @blur="formValidation" @focus="resetValidation"
+                        :value="data.phone" />
+                </div>
+
+                <div class="input-form flex-50"  v-if="modelData.length > 1">
+                    <label class="mrb-0 black_50" for="city">Выберите город *</label>
+                    <v-select v-model="data.city" id="city" type="select" :options="cities" label="text"
+                        :placeholder="'Выберите город'" :style="'width:100%'" />
+                </div>
+                <div class="input-form flex-100" v-else>
+                    <label class="mrb-0 black_50" for="city">Выберите город *</label>
+                    <v-select v-model="data.city" id="city" type="select" :options="cities" label="text"
+                        :placeholder="'Выберите город'" :style="'width:100%'" />
+                </div>
+
+                <div class="input-form flex-50" v-show="modelData.length > 1">
+                    <label class="mrb-0 black_50" for="model">Выберите модель *</label>
+                    <v-select v-model="data.model" id="model" type="select" :options="modelData" label="text"
+                        :placeholder="'Выберите модель'" :style="'width:100%'" />
+                </div>
+
+
+                <div>
+                    <button class="preorder_submit" @click="sendMessage">Отправить сообщение</button>
+                </div>
+            </div>
+        </div>
+        <div class="content-block success" v-if="successPage">
+            <div class="alert alert-success">
+                <h4 class="mrb-3 header green">Спасибо за предзаказ</h4>
+                <p class="text_base1">Наш специалист свяжется с вами в ближайшее время.</p>
+            </div>
+        </div>
+    </div>
+
+
     <div class="container mrt-35">
         <careServiceWidget />
     </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 import careServiceWidget from '@/components/careServiceWidget.vue';
+import productPart from '@/components/productPart.vue';
 import 'vue3-carousel/dist/carousel.css';
+import vSelect from "vue-select";
 import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
+import { mask } from 'vue-the-mask'
+
 export default {
     name: 'promoPage',
     components: {
         careServiceWidget,
+        productPart,
         Carousel,
         Slide,
+        "v-select": vSelect,
         Navigation,
-        Pagination
-
+        Pagination,
+    },
+    directives: {
+        mask,
     },
     data() {
         return {
-            postData: [],
-            errorData: [],
+            successPage: false,
+            postData: {},
             slidesArr: [],
-            htmlData: '',
+            errorData: [],
             carouselStatus: 0,
-            wrapAround: true,
+            data: {
+                name: "",
+                phone: "",
+                city: "Алматы",
+                model: "",
+            },
+            cities: [
+                "Алматы",
+                "Астана",
+                "Шымкент",
+                "Другой"
+            ],
+            modelData: [],
+            formValide: false,
             breakpoints: {
                 320: {
                     itemsToShow: 1,
@@ -107,160 +181,135 @@ export default {
                     itemsToShow: 4,
                     snapAlign: 'start',
                 },
-                // 1600: {
-                // 	itemsToShow: 5.5,
-                // 	snapAlign: 'start',
-                // },
                 mousedrag: true,
                 touchDrag: true,
             },
         };
     },
     methods: {
-        async getPromo() {
-            function whatDay(num) {
-                if (num == 1 || (num > 20 && num % 10 == 1))
-                    return "день";
-                if (num < 5 || (num > 20 && num % 10 < 5 && num % 10 > 0))
-                    return "дня";
-                return "дней";
-            }
-            const linkParam = this.$route.params.link;
-            axios.get('/static/json/main.json' + this.$v)
-                .then(response => {
-                    const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
-                    if (matchingData) {
-                        this.fetchHtmlContent(matchingData);
-
-                        let date_end = new Date(matchingData.date_end);
-                        let date_start = new Date(matchingData.date_start);
-                        let today = Date.now();
-                        let result = date_end - today;
-                        if (result < 0)
-                            result = 0;
-                        let num = Math.ceil(result / (1000 * 3600 * 24));
-                        if (num == 0)
-                            num = 1;
-                        let remainDay = num + ' ' + whatDay(num);
-                        if (date_start > today || today > date_end)
-                            remainDay = '';
-                        let check = Date.now() - new Date(matchingData.date_start);
-                        let old_check = Date.now() - new Date(matchingData.date_end);
-                        this.postData = {
-                            "status": matchingData.status,
-                            "button": matchingData.button,
-                            "link": matchingData.link,
-                            "content": matchingData.content,
-                            "desc": stripHtmlTags(matchingData.description),
-                            "name": matchingData.name,
-                            "image": matchingData.promo_image,
-                            "image_m": matchingData.home_image,
-                            "date_start": date_start.toShortFormat(),
-                            "date_end": date_end.toShortFormat(),
-                            "remain": remainDay,
-                            "text": matchingData.text,
-                            "actual": check,
-                            "old": old_check,
-                            "slide_status": matchingData.slider_status
-                        };
-                        this.updateMetaTags();
-                    }
-                    else{
-                        this.postData = {
-                            
-                        };
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-
-        async getcarousel() {
+        async fetchData() {
             try {
                 const linkParam = this.$route.params.link;
-                const response = await axios.get('/static/json/main.json'+ this.$v);
-                const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("promo/") + 6) === linkParam);
-                if (matchingData) {
-                    const carouselImages = matchingData.carousel || [];
-                    this.slidesArr = carouselImages.map(img => ({ img }));
+                const response = await axios.get('/api/v2/promo/' + linkParam + '/');
+
+                if (response.data && response.data.length > 0) {
+                    const matchingData = response.data[0];
+                    const today = Date.now();
+                    const check = today - new Date(matchingData.date_start);
+                    const old_check = today - new Date(matchingData.date_end);
+                    const remain = this.calcRemain(matchingData.date_end);
+
+                    this.modelData = matchingData.promo_description[0].preorder || [];
+                    this.data.model = this.modelData[0]
+                    this.postData = {
+                        ...matchingData,
+                        content: matchingData.promo_description[0].content,
+                        date_start: new Date(matchingData.date_start).toShortFormat(),
+                        date_end: new Date(matchingData.date_end).toShortFormat(),
+                        remain,
+                        actual: check,
+                        old: old_check,
+                    };
+                    console.log(this.postData.promo_description[0].preorder)
+                    if (matchingData.promo_description && matchingData.promo_description.length > 0) {
+                        this.slidesArr = matchingData.promo_description[0].carousel;
+                    } else {
+                        this.slidesArr = [];
+                    }
+                    this.updateMetaTags();
                 } else {
-                    this.slidesArr = [];
+                    this.postData = {};
                 }
             } catch (error) {
-                this.promoData = {
-                    message: 'Карусели на данный момент нет'
-                };
                 console.error(error);
                 this.errorData.push(error);
             }
         },
-
-        async fetchHtmlContent(matchingData) {
-            try {
-                if (matchingData && matchingData.htmlFile) {
-                    const responseHtml = await axios.get(matchingData.htmlFile + this.$v);
-                    this.htmlData = responseHtml.data;
+        formValidation(e) {
+            if (this.validation(e.target)) this.data[e.target.getAttribute('id')] = e.target.value;
+        },
+        validation(element) {
+            let label = document.querySelector(`label[for=${element.getAttribute('id')}]`);
+            if (element.getAttribute('id') == 'phone') {
+                if (element.value.match(/\+7 \(\d\d\d\) \d\d\d-\d\d-\d\d/gu)) {
+                    return true;
+                } else {
+                    element.classList.add('is-invalid');
+                    label.classList.add('is-invalid');
+                    return false;
                 }
-            } catch (error) {
-                console.error('Ошибка обработки HTML файла:', error);
+            } else {
+                if (element.value == '') {
+                    element.classList.add('is-invalid');
+                    label.classList.add('is-invalid');
+                    return false;
+                } else {
+                    return true;
+                }
             }
         },
+        resetValidation(e) {
+            let label = document.querySelector(`label[for=${e.target.getAttribute('id')}]`);
+            e.target.classList.remove('is-invalid');
+            label.classList.remove('is-invalid');
+            this.formValide = true;
+        },
+        sendMessage() {
 
+            for (let item in this.data) {
+                let element = document.querySelector('#' + item);
+                if (!this.validation(element)) this.formValide = false;
+            }
+            if (this.formValide) {
+                axios.post("/preorder", this.data)
+                    .then(response => {
+                        if (response.status == "error") {
+                            console.error(response.massage);
+                        } else {
+                            this.showSuccessPage();
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+
+        },
+        showSuccessPage() {
+            this.successPage = true;
+        },
+        calcRemain(endDate) {
+            const result = Math.ceil((new Date(endDate) - Date.now()) / (1000 * 3600 * 24));
+            return result > 0 ? `${result} ${result === 1 ? 'день' : 'дней'}` : '';
+        },
         updateMetaTags() {
             document.title = this.postData.name + ' в фирменном магазине Samsung';
-            let descriptionTag = document.querySelector("meta[name='description']");
-            if (!descriptionTag) {
-                descriptionTag = document.createElement("meta");
-                descriptionTag.setAttribute("name", "description");
-                document.head.appendChild(descriptionTag);
-            }
-            descriptionTag.setAttribute("content", this.postData.desc);
-            let ogDescriptionTag = document.querySelector("meta[property='og:description']");
-            if (!ogDescriptionTag) {
-                ogDescriptionTag = document.createElement("meta");
-                ogDescriptionTag.setAttribute("property", "og:description");
-                document.head.appendChild(ogDescriptionTag);
-            }
-            ogDescriptionTag.setAttribute("content", this.postData.ogDescription);
+
+            const metaTags = [
+                { name: "description", content: this.postData.description },
+                { name: "og:description", content: this.postData.description }
+            ];
+
+            metaTags.forEach(({ name, content }) => {
+                let metaTag = document.querySelector(`meta[name='${name}']`) || document.createElement("meta");
+                metaTag.setAttribute("name", name);
+                metaTag.setAttribute("content", content);
+                document.head.appendChild(metaTag);
+            });
         },
     },
-
     created() {
-        this.getPromo();
-        this.getcarousel();
-        this.fetchHtmlContent(this.matchingData);
+        this.fetchData();
     },
-
     computed: {
         remainInt() {
-            // this.postData.remain в parseInt
             return parseInt(this.postData.remain);
         },
-
         isMobile() {
             return window.innerWidth < 768;
         },
     },
-
-}
-Date.prototype.toShortFormat = function () {
-    const monthNames = ['января', 'февраля', 'марта', 'апреля',
-        'мая', 'июня', 'июля', 'августа',
-        'сентября', 'октября', 'ноября', 'декабря'];
-
-    const day = this.getDate();
-    const monthIndex = this.getMonth();
-    const monthName = monthNames[monthIndex];
-
-    return `${day} ${monthName}`;
-}
-function stripHtmlTags(html) {
-    var tmp = document.createElement("div");
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText;
-}
-
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -394,7 +443,7 @@ function stripHtmlTags(html) {
     }
 
     .carousel__pagination {
-        top: -5px !important;
+        top: 10px !important;
     }
 }
 
@@ -445,6 +494,34 @@ function stripHtmlTags(html) {
         height: 28px;
         width: 28px;
     }
+}
+
+.flex-50 {
+    flex-basis: calc(50% - 32px);
+}
+.flex-100 {
+    flex-basis: 100%;
+}
+.form-row.d-flex.flex-wrap {
+    gap: 32px;
+}
+
+.input-form input.is-invalid {
+    border: 1px solid #FB6060;
+    transition: all 0.15s ease;
+}
+
+label {
+    transition: all 0.15s ease;
+}
+
+label.is-invalid {
+    color: #FB6060 !important;
+    transition: all 0.15s ease;
+}
+
+.input-form input:focus {
+    border-color: #91A0EF;
 }
 
 // .container.mgt-35 .care-widget {
@@ -1306,6 +1383,16 @@ strong {
 }
 
 @media (max-width: 900px) {
+    .promo-header .image-block img.mobile-only {
+        max-height: 113.6vw;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .promo-header h1.heading {
+        display: none;
+    }
+
     #promo-content .BFcards div {
         flex-basis: 100%;
     }
@@ -1360,5 +1447,53 @@ strong {
     #promo-content .BFcards {
         gap: 20px;
     }
+
+    #app .promo-header .promo-description .date {
+        margin: 32px 0 0 !important;
+    }
+}
+
+.vs__actions {
+    position: absolute !important;
+    top: 0 !important;
+    width: 100%;
+    height: 100%;
+}
+
+.vs__open-indicator {
+    top: 32% !important;
+    left: calc(100% - 45px) !important;
+    position: relative !important;
+}
+
+.vs__dropdown-toggle {
+    max-height: 67px;
+}
+
+.preorder_submit {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 20px 28px;
+    border-radius: 12px;
+    background: var(--blue_80, #2B47DA);
+    color: white;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 140%;
+    border: none;
+    transition: ease all 0.3s;
+}
+
+.preorder_submit:hover {
+    transition: ease all 0.3s;
+    background: #1D39C9;
+    color: white;
+}
+
+.is-invalid input {
+    border: 1px solid #FB6060 !important;
+    transition: all 0.15s ease !important;
 }
 </style>

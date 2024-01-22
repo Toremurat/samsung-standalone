@@ -276,7 +276,7 @@ export default {
 
 .infoPage .numbered-list li {
 	line-height: 1.5;
-	font-size: 16px;
+	font-size: 18px;
 }
 
 .list-info {
@@ -285,8 +285,11 @@ export default {
 
 	& li {
 		margin: 0 0 8px;
-		font-size: 14px;
+		font-size: 16px;
 	}
+}
+.text_base2.mrt-5.mrb-0 ~ b{
+	font-size: 18px;
 }
 
 @media (max-width: 900px) {

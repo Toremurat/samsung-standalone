@@ -73,17 +73,16 @@ export default {
 	},
 	methods: {
 		async getcarousel() {
-			await axios.get('../static/json/carousel.json'+ this.$v)
+			await axios.get('/api/v2/product/')
 				.then(response => {
 					this.itemsArr = [];
 					response.data.forEach(element => {
 						this.itemsArr.push({
-							"img": element.slide,
-							"img-mobi": element.slide_m,
+							"img": element.image_carousel,
 							"link": element.link,
-							"sort": element.sort,
+							"sort": element.sort_carousel,
 							"status": element.status,
-							"alt": element.alt,
+							"alt": element.name,
 						});
 					});
 
@@ -104,7 +103,7 @@ export default {
 			if (route == '') {
 				route = '#';
 			} else {
-				route = '/' + route;
+				route = '/product/' + route;
 			}
 			this.$router.push(route);
 		}

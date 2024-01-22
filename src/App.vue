@@ -5,6 +5,8 @@
     <router-view></router-view>
   </div>
   <div class="container bottom">
+
+
     <footerMain></footerMain>
   </div>
   <div class="contacts">
@@ -32,6 +34,7 @@
 <script>
 import headingNav from './components/headingNav.vue';
 import footerMain from './components/footerMain.vue';
+
 export default {
   metaInfo() {
     return {
@@ -47,7 +50,7 @@ export default {
         },
         {
           name: 'og:description',
-          content: this.$route.meta.ogDescription,
+          content: this.$route.meta.description,
         },
         {
           name: 'description',
@@ -57,42 +60,21 @@ export default {
           name: 'keywords',
           content: this.$route.meta.keywords,
         },
-
       ],
     };
   },
   name: 'MainApp',
   components: {
     headingNav,
-    footerMain
+    footerMain,
   },
-  // metaInfo: {
-  //   meta: [
-  //     { charset: 'utf-8' },
-  //     {
-  //       property: 'og:title',
-  //       content: 'Evrika',
-  //       template: chunk => `${chunk} - Официальный партнер Samsung в Казахстане`,
-  //       vmid: 'og:title'
-  //     },
-  //     {
-  //       property: 'og:image',
-  //       content: '/static/image/logo/logo.webp',
-  //       template: chunk => `${chunk}`,
-  //       vmid: 'og:image'
-  //     },
-  //     {
-  //       property: 'og:type',
-  //       content: 'Store',
-  //       template: chunk => `${chunk}`,
-  //       vmid: 'og:type'
-  //     },
-  //   ]
-  // }
-}
+
+};
 </script>
 
+
 <style lang="scss">
+
 .contacts {
   position: fixed;
   bottom: 32px;

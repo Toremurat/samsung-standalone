@@ -16,7 +16,6 @@ import smartBonus from "@/views/smartBonus.vue";
 import ProductInfo from "@/views/productInfo.vue";
 import ourStore from "@/views/ourStore.vue";
 import NotFound from "@/views/NotFound.vue";
-import axios from 'axios';
 const routes = [
 	{
 		path: "/",
@@ -83,25 +82,25 @@ const routes = [
 					"Samsung, Samsung Dostyk Plaza, Фирменный магазин Samsung, Samsung Казахстан, Galaxy, Bespoke, Fold, Flip",
 			};
 		},
-		beforeEnter: async (to, from, next) => {
-			const linkParam = to.params.link;
-			try {
-				const response = await axios.get("/static/json/main.json");
-				const matchingData = response.data.find(
-					(item) =>
-						item.link.substring(item.link.indexOf("promo/") + 6) ===
-						linkParam
-				);
-				if (matchingData) {
-					next();
-				} else {
-					next({ name: "NotFound" });
-				}
-			} catch (error) {
-				console.error(error);
-				next({ name: "NotFound" }); 
-			}
-		},
+		// beforeEnter: async (to, from, next) => {
+		// 	const linkParam = to.params.link;
+		// 	try {
+		// 		const response = await axios.get("/api/main.json");
+		// 		const matchingData = response.data.find(
+		// 			(item) =>
+		// 				item.link.substring(item.link.indexOf("promo/") + 6) ===
+		// 				linkParamfF
+		// 		);
+		// 		if (matchingData) {
+		// 			next();
+		// 		} else {
+		// 			next({ name: "NotFound" });
+		// 		}
+		// 	} catch (error) {
+		// 		console.error(error);
+		// 		next({ name: "NotFound" }); 
+		// 	}
+		// },
 	},
 	{
 		path: "/product/:link",

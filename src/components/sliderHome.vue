@@ -4,10 +4,11 @@
 	<div class="slider-section mrb-35 ">
 		<carousel :items-to-show="1" :wrap-around="false">
 			<slide v-for="(slider, index) in slidesArr" :key="index">
-				<img :src="'/static/image/slider/' + slider.img" alt="slider.alt" class="desktop-only"
+				<img :src="'/static/image/promo/' + slider.img" alt="slider.alt" class="desktop-only" :route="slider.link"
+					@click="toRoute">
+				<img :src="'/static/image/promo/' + slider.img_mobi" alt="slider.alt" class="mobile-only"
 					:route="slider.link" @click="toRoute">
-				<img :src="'/static/image/slider/' + slider.img_mobi" alt="slider.alt" class="mobile-only"
-					:route="slider.link" @click="toRoute">
+				<button class="link btn-slider" :route="slider.link" @click="toRoute">Узнать подробнее</button>
 			</slide>
 			<template #addons>
 				<Navigation v-if="!isMobile">
@@ -49,16 +50,16 @@ export default {
 	},
 	methods: {
 		async getSlides() {
-			await axios.get('../static/json/slider.json'+ this.$v)
+			await axios.get('/api/v2/promo/')
 				.then(response => {
 					this.slidesArr = [];
 					response.data.forEach(element => {
 						this.slidesArr.push({
-							"img": element.slide,
-							"img_mobi": element.slide_m,
+							"img": element.slider_desktop,
+							"img_mobi": element.slider_mobile,
 							"link": element.link,
-							"sort": element.sort,
-							"status": element.status,
+							"sort": element.slider_sort,
+							"status": element.slider_status,
 							"alt": element.alt,
 						});
 					});
@@ -172,6 +173,39 @@ img {
 	max-width: 100%;
 }
 
+.link.btn-slider {
+	position: absolute;
+	left: 86px;
+	bottom: 86px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	color: #fff;
+	border: none;
+	border-radius: 15px;
+	background: #000;
+	height: 70px;
+	width: 235px;
+	font-size: 19px;
+	font-weight: 600;
+	@media (max-width: 1700px) and (min-width: 901px) {
+		left: 5.3vw;
+		bottom: 5.3vw;
+		border-radius: 10px;
+		height: 4.1vw;
+		width: 14.2vw;
+		font-size: 1.15vw;
+	}
+	@media (max-width: 900px) {
+		left: calc(50% - 22.5vw);
+		bottom: 8.8vw;
+		border-radius: 10px;
+		height: 13vw;
+		width: 45vw;
+		font-size: 3.7vw;
+	}
+}
+
 @media (max-width: 900px) {
 
 	.carousel__prev,
@@ -261,4 +295,5 @@ img {
 
 .vs__open-indicator {
 	transform: scale(0.7);
-}</style>
+}
+</style>
