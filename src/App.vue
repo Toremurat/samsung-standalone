@@ -61,10 +61,15 @@ export default {
     footerMain,
   },
   mounted() {
-    const script = document.createElement('script');
-    script.src = 'https://kaspi.kz/kaspibutton/widget/ks-wi_ext.js';
-    script.id = 'KS-Widget';
-    document.body.appendChild(script);
+    (function(d, s, id) {
+      var js, kjs;
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://kaspi.kz/kaspibutton/widget/ks-wi_ext.js';
+      kjs = d.getElementsByTagName(s)[0];
+      kjs.parentNode.insertBefore(js, kjs);
+    }(document, 'script', 'KS-Widget'));
   },
 };
 </script>
