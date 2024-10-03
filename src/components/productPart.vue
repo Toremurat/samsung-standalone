@@ -23,9 +23,12 @@
                             <strike>{{ formatNumber(product.rrp) }}<small>₸</small></strike>
                         </div>
                         <p>{{ product.name }} {{ product.model }}</p>
+
+                        <a v-show="product.kaspi" :href="'https://kaspi.kz/shop/p/'+ product.kaspi"
+                            target="_blank"><img src="/static/icons/kaspi-m.svg"></a>
                         <!-- Kaspi button wrapper -->
-                        <div class="kaspi-wrapper" v-show="product.kaspi">
-                            <div :id="'kaspi-' + product.model"></div>
+                        <div class="kaspi-wrapper" v-show="product.sku">
+                            <div :id="'kaspi-' + product.sku"></div>
                         </div>
                     </div>
                 </div>
@@ -77,10 +80,10 @@ export default {
         initializeKaspiButtons() {
             // Динамически добавляем кнопку Kaspi для каждого продукта с support Kaspi
             this.prodItems.products.forEach(product => {
-                if (product.kaspi) {
-                    const dynamicElement = document.getElementById(`kaspi-${product.model}`);
+                if (product.sku) {
+                    const dynamicElement = document.getElementById(`kaspi-${product.sku}`);
                     if (dynamicElement) {
-                        dynamicElement.innerHTML = `<div class="ks-widget" data-template="button" data-merchant-sku="${product.kaspi}" data-merchant-code="merchant-code" data-city="750000000"></div>`;
+                        dynamicElement.innerHTML = `<div class="ks-widget" data-template="button" data-merchant-sku="${product.sku}" data-merchant-code="merchant-code" data-city="750000000"></div>`;
                     }
                 }
             });
