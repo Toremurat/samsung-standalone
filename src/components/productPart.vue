@@ -78,20 +78,24 @@ export default {
             return number ? Number(number).toLocaleString('ru-RU') : '';
         },
         initializeKaspiButtons() {
-            // Динамически добавляем кнопку Kaspi для каждого продукта с support Kaspi
+        // Динамически добавляем кнопку Kaspi для каждого продукта с поддержкой Kaspi
             this.prodItems.products.forEach(product => {
                 if (product.sku) {
                     const dynamicElement = document.getElementById(`kaspi-${product.sku}`);
                     if (dynamicElement) {
-                        dynamicElement.innerHTML = `<div class="ks-widget" data-template="button" data-merchant-sku="${product.sku}" data-merchant-code="merchant-code" data-city="750000000"></div>`;
+                        dynamicElement.innerHTML = `<div class="ks-widget" data-template="button" data-merchant-sku="${product.sku}" data-merchant-code="30032741" data-city="750000000"></div>`;
                     }
                 }
             });
 
-            // Реинициализация виджетов после вставки динамических кнопок
-            if (window.ksWidgetInitializer) {
-                window.ksWidgetInitializer.reinit();
-            }
+            // Реинициализация виджетов через 0.5 секунды (500 мс)
+            this.$nextTick(() => {
+                setTimeout(() => {
+                    if (window.ksWidgetInitializer) {
+                        window.ksWidgetInitializer.reinit();
+                    }
+                }, 500); // Измените на 1000 для 1 секунды
+            });
         },
     },
     created() {
