@@ -3,8 +3,8 @@
     <div v-if="prodData" class="prod-wrapper container pdt-8">
         <div class="prod-header">
             <div class="image-block">
-                <img :src="this.prodData.image" :alt="this.prodData.name" class="desktop-only">
-                <img :src="this.prodData.image_m" :alt="this.prodData.name" class="mobile-only">
+                <img :src="'/static/image/product/' + this.prodData.image" :alt="this.prodData.name" class="desktop-only">
+                <img :src="'/static/image/product/' + this.prodData.image_m" :alt="this.prodData.name" class="mobile-only">
             </div>
             <div class="prod-description pdt-10 pdb-0">
                 <h1 class="heading  mrb-0 mrt-0 pdt-0 pdb-0" style="margin:0!important; padding-top:0!important">{{
@@ -34,7 +34,7 @@
     <div class="slider container" v-if="this.prodData.slide_status !== 0">
         <carousel :items-to-show="4" :wrap-around="false" :breakpoints="breakpoints">
             <slide v-for="(carousel, index) in slidesArr" :key="index">
-                <img :src="carousel.img" alt="carousel.alt">
+                <img :src="'/static/image/product/'+ carousel.img" alt="carousel.alt">
             </slide>
             <template #addons>
                 <Navigation>
@@ -115,9 +115,9 @@ export default {
         },
         async getprod() {
             const linkParam = this.$route.params.link;
-            axios.get('/api/product/')
+            axios.get('/api/v2/product/')
                 .then(response => {
-                    const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("product/") + 8) === linkParam);
+                    const matchingData = response.data.find(item => item.link === linkParam);
                     if (matchingData) {
                         this.prodData = {
                             "status": matchingData.status,
@@ -127,8 +127,8 @@ export default {
                             "name": matchingData.name,
                             "kaspi": matchingData.kaspi,
                             "halyk": matchingData.halyk,
-                            "image": matchingData.desktop_image,
-                            "image_m": matchingData.mobile_image,
+                            "image": matchingData.image_desktop,
+                            "image_m": matchingData.image_mobile,
                             "slide_status": matchingData.slider_status
                         };
                         this.updateMetaTags();
@@ -142,9 +142,8 @@ export default {
         async getcarousel() {
             try {
                 const linkParam = this.$route.params.link;
-                const response = await axios.get('/api/product/');
-                const matchingData = response.data.find(item => item.link.substring(item.link.indexOf("product/") + 8) === linkParam);
-
+                const response = await axios.get('/api/v2/product/');
+                    const matchingData = response.data.find(item => item.link === linkParam);
                 if (response) {
                     const carouselImages = matchingData.carousel || [];
                     this.slidesArr = carouselImages.map(img => ({ img }));

@@ -7,8 +7,9 @@
     </div>
     <div class="promo-wrapper" v-if="promosList && promosList.length > 0">
       <div class="promo-container row">
-        <div v-for="(promoItem, index) in promoFiltered" :key="index" class="promo-row col-sm-12 flex-row align-center"
-          :style="'order:' + promoItem.sort" :class="'col-sm-' + promoItem.size + ' index-' + (index + 1)">
+        <div v-for="(promoItem, index) in promoFiltered" :key="index" class="promo-row col-sm-12 flex-row align-center "
+          
+          :class="'col-sm-' + promoItem.size + ' index-' + (index + 1) + 'order-' + promoItem.sort" >
           <div class="image-box rounded-6" :class="{ 'isOdd': index % 2 === 0, 'isEven': index % 2 !== 0 }">
             <router-link :to="'/' + promoItem.link">
               <img :src="'/static/image/promo/' + promoItem.image" alt="image" :style="{ 'max-height': maxWidth }">
@@ -154,7 +155,7 @@ export default {
   },
   computed: {
     promoFiltered() {
-      return this.promosList.filter(promoItem => promoItem.status !== this.statusFilter && promoItem.remain > 0);
+      return this.promosList.filter(promoItem => promoItem.status !== this.statusFilter).sort((a, b) => a.sort - b.sort);
     },
   }
 }
@@ -338,6 +339,7 @@ export default {
     gap: 5px 15px !important;
   }
 }
+
 </style>
 
 

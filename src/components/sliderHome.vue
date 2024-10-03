@@ -8,7 +8,7 @@
 					@click="toRoute">
 				<img :src="'/static/image/promo/' + slider.img_mobi" alt="slider.alt" class="mobile-only"
 					:route="slider.link" @click="toRoute">
-				<button class="link btn-slider" :route="slider.link" @click="toRoute">Узнать подробнее</button>
+				<button class="link btn-slider" :route="slider.link" :class="slider.color == 1 ? 'whiteBtn' : ''" @click="toRoute">Узнать подробнее</button>
 			</slide>
 			<template #addons>
 				<Navigation v-if="!isMobile">
@@ -61,6 +61,7 @@ export default {
 							"sort": element.slider_sort,
 							"status": element.slider_status,
 							"alt": element.alt,
+							"color" : element.color
 						});
 					});
 
@@ -104,7 +105,10 @@ export default {
 img {
 	cursor: pointer;
 }
-
+.link.btn-slider.whiteBtn {
+	color: black;
+	background: #fff;
+}
 .slider-section {
 	margin-top: 95px;
 

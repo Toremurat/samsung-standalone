@@ -20,13 +20,20 @@
 									:to="'/' + promoItem.link">Подробнее</router-link>
 							</div>
 							<div class="dates" v-if="!isNaN(promoItem.remain)">
-								<span class="date text_base2_bold" v-if="promoItem.startIn >= 0">
+								<span class="date text_base2_bold" v-if="promoItem.startIn > 0">
 									{{ promoItem.startIn }} {{ getDaysText(promoItem.startIn) }} до начала
 								</span>
-								<span class="date text_base2_bold" v-else-if="promoItem.remain >= 0">
+								<span class="date text_base2_bold" v-if="promoItem.startIn == 0">
+									1 день до начала
+								</span>
+								<span class="date text_base2_bold" v-else-if="promoItem.remain == 0">
+									Остался 1 день
+								</span>
+								<span class="date text_base2_bold" v-else-if="promoItem.remain > 0">
 									Осталось {{ promoItem.remain }} {{ getDaysText(promoItem.remain) }}
 								</span>
-								<span class="date text_base2_bold" v-else-if="promoItem.remain <= 0">
+
+								<span class="date text_base2_bold" v-else-if="promoItem.remain < 0">
 									Закончилась
 								</span>
 								<div class="duration mrb-0 pdt-1 black_50 text_base2">

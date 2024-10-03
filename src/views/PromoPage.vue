@@ -1,5 +1,4 @@
-
-<template >
+<template>
     <div v-if="postData" class="promo-wrapper container pdt-8">
         <div class="backlink" v-if="postData.button !== 0">
             <router-link to="/promo">
@@ -35,7 +34,8 @@
             </div>
         </div>
         <div id="promo-content">
-            <div class="description-item" v-show="postData.content && postData.content !== ''" v-html="postData.content">
+            <div class="description-item" v-show="postData.content && postData.content !== ''"
+                v-html="postData.content">
             </div>
         </div>
 
@@ -66,7 +66,7 @@
     </div>
 
 
-    <div class="container pdt-8" id="viewer">
+    <div class="container pdt-8" id="viewer" v-if="modelData && modelData.length !== 0">
         <div class="preorder-form form-group" v-if="!successPage">
             <h3 class="header"> Оформите предзаказ</h3>
             <div class="form-row d-flex flex-wrap">
@@ -75,7 +75,7 @@
                     <input type="text" class="care-form-field" id="name" placeholder="Ваше имя" @change="formValidation"
                         @blur="formValidation" @focus="resetValidation" :value="data.name">
                 </div>
-                
+
                 <div class="input-form flex-50">
                     <label class="mrb-0 black_50" for="phone">Ваш телефон *</label>
                     <input v-mask="'+7 (7##) ###-##-##'" type="text" class="care-form-field" id="phone"
@@ -83,7 +83,7 @@
                         :value="data.phone" />
                 </div>
 
-                <div class="input-form flex-50"  v-if="modelData.length > 1">
+                <div class="input-form flex-50" v-if="modelData.length > 1">
                     <label class="mrb-0 black_50" for="city">Выберите город *</label>
                     <v-select v-model="data.city" id="city" type="select" :options="cities" label="text"
                         :placeholder="'Выберите город'" :style="'width:100%'" />
@@ -113,15 +113,21 @@
             </div>
         </div>
     </div>
+    
+    <div class="container mrt-35" v-if="subscribe && subscribe.length !== 0">
+        <subscribeForm />
+    </div>
 
-    <div class="container mrt-35">
+    <div class="container pdt-8" id="viewer">
         <careServiceWidget />
     </div>
+
 </template>
 
 <script>
 import axios from 'axios';
 import careServiceWidget from '@/components/careServiceWidget.vue';
+import subscribeForm from '@/components/subscribeForm.vue';
 import productPart from '@/components/productPart.vue';
 import 'vue3-carousel/dist/carousel.css';
 import vSelect from "vue-select";
@@ -132,6 +138,7 @@ export default {
     name: 'promoPage',
     components: {
         careServiceWidget,
+        subscribeForm,
         productPart,
         Carousel,
         Slide,
@@ -189,7 +196,7 @@ export default {
         async fetchData() {
             try {
                 const linkParam = this.$route.params.link;
-                const response = await axios.get('http://localhost:5000/api/v2/promo/' + linkParam + '/');
+                const response = await axios.get('/api/v2/promo/' + linkParam + '/');
 
                 if (response.data && response.data.length > 0) {
                     const matchingData = response.data[0];
@@ -199,6 +206,7 @@ export default {
                     const remain = this.calcRemain(matchingData.date_end);
 
                     this.modelData = matchingData.promo_description[0].preorder || [];
+                    this.subscribe = matchingData.promo_description[0].subscribe || [];
                     this.data.model = this.modelData[0]
                     this.postData = {
                         ...matchingData,
@@ -266,19 +274,27 @@ export default {
                             console.error(response.massage);
                         } else {
                             this.showSuccessPage();
+                            window.dataLayer = window.dataLayer || [];
+                            window.dataLayer.push({
+                                event: "preorder",
+                                model: this.data.model,
+                                name: this.data.name,
+                                phone: this.data.phone,
+                                city: this.data.city
+                            });
                         }
                     })
                     .catch(error => {
                         console.error(error);
                     });
-            }else{
-                                    
+            } else {
+
                 setTimeout(() => {
-                        const viewerElement = document.querySelector('#viewer');
-                        if (viewerElement) {
-                            window.scrollTo({ top: viewerElement.offsetTop - 80, behavior: 'smooth' });
-                        }
-                    }, 100);
+                    const viewerElement = document.querySelector('#viewer');
+                    if (viewerElement) {
+                        window.scrollTo({ top: viewerElement.offsetTop - 80, behavior: 'smooth' });
+                    }
+                }, 100);
             }
 
         },
@@ -512,9 +528,11 @@ export default {
 .flex-50 {
     flex-basis: calc(50% - 32px);
 }
+
 .flex-100 {
     flex-basis: 100%;
 }
+
 .form-row.d-flex.flex-wrap {
     gap: 32px;
 }
@@ -614,6 +632,10 @@ h4.header {
     border-radius: 24px;
 }
 
+#app>div>.container#viewer {
+    margin-top: 60px;
+}
+
 #app>div>.promo-wrapper.container.mgb-35.pdt-10,
 #app>div>.container.mgt-35 {
     @media (min-width: 1600px) {
@@ -683,20 +705,26 @@ h4.header {
     h1.heading {
         margin-bottom: 16px !important;
     }
+
     .form-row.d-flex.flex-wrap {
-	display: flex;
-	flex-flow: column;
-	gap: 28px;
-}
-#app > div > .container#viewer {
-	padding: 0 10px !important;
-}
-input-form input {
-	border-radius: 12px;
-}
-.vs__open-indicator {
-	top: 30% !important;
-}
+        display: flex;
+        flex-flow: column;
+        gap: 28px;
+    }
+
+    #app>div>.container#viewer {
+        padding: 0 10px !important;
+        margin-top: 60px;
+
+    }
+
+    input-form input {
+        border-radius: 12px;
+    }
+
+    .vs__open-indicator {
+        top: 30% !important;
+    }
 
 }
 
@@ -1478,20 +1506,23 @@ strong {
         margin: 32px 0 0 !important;
     }
 }
+
 .content-block.success .alert {
-	background: #F3FFEA;
-	border-color: transparent;
-	border-radius: 24px;
-	padding: 24px;
-	color: #008F25;
+    background: #F3FFEA;
+    border-color: transparent;
+    border-radius: 24px;
+    padding: 24px;
+    color: #008F25;
 }
+
 .content-block.success .alert p {
-	font-family: Inter;
-	font-size: 18px;
-	font-style: normal;
-	font-weight: 400;
-	color: #282828;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    color: #282828;
 }
+
 .vs__actions {
     position: absolute !important;
     top: 0 !important;
@@ -1534,5 +1565,20 @@ strong {
 .is-invalid input {
     border: 1px solid #FB6060 !important;
     transition: all 0.15s ease !important;
+}
+
+@media (max-width:600px) {
+    #viewer {
+        & .vs__open-indicator {
+            top: 32% !important;
+        }
+
+        & .vs__selected {
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: calc(100% - 70px);
+            text-overflow: ellipsis;
+        }
+    }
 }
 </style>

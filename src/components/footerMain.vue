@@ -132,7 +132,7 @@
         </div>
         <hr class="mrt-0 mrb-3">
         <div class="copyright">
-            <p class="text_base3 black_50 mrt-0 mrb-5">Copyright © 2023 ТОО Компания Эврика</p>
+            <p class="text_base3 black_50 mrt-0 mrb-5">Продавец ТОО «Компания Эврика», БИН 120140015907<br>Более подробно смотрите раздел <router-link to="/public-policy">Оферта</router-link></p>
         </div>
     </footer>
     <footer class="desktop-only">
@@ -200,7 +200,7 @@
         </div>
         <hr class="mrt-0 mrb-3">
         <div class="copyright">
-            <p class="text_base3 black_50 mrt-0 mrb-5">Copyright &copy; {{ currentYear }} ТОО Компания Эврика</p>
+            <p class="text_base3 black_50 mrt-0 mrb-5">Продавец ТОО «Компания Эврика», БИН 120140015907. Более подробно смотрите раздел <router-link to="/public-policy">Оферта</router-link></p>
         </div>
     </footer>
 </template>
@@ -590,7 +590,9 @@ hr {
     }
 
 }
-
+footer.mobile-only .copyright p{
+    padding-right: 60px;
+}
 @media (max-width: 900px) {
     .text_base2.black_100.mrt-0 {
         margin-top: -16px !important;
